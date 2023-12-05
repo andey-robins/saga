@@ -4,6 +4,8 @@ MAGICAL -- memristor aided genetic intelligent computation algorithms -- is a fo
 
 _Current Version:_ `0.1.1`
 
+[![Go](https://github.com/andey-robins/magical/actions/workflows/go.yml/badge.svg?branch=main)](https://github.com/andey-robins/magical/actions/workflows/go.yml)
+
 ## Building
 
 This project is built with go version `1.21.4`. Run `go build -o magical` to build from source.
