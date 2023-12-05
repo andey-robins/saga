@@ -2,7 +2,6 @@ package sequence
 
 import (
 	"fmt"
-	"math/rand"
 )
 
 type Sequence struct {
@@ -17,15 +16,6 @@ func (s *Sequence) GetSequence() []int {
 	seq := make([]int, 0)
 	seq = append(seq, s.sequence...)
 	return seq
-}
-
-func (s *Sequence) Mutate(chance float64) {
-	for i := 1; i < len(s.sequence); i++ {
-		if rand.Float64() < chance {
-			randIdx := rand.Intn(len(s.sequence) - i)
-			s.sequence[i], s.sequence[i+randIdx] = s.sequence[i+randIdx], s.sequence[i]
-		}
-	}
 }
 
 func (s *Sequence) ToString() string {

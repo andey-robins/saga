@@ -25,17 +25,20 @@ type Population struct {
 	generations    int
 	size           int
 	mutationChance float64
+	rng            *rand.Rand
 }
 
-func NewPopulation(size int, graph *graph.Graph) *Population {
+func NewPopulation(size, e int, mut float64, graph *graph.Graph, seed int) *Population {
 	genes := make([]*Gene, size)
 
 	totalFitness := 0
 	bestFitness := math.MaxInt
 	bestGene := &Gene{}
 
+	rng := rand.New(rand.NewSource(int64(seed)))
+
 	for i := 0; i < size; i++ {
-		seq := graph.SynthesizeRandomValidSequence()
+		seq := graph.SynthesizeRandomValidSequence(rng.Int())
 		fitness := graph.SimulateSequence(seq).GetMaxUtilization()
 
 		genes[i] = &Gene{seq, fitness}
@@ -49,13 +52,14 @@ func NewPopulation(size int, graph *graph.Graph) *Population {
 
 	return &Population{
 		genes:          genes,
-		epsilon:        100,
+		epsilon:        e,
 		avgFitness:     float64(totalFitness) / float64(size),
 		bestFitness:    bestFitness,
 		bestGene:       bestGene,
 		generations:    0,
 		size:           size,
-		mutationChance: 0.2,
+		mutationChance: mut,
+		rng:            rng,
 	}
 }
 
@@ -90,13 +94,17 @@ func (p *Population) nextEpoch(g *graph.Graph) {
 // select will evaluate all of the genes in the population and update
 // the best gene and best fitness values accordingly. this is parallelized
 // using waitgroups since we can evaluate each gene independently
+//
+// This function is deterministic
 func (p *Population) evaluation(g *graph.Graph) {
 
 	var wg sync.WaitGroup
-	wg.Add(p.size)
-
+	wg.Add(len(p.genes))
 	for _, gene := range p.genes {
 		go func(gene *Gene, graph *graph.Graph) {
+			if !g.IsValidSequence(gene.sequence) {
+				panic("Invalid sequence")
+			}
 			gene.fitness = graph.SimulateSequence(gene.sequence).GetMaxUtilization()
 			wg.Done()
 		}(gene, g)
@@ -106,6 +114,8 @@ func (p *Population) evaluation(g *graph.Graph) {
 
 // execute will cull the population down to the top 50% or less of genes breaking
 // ties randomly
+//
+// This function is deterministic
 func (p *Population) execute() {
 	p.calculateStats()
 
@@ -116,68 +126,78 @@ func (p *Population) execute() {
 	p.bestFitness = p.genes[0].fitness
 	p.bestGene = p.genes[0]
 
-	p.genes = p.genes[:p.size/4-2]
-	p.genes = append(p.genes, &Gene{sequence.NewSequence(p.bestGene.sequence.GetSequence()), 0}, &Gene{sequence.NewSequence(p.bestGene.sequence.GetSequence()), 0})
+	p.genes = p.genes[:p.size/4]
 }
 
 // crossover will select two genes from the population and combine them
 // at a random point to create two new genes. this is repeated until we
 // have a new population of the same size as the old population
+//
+// This function uses random numbers, but pulls from p.rng which is seeded
+// deterministically and doesn't spawn any go-routines
 func (p *Population) crossover(g *graph.Graph) {
 	for len(p.genes) < p.size {
 		// randomly select two genes and a crossover point
-		randGeneOne := p.genes[rand.Intn(len(p.genes))]
-		randGeneTwo := p.genes[rand.Intn(len(p.genes))]
-		crossoverPoint := rand.Intn(len(randGeneOne.sequence.GetSequence()))
+		randGeneOne := p.genes[p.rng.Intn(len(p.genes))]
+		randGeneTwo := p.genes[p.rng.Intn(len(p.genes))]
+		crossoverPoint := p.rng.Intn(len(randGeneOne.sequence.GetSequence()))
+
+		crossover := func(g1, g2 *Gene, pt int) *Gene {
+
+			genes := make([]int, 0)
+			genes = append(genes, g1.sequence.GetSequence()[:pt]...)
+
+			in := func(ll []int, v int) bool {
+				for _, vv := range ll {
+					if vv == v {
+						return true
+					}
+				}
+				return false
+			}
+
+			for _, v := range g2.sequence.GetSequence() {
+				if !in(genes, v) {
+					genes = append(genes, v)
+				}
+			}
+
+			return &Gene{
+				sequence: sequence.NewSequence(genes),
+				fitness:  0,
+			}
+		}
 
 		// create the new genes. we don't evaluate them yet since that'll happen in the next epoch
-		newGeneOne := &Gene{
-			sequence: sequence.NewSequence(append(randGeneOne.sequence.GetSequence()[:crossoverPoint], randGeneTwo.sequence.GetSequence()[crossoverPoint:]...)),
-			fitness:  0,
-		}
-		newGeneTwo := &Gene{
-			sequence: sequence.NewSequence(append(randGeneTwo.sequence.GetSequence()[:crossoverPoint], randGeneOne.sequence.GetSequence()[crossoverPoint:]...)),
-			fitness:  0,
-		}
+		newGeneOne := crossover(randGeneOne, randGeneTwo, crossoverPoint)
+		newGeneTwo := crossover(randGeneTwo, randGeneOne, crossoverPoint)
 
 		// put them in the population
 		p.genes = append(p.genes, newGeneOne, newGeneTwo)
 	}
 
-	// if we have too many genes, kill some randomly
-	if len(p.genes) > p.size/2 {
-		p.genes = p.genes[:p.size/2]
-	}
-
-	for len(p.genes) < p.size {
-		p.genes = append(p.genes, &Gene{
-			sequence: sequence.NewSequence(g.SynthesizeRandomValidSequence().GetSequence()),
-			fitness:  0,
-		})
+	// if we have too many genes, cull
+	if len(p.genes) > p.size {
+		p.genes = p.genes[:p.size]
 	}
 }
 
 // mutate will randomly select a gene from the population and randomly
 // swap two of the elements in the sequence sometimes
+//
+// This function generates random numbers at the time we invoke
+// each go-routine and then each routine seeds itself. This prevents
+// a race condition preventing determinism that was present in an earlier
+// version of this method
 func (p *Population) mutate(g *graph.Graph) {
 	var wg sync.WaitGroup
-	wg.Add(p.size)
+	wg.Add(len(p.genes))
 	for _, gene := range p.genes {
-		go func(gene *Gene) {
-			original := gene.sequence.GetSequence()
-			its := 1
-			gene.sequence.Mutate(p.mutationChance)
+		go func(gene *Gene, seed int, g *graph.Graph) {
+			gene.sequence = g.SmartMutate(gene.sequence, seed)
 
-			for !g.IsValidSequence(gene.sequence) && its < 1000 {
-				gene.sequence.Mutate(p.mutationChance)
-				its++
-			}
-
-			if !g.IsValidSequence(gene.sequence) {
-				gene.sequence = sequence.NewSequence(original)
-			}
 			wg.Done()
-		}(gene)
+		}(gene, p.rng.Int(), g)
 	}
 	wg.Wait()
 }

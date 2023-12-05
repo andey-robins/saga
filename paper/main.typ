@@ -4,7 +4,7 @@
 #import "circuits.typ": *
 #import "@preview/tablex:0.0.6": tablex, cellx, rowspanx, colspanx
 #show: ieee.with(
-  title: "MAGICAL - Genetic Algorithms for More Efficient In-memory Computation",
+  title: "MAGICAL - Genetic Algorithms for More Efficient In-memory Computation through Applied Graph Analysis",
   abstract: [
     #lorem(150)
   ],

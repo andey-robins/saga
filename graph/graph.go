@@ -131,6 +131,10 @@ func (g *Graph) IsValidSequence(s *sequence.Sequence) bool {
 func (g *Graph) SimulateSequence(s *sequence.Sequence) *memory.Memory {
 	mem := memory.NewMemory()
 
+	if !g.IsValidSequence(s) {
+		return mem
+	}
+
 	// load in initial memory to begin simulation
 	rootNodes := g.GetRoots()
 	for _, node := range rootNodes {

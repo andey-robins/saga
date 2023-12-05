@@ -47,7 +47,8 @@ func (g *Graph) SynthesizeSequence() *sequence.Sequence {
 // all of their predecessors processed and randomly sampling from this front to add
 // the next node to the sequence. This method is guaranteed to produce a solution as
 // long as one exists. It is used to seed our genetic population.
-func (g *Graph) SynthesizeRandomValidSequence() *sequence.Sequence {
+func (g *Graph) SynthesizeRandomValidSequence(seed int) *sequence.Sequence {
+	rng := rand.New(rand.NewSource(int64(seed)))
 	processedNodes := g.GetRoots()
 	frontNodes := make([]*Node, 0)
 	seq := make([]int, 0)
@@ -103,7 +104,7 @@ func (g *Graph) SynthesizeRandomValidSequence() *sequence.Sequence {
 	}
 
 	for len(frontNodes) > 0 {
-		randomIndex := rand.Intn(len(frontNodes))
+		randomIndex := rng.Intn(len(frontNodes))
 		nextNodeToProcess := frontNodes[randomIndex]
 		frontNodes = append(frontNodes[:randomIndex], frontNodes[randomIndex+1:]...)
 		frontNodes, seq = processNode(nextNodeToProcess, seq, frontNodes)
@@ -126,4 +127,97 @@ func (g *Graph) SynthesizeRandomValidSequence() *sequence.Sequence {
 	}
 
 	return sequence.NewSequence(seq)
+}
+
+func (g *Graph) SmartMutate(s *sequence.Sequence, seed int) *sequence.Sequence {
+	nodes := append(make([]*Node, 0), g.nodes...)
+
+	remove := func(seq []*Node, val *Node) []*Node {
+		for i, v := range seq {
+			if v.id == val.id {
+				return append(seq[:i], seq[i+1:]...)
+			}
+		}
+		return seq
+	}
+
+	swapByVal := func(seq []int, val1, val2 int) []int {
+		for i, v := range seq {
+			if v == val1 {
+				seq[i] = val2
+			} else if v == val2 {
+				seq[i] = val1
+			}
+		}
+		return seq
+	}
+
+	// remove all root nodes, since they can't be re-ordered
+	for _, r := range g.GetRoots() {
+		nodes = remove(nodes, r)
+	}
+
+	// select a mutation point
+	rng := rand.New(rand.NewSource(int64(seed)))
+	mutationPoint := rng.Intn(len(s.GetSequence()))
+	mutationNodeId := s.GetSequence()[mutationPoint]
+	mutationNode, err := g.GetNodeById(mutationNodeId)
+	if err != nil {
+		panic(err)
+	}
+
+	// remove all children nodes of the mutation point from the list of available nodes
+	nodes = removeChildrenFromOptions(nodes, mutationNode.children)
+
+	// remove all parent nodes of the mutation point from the list of available nodes
+	nodes = removeParentsFromOptions(nodes, mutationNode.parents)
+
+	// fmt.Printf("Remaining options: %v\n", nodes)
+
+	// select a new node to swap with
+	swapCandidateNodeId := nodes[rng.Intn(len(nodes))].id
+	newSequence := sequence.NewSequence(swapByVal(s.GetSequence(), mutationNodeId, swapCandidateNodeId))
+
+	for !g.IsValidSequence(newSequence) {
+		swapCandidateNodeId = nodes[rng.Intn(len(nodes))].id
+		newSequence = sequence.NewSequence(swapByVal(s.GetSequence(), mutationNodeId, swapCandidateNodeId))
+	}
+
+	return newSequence
+}
+
+func removeChildrenFromOptions(nodes []*Node, children []*Node) []*Node {
+	remove := func(seq []*Node, val *Node) []*Node {
+		for i, v := range seq {
+			if v.id == val.id {
+				return append(seq[:i], seq[i+1:]...)
+			}
+		}
+		return seq
+	}
+
+	for _, child := range children {
+		nodes = remove(nodes, child)
+		nodes = removeChildrenFromOptions(nodes, child.children)
+	}
+
+	return nodes
+}
+
+func removeParentsFromOptions(nodes []*Node, parents []*Node) []*Node {
+	remove := func(seq []*Node, val *Node) []*Node {
+		for i, v := range seq {
+			if v.id == val.id {
+				return append(seq[:i], seq[i+1:]...)
+			}
+		}
+		return seq
+	}
+
+	for _, parent := range parents {
+		nodes = remove(nodes, parent)
+		nodes = removeParentsFromOptions(nodes, parent.parents)
+	}
+
+	return nodes
 }
