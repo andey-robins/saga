@@ -6,7 +6,7 @@
 #show: ieee.with(
   title: "MAGICAL - Genetic Algorithms for More Efficient In-memory Computation through Applied Graph Analysis",
   abstract: [
-    #lorem(150)
+    The von-Neumann bottleneck, the rate limit imposed on computational processes by requiring data to be moved from memory into computing units and back, has driven the need for non-traditional paradigms of computation; one such paradigm is performing computations within memory. MAGIC, or Memristor Aided Logic, is one such paradigm which uses purpose constructed memory circuits which physically perform computation through write and read operations to memory. Sequencing these operations is a computationally difficult task which is directly correlated with the cost of solutions using MAGIC based in-memory computation. This work models the execution sequences as a graph problem and identifies a number of properties of the graphs which make them well suited for optimization using genetic algorithms. We then detail the formation and implementation of these genetic algorithms and evaluate them over a number of $n$-bit adder implementations and execution sequences. The memory-footprint needed for evaluating each of these circuits is decreased between 14% and 26% from the solutions found with greedy algorithms in the literature. 
   ],
   authors: (
     (
@@ -22,25 +22,24 @@
 )
 
 = Introduction 
-/* one column */
+
 Data and the calculations performed on data are physically separated in modern computing devices. Data is moved from a storage media to closer and closer locations before it is finally used for computation before being places back into memory. This paradigm of computing, the Von-Neumann paradigm, has been instrumental in the development of modern computing solutions. As processing has sped up though, this transfer of information from storage to processing has begun to form a bottleneck which limits the computational speeds which can be achieved by state-of-the-art devices. Specialized processing units, such as Graphics Processing Units and other purpose-built hardware, often attempts to side-step the problem by increasing the potential throughput of information; however, the theoretical problem of moving data around is not solved, only mitigated, by these solutions. An alternative paradigm to the von-Neumann architecture could be performing the computation at the same place the data is stored. This computing paradigm is aptly referred to as "in-memory computation."
 
 Memristor Aided Logic (MAGIC) is an emerging computing paradigm making use of parallel, write-based systems to perform calculation in-memory @kvatinsky2014magic. This requires scheduling operations for the computation; however, the scheduling order, upon execution, may have substantially differing memory footprint requirements. State-of-the-art solutions model this dependence as a graph problem and perform scheduling as a graph covering problem. In this work, we characterize a number of properties of these evaluations graphs and apply those observations to the development of a genetic algorithm which produces reductions in the memory footprint of execution between 14% in the worst case and 26% in the best case when compared to standard algorithmic approaches
 
 = Prior Works
-/* one column */
-// TODO
-// - discuss baseline of in memory computing
-// - lay out current SotA
 
-Within the realm of the MAGIC, application of formal design principles has continued with advances in technology mapping @rashedautomated leading to advances in area, energy, and operation counts.
+Limitations of current computing architecture have led to the emergence of novel computing paradigms which work to overcome the limitations of Dennard scaling and the ending of Moore's Law. Quantum computing @gyongyosi2019survey, as one such paradigm, may have captured the imagination of the public, but other, less well-known emerging paradigm such as in-memory computation @verma2019memory or photonic computation @xiang2021review, are other emerging paradigms. This work however focuses on applications of artificial intelligence and optimizations of in-memory computation.
+
+As a paradigm, in-memory computation can itself be subdivided into different paradigms. An entire field of study currently seeks to quantify applications of analog circuits for performing computation @soliman2020ultra; and special focus has been recently paid towards applications of this domain for artificial intelligence applications @antolini2023combined, @rasch2023hardware. Digital in-memory computation though is preferable for many applications due to the approximations implicit to analog computation. These digital paradigms are often separated by whether they are parallel or non-parallel as well as if they are read or write based @rashed2022stream, @zha2016reconfigurable.
+
+MAGIC, or Memrister Aided Logic, is a write-based, parallel, digital, in-memory computing paradigm @kvatinsky2014magic. Within the realm of MAGIC, application of formal design principles has continued with advances in technology mapping @rashedautomated leading to advances in area, energy, and operation counts. Evaluating a function using MAGIC requires the sequencing of operations from a netlist. This sequencing may have significant impacts on the cost associated with evaluating the function,
+
+The crossover of the field of computer aided design (CAD) with artificial intelligence is not a new field by any means @jiaoying1987artificial, but the applications of the field to emerging computing paradigms has been limited and often pairs with the design of other physical artifacts through processes such as 3D printing @hunde2022future. Genetic algorithms in particular have been applied to similar sequencing and scheduling problems in the CAD space @squillero2011artificial.
+
+The crossover of genetic algorithms and graph theory has also uncovered multiple findings that demonstrate the clear application of evolutionary algorithms for this MAGIC sequencing task. The evaluation of graphs and the relationships between decendants of nodes, including the spatial relationships between graph elements is one such finding @allen2012mutation. Routing and sequencing tasks for traditional computing which used evolutionary approaches and graph theoretic topologies has also been the topic of some study @pena2008evolutionary.
 
 = Problem Specification
-
-/* one column */
-// TODO:
-// - Formally lay this out as a graph problem
-// - Highlight the mapping from engineering domain to graph theory
 
 In-memory computation can be modeled as an execution graph. Translated from traditional combinational logic, each vertex in the graph corresponds with a boolean logic gate. Within the memristor array, the input values to the logic gate can be selected by the write signal before being written to an empty location in the memristor array. An edge exists in the graph from a vertex to another if they have this depednece relation. As an example, for evaluating the boolean function $f = a b' + c$, @mapping-spaces details the transformation from function to circuit to graph to in-memory computation. Beginning with a boolean function $f$, existing processes are highly capable of mapping this to a minimal circuit. This circuit can then be transformed into the graphs under discussion in this work by assigning each gate a vertex and making each wire an edge in the graph. The final step illustrated in @mapping-spaces is the evaluation using in-memory computation and illustrates the requirement of more memory cells than inputs to the function. A '-' indicates that a memory cell is currently free and can have a value allocated. A '\#' indicates that the memory cell hasn't been allocated yet, but will be in the future (in the example in the figure this only occurs in the fourth column of the first row, when we need to allocate a new space for the very first operation). A fact worth explicit mention: a value cannot be read and written to the same memory block by the same operation. The objective of this work is to minimize the extra memory needed.
 
@@ -138,9 +137,7 @@ In-memory computation can be modeled as an execution graph. Translated from trad
     caption: [A diagram which presents the mapping of information through associated domains. A boolean formula is mapped to a boolean logical circuit, to a DAG, and finally to a memory execution sequence.]
 ) <mapping-spaces>
 
-Formally, the interdependence between computational nodes in the execution graph is a directed acyclic graph (DAG) in which the children of a vertex must not be executed until that vertex is executed. Thus, for any vertex, it can be viewed as both the root of 
-
-// TODO: Formally define dependent/dependance in this context
+Formally, the interdependence between computational nodes in the execution graph is a directed acyclic graph (DAG) in which the children of a vertex must not be executed until that vertex is executed. Thus, for any vertex, it can be viewed as both the root of a tree which has yet to have any nodes processed and a leaf on the tree of elements which have been processed. More discussion of this is presented alongside @triangular-family. This cut set, between the processed and unprocessed elements, is intrinsically linked to the memory footprint of the sequence, and is sorted by the evolutionary algorithm proposed in this work.
 
 == Cost Metric <score-metric>
 
@@ -203,16 +200,15 @@ When paired with the block-targeting crossover mechanism, this leads to an algor
     caption: [The overlapping nature of children and parents illustrated visually. Both central nodes share ancestors and decendants; however, there exists no direct dependence relationship between each other. We describe these nodes as "peers."]
 ) <triangular-family>
 
+#v(10pt)
+
 = Evaluation
-/* 1 column */
-// TODO:
-// - Discuss the software capabilities
-// - Discuss the execution times
+
+Scoring and evaluation of execution sequences can be done through emulation; stepping through the sequence and simulating the data depdendence between memory cells is a straightforward task. First, all nodes from the DAG with no children are placed into an array. A standard mark-and-sweep algorithm is then able to treat each position in the array as a memory address, and the reference count for the memory cell is initialized to be the out-degree of the node in the DAG. Each time a child of the node is processed, the reference count is decremented and finally, when the reference count reaches zero, the element is removed from memory and the cell is marked as free. When a new vertex is being processed, it first is placed into any possible free cells before the array may be potentially expanded to create space for the vertex currently being processed. This algorithm, while simulating the entire execution sequence as a means to ensure its validity, also has the added side effect of creating an array with length equal to the cost of the sequence. This process therefore is executed for every sequence being evaluated as a means of scoring.
 
 == Data Set
-/* 0.5 columns */
-// TODO: Describe the data and what it represents
-The dataset evaluated in this work is synthesized from n-bit adder specifications using NOR and NAND gates. The netlist for the adder is modeled as a DAG and described using a proprietary format. This is parsed into a general DAG for evaluation. Six different adder widths were analyzed representing all powers of two less than 64 (i.e. [1, 2, 4, 8, 16, 32]). Execution sequences for each DAG were also provided. The memory footprints of these sequences are evaluated in the same way as candidate solutions will be evaluated in this work to determine a baseline memory footprint to compare future solutions against. @sota-footprint lists each adder's size and the best provided sequence's memory footprint. Complete BLIF specification adders come from the work of Rashed et al. @rashed2022logic.
+
+The dataset evaluated in this work is synthesized from n-bit adder specifications using NOR and NAND gates. The netlist for the adder is modeled as a DAG and described using a proprietary format. This is parsed into a general DAG for evaluation. Six different adder widths were analyzed representing all powers of two less than 64 (i.e. 1, 2, ... 32). Execution sequences for each DAG were also provided. The memory footprints of these sequences are evaluated in the same way as candidate solutions will be evaluated in this work to determine a baseline memory footprint to compare future solutions against. @sota-footprint lists each adder's size and the best provided sequence's memory footprint. Complete BLIF specification adders come from the work of Rashed et al. @rashed2022logic.
 
 #figure(
     box[
@@ -236,10 +232,6 @@ The dataset evaluated in this work is synthesized from n-bit adder specification
 ) <sota-footprint>
 
 = Results
-/* 1 column */
-// TODO:
-// - Compare memory footprints to SotA
-// - Potentially discuss execution results
 
 Execution sequences synthesized with the genetic algorithm were smaller than those found by the greedy algorithm presented in the literature in all tested cases. The improvements ranged from a 14% smaller memory footprint in the worst case (adder width = 4) to a 26% smaller memory footprint in the best case (adder width = 16). The average improvement was a 19.8% smaller memory footprint with the genetic evolutionary algorithm when compared to the greedy algorithm. 
 
@@ -271,8 +263,6 @@ The stopping conditions for synthesis were that a configurable number of generat
 Large values for both parameters were found to be the most effective. Intuitively, this makes sense, as we care more about the final synthesized solution than we do about the time it takes to get there. On the machine used to synthize solutions (a desktop running Arch Linux (EndeavourOS) with kernel version 6.6.2, an AMD Ryzen 9 7950X, an NVIDIA Geforce RTX 4090 GPU, and 64 GB RAM), synthesis of the width 32 adder took 844 seconds (slightly over 14 minutes). A significant portion of this time was spent with the minimal sized solution already found, so if bounds were able to be tightened on the stopping conditions, synthesis time would similarly begin to shrink. Further analysis of the DAG underlying this problem may yield such findings.
 
 = Discussion
-/* 0.5 column */
-// Highlight how modeling this as a graph analysis allowed for these results
 
 Traditionally, this problem is analysed in a manner similar to the synthesis of traditional hardware circuits. It is viewed as a graph covering problem where the goal is to map circuit elements form a template library onto the netlist of the circuit to be realized. Recontextualizing it as a topological sorting problem rather than a covering problem allowed for a different form of analysis than has historically been employed in solving this problem.
 
