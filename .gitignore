@@ -19,3 +19,7 @@
 
 # Go workspace file
 go.work
+
+# potential intermediary typst files
+paper/circuits.pdf
+paper/template.pdf
