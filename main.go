@@ -42,7 +42,7 @@ func main() {
 		}
 
 		pad()
-		fmt.Println(" Welcome to the MAGIC in-memory memory minimizer!")
+		fmt.Println(" Welcome to the MAGICAL CLI utility (v0.1.1)")
 		fmt.Println(" This code is licensed under GPLv3")
 		pad()
 		fmt.Println(" Args:")
