@@ -3,7 +3,6 @@ package sequence
 import (
 	"bufio"
 	"io"
-	"log"
 	"os"
 	"strconv"
 	"strings"
@@ -62,7 +61,6 @@ func LoadSequence(encoding io.Reader) *Sequence {
 
 	scanner := bufio.NewScanner(encoding)
 	scanner.Split(bufio.ScanLines)
-	log.Println("Setup scanner for reading sequence from file")
 
 	// skip first line as all it does is declare the number of elements
 	scanner.Scan()

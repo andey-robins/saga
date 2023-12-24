@@ -45,7 +45,7 @@ The project can be run simply using `go run main.go`. Using that command will pr
 
 This operating mode will verify that a sequence is a semantically correct execution sequence for a given graph. It requires both the sequence and graph arguments.
 
-`go run main.go -verify -graph ./graphs/adder2.graph -sequence ./sequences/adder2.seq`
+`go run main.go -verify -graph ./docs/graphs/adder2.graph -sequence ./docs/sequences/adder2.seq`
 
 > ```bash
 > The execution sequence is valid!
@@ -55,7 +55,7 @@ This operating mode will verify that a sequence is a semantically correct execut
 
 This operating mode will report on the memory footprint used by the sequence for the given graph. Similar to *verification mode*, this requires both the sequence and graph as arguments.
 
-`go run main.go -memory -graph ./graphs/adder2.graph -sequence ./sequences/adder2.seq`
+`go run main.go -memory -graph ./docs/graphs/adder2.graph -sequence ./docs/sequences/adder2.seq`
 
 > ```bash
 > Maximum memory footprint: 9
@@ -65,36 +65,16 @@ This operating mode will report on the memory footprint used by the sequence for
 
 This operating mode is the one which applies the genetic algorithms for which this package is named. Additional command line arguments are optional, but allow for configuration of the evolution environment. It requires specifying both a graph and an output file. Another optional argument of `seed` may be specified to create deterministic behavior.
 
-`go run main.go -minimize -graph ./graphs/adder2.graph -population 300 -epsilon 10 -mutation 0.2 -out ./sequences/synth2.seq -seed 2`
+`go run main.go -evolve -graph ./docs/graphs/adder2.graph -pop 300 -epsilon 10 -mutation 0.2 -out ./docs/sequences/synth2.seq -seed 2`
 
 > ```bash
-> Epoch 1: Best fitness: 8 Avg fitness: 9.08
-> Epoch 2: Best fitness: 8 Avg fitness: 8.956666666666667
-> Epoch 3: Best fitness: 8 Avg fitness: 8.803333333333333
-> Epoch 4: Best fitness: 8 Avg fitness: 8.426666666666666
-> Epoch 5: Best fitness: 8 Avg fitness: 8.203333333333333
-> Epoch 6: Best fitness: 8 Avg fitness: 8.216666666666667
-> Epoch 7: Best fitness: 8 Avg fitness: 8.266666666666667
-> Epoch 8: Best fitness: 8 Avg fitness: 8.236666666666666
-> Epoch 9: Best fitness: 8 Avg fitness: 8.18
-> Epoch 10: Best fitness: 7 Avg fitness: 8.21
-> Epoch 11: Best fitness: 7 Avg fitness: 8.193333333333333
-> Epoch 12: Best fitness: 7 Avg fitness: 8.16
-> Epoch 13: Best fitness: 7 Avg fitness: 8.113333333333333
-> Epoch 14: Best fitness: 7 Avg fitness: 8.113333333333333
-> Epoch 15: Best fitness: 7 Avg fitness: 8.106666666666667
-> Epoch 16: Best fitness: 7 Avg fitness: 7.98
-> Epoch 17: Best fitness: 7 Avg fitness: 7.816666666666666
-> Epoch 18: Best fitness: 7 Avg fitness: 7.516666666666667
-> Epoch 19: Best fitness: 7 Avg fitness: 7.61
-> Epoch 20: Best fitness: 7 Avg fitness: 7.5633333333333335
 > seed=2
 > Best fitness: 7
 > ```
 
 ## Building
 
-This project is built with go version `1.21.4`.
+This project is built with go version `1.21.5`.
 
 Run `go build -o magical` to build from source.
 
@@ -105,7 +85,7 @@ Run `go build -o magical` to build from source.
 
 Genetic algorithms for more efficient in-memory computation through applied graph analysis is a report which details some initial motivation and refers to the literature which introduced this problem. It presents initial performance of the v0.1.1 version of the software and describes some insights which were used to justify the mapping of this problem to a genetic algorithm.
 
-[Read the paper here.](https://github.com/andey-robins/magical/paper/main.pdf)
+[Read the paper here.](https://github.com/andey-robins/magical/docs/paper/main.pdf)
 
 ## Changelog
 

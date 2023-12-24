@@ -6,7 +6,6 @@ package graph
 import (
 	"bufio"
 	"io"
-	"log"
 	"os"
 	"strconv"
 	"strings"
@@ -47,7 +46,6 @@ func LoadGraph(encoding io.Reader) *Graph {
 
 	scanner := bufio.NewScanner(encoding)
 	scanner.Split(bufio.ScanLines)
-	log.Println("Setup scanner for reading graph from file")
 
 	// skip over input numbering line because we don't need it (they're listed in order)
 	scanner.Scan()
@@ -58,8 +56,6 @@ func LoadGraph(encoding io.Reader) *Graph {
 		check(err)
 		nodes = append(nodes, NewNode(id))
 	}
-
-	log.Println("Finished reading input labels")
 
 	// skip over output numbering line for same reason as input numbering
 	scanner.Scan()
@@ -74,19 +70,14 @@ func LoadGraph(encoding io.Reader) *Graph {
 		nodes = append(nodes, NewNode(id))
 	}
 
-	log.Println("Finished reading output labels")
-
 	scanner.Scan()
 	nodesLine := scanner.Text()
 	nodeCount, err := strconv.Atoi(strings.Split(nodesLine, " ")[1])
 	check(err)
-	log.Printf("Found %d intermediate nodes\n", nodeCount)
 	totalNodes := len(nodes) + nodeCount - outputCount
 	for i := len(nodes) + 1; i <= totalNodes; i++ {
 		nodes = append(nodes, NewNode(i))
 	}
-
-	log.Println("Finished initializing all nodes")
 
 	// we store the edge count just to make writing easier than having to traverse
 	// and count them (if they're given, why spend the time when we can store an int)

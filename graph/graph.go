@@ -4,7 +4,6 @@ package graph
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/andey-robins/magical/memory"
 	"github.com/andey-robins/magical/sequence"
@@ -83,8 +82,6 @@ func (g *Graph) IsValidSequence(s *sequence.Sequence) bool {
 		processedNodes[leaf.id] = true
 	}
 
-	log.Println("Initialized processedNodes map and marked leaves processed")
-
 	// helper function which will return true if all ancestors of
 	// the parameter have already been processed
 	allAncestorsProcessed := func(node *Node, processed *map[int]bool) bool {
@@ -104,10 +101,7 @@ func (g *Graph) IsValidSequence(s *sequence.Sequence) bool {
 
 	// go through each node in the sequence and see if all predecessors
 	// have been processed by the time we reach each node
-	log.Println("Beginning sequence valditity check")
 	for _, nodeId := range s.GetSequence() {
-		log.Printf("Next node in sequence: %d\n", nodeId)
-		log.Printf("Processed Nodes: %v\n", processedNodes)
 		node, err := g.GetNodeById(nodeId)
 		if err != nil {
 			fmt.Println(err)
@@ -118,7 +112,6 @@ func (g *Graph) IsValidSequence(s *sequence.Sequence) bool {
 			return false
 		}
 		processedNodes[nodeId] = true
-		log.Printf("Successfully processed node %d\n", nodeId)
 	}
 
 	return true

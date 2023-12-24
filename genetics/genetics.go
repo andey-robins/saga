@@ -1,7 +1,7 @@
 package genetics
 
 import (
-	"fmt"
+	"log"
 	"math"
 	"math/rand"
 	"sort"
@@ -68,7 +68,7 @@ func (p *Population) Evolve(g *graph.Graph) {
 	roundsWithoutImprovement := 0
 
 	reportEpoch := func() {
-		fmt.Printf("Epoch %d: Best fitness: %d Avg fitness: %v\n", p.generations, p.bestFitness, p.avgFitness)
+		log.Printf("Epoch %d: Best fitness: %d Avg fitness: %v\n", p.generations, p.bestFitness, p.avgFitness)
 	}
 
 	for roundsWithoutImprovement < p.epsilon {

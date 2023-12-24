@@ -172,8 +172,6 @@ func (g *Graph) SmartMutate(s *sequence.Sequence, seed int) *sequence.Sequence {
 	// remove all parent nodes of the mutation point from the list of available nodes
 	nodes = removeParentsFromOptions(nodes, mutationNode.parents)
 
-	// fmt.Printf("Remaining options: %v\n", nodes)
-
 	// select a new node to swap with
 	swapCandidateNodeId := nodes[rng.Intn(len(nodes))].id
 	newSequence := sequence.NewSequence(swapByVal(s.GetSequence(), mutationNodeId, swapCandidateNodeId))
