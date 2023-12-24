@@ -22,6 +22,7 @@ _Current Version:_ `0.1.1`
   - [Changelog](#changelog)
     - [0.1.1](#011)
     - [0.1.0](#010)
+  - [What is Magic?](#what-is-magic)
   - [Roadmap](#roadmap)
     - [0.1.2](#012)
     - [0.2.0](#020)
@@ -98,6 +99,12 @@ This section details changes between revisions of this utility.
 ### 0.1.0
 
 - Added initial project version
+
+## What is Magic?
+
+MAGIC, also known as Memristor-Aided Logic, is an emerging computer paradigm that performs computation in-memory rather than on a CPU or other processing device. Values of digital logic can be stored in special memristor-based memory cells. Computation is then performed by issuing read commands to specific addresses and the binary computation is the value available at that address. 
+
+More information on this technique should refer to the literature presented in the file [here](https://github.com/andey-robins/magical/docs/paper/main.pdf) or the foundational paper [here](https://ieeexplore.ieee.org/abstract/document/6895258/).
 
 ## Roadmap
 
