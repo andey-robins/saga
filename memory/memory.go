@@ -17,7 +17,7 @@ func NewMemory() *Memory {
 }
 
 // ProcessNode will take a nodeId and find a free cell in the memory
-// to write it to. If there are no free cells, a new cell will be allocated
+// to write it to. If there are no free cells, a new cell will be allocated.
 // refCount is the number of subnodes which reference this node. In other
 // words, when refCount becomes 0, this node can be marked invalid and freed
 // from memory. The parents slice contains the ids of the nodes which reference
@@ -70,7 +70,13 @@ func (m *Memory) markAndSweep() {
 }
 
 // GetMaxUtilization returns the maximum number of cells
-// that have been used in this Memory object
+// that have been used in this Memory object. This is the
+// number of memristor cells that would be needed to compute
+// a given sequence
 func (m *Memory) GetMaxUtilization() int {
+	// since we emulate the memory positions required
+	// for a sequence in a greedy way, we can just return
+	// the number of cells we've allocated without specifically
+	// tracking it
 	return len(m.cells)
 }

@@ -11,37 +11,32 @@ import (
 	"strings"
 )
 
-// we'll panic if we hit errors at this point because failing
-// to parse the files means something outside the program's
-// control has gone wrong (i.e. the wrong file was provided)
 func check(e error) {
 	if e != nil {
+		// panicing is fine here because we can't know how
+		// to recover from file errors
 		panic(e)
 	}
 }
 
-// LoadGraphFromFile will load a graph from the given file path
-// and open that file, parsing it into a graph. Panics if it
-// can't open the file or decode it properly into a graph.
-// This is a convenience function for LoadGraph.
+// LoadGraphFromFile panics if it can't open the file
+// or decode it properly into a graph.
 func LoadGraphFromFile(path string) *Graph {
 	f, err := os.Open(path)
 	check(err)
 	defer f.Close()
 
-	return LoadGraph(f)
+	return loadGraph(f)
 }
 
-// LoadGraphFromString will load a graph from the given string
-// and parse it into a graph. Panics if it can't decode it.
-// This is a convenience function for LoadGraph.
+// LoadGraphFromString will panics if it can't decode the input string.
 func LoadGraphFromString(graphString string) *Graph {
-	return LoadGraph(strings.NewReader(graphString))
+	return loadGraph(strings.NewReader(graphString))
 }
 
-// LoadGraph will load a graph from the given io.Reader
+// loadGraph will load a graph from the given io.Reader
 // and parse it into a graph. Panics if it can't decode it.
-func LoadGraph(encoding io.Reader) *Graph {
+func loadGraph(encoding io.Reader) *Graph {
 	nodes := make([]*Node, 0)
 
 	scanner := bufio.NewScanner(encoding)

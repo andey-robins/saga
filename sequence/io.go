@@ -8,17 +8,13 @@ import (
 	"strings"
 )
 
-// standard check helper function
 func check(e error) {
 	if e != nil {
 		panic(e)
 	}
 }
 
-/// FILE IO
-
-// LoadSequenceFromFile reads a sequence from a file. Returns
-// a pointer to a sequence object. Panics if there is an error
+// LoadSequenceFromFile panics if there is an error
 // with the file since it's beyond the scope of our program
 // to handle this.
 func LoadSequenceFromFile(path string) *Sequence {
@@ -26,12 +22,12 @@ func LoadSequenceFromFile(path string) *Sequence {
 	check(err)
 	defer f.Close()
 
-	return LoadSequence(f)
+	return loadSequence(f)
 }
 
 // WriteToFile writes a sequence to a file in the same format
-// as is described by the assignment. Returns an error if there
-// is a problem writing to the file.
+// as the files when they are parsed. Cascades any write errors
+// to the caller for handling as close to the user as possible
 func (s *Sequence) WriteToFile(path string) error {
 	f, err := os.Create(path)
 	if err != nil {
@@ -43,20 +39,14 @@ func (s *Sequence) WriteToFile(path string) error {
 	return err
 }
 
-/// STRING IO
-
-// LoadSequenceFromString reads a sequence from a string
-// and returns a pointer to a sequence object
 func LoadSequenceFromString(sequenceString string) *Sequence {
-	return LoadSequence(strings.NewReader(sequenceString))
+	return loadSequence(strings.NewReader(sequenceString))
 }
 
-/// PRIMARY PARSER
-
-// LoadSequence reads a sequence from a reader, see wrappers
-// for file and string reading above. Returns a pointer to
-// a sequence object
-func LoadSequence(encoding io.Reader) *Sequence {
+// loadSequence reads a sequence from a reader. It's used by
+// the exported functions in this package to read from files
+// and strings. It contains the parsing logic for sequence files
+func loadSequence(encoding io.Reader) *Sequence {
 	sequence := make([]int, 0)
 
 	scanner := bufio.NewScanner(encoding)

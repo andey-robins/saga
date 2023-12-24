@@ -30,7 +30,11 @@ func TestIsValidSequence(t *testing.T) {
 			t.Errorf("Sequence validity check failed. Expected %t, got %t", test.expectedValidity, g.IsValidSequence(s))
 		}
 
-		mem := g.SimulateSequence(s)
+		mem, err := g.SimulateSequence(s)
+
+		if err != nil {
+			t.Errorf("Sequence simulation failed. Got error: %s", err)
+		}
 
 		if mem.GetMaxUtilization() != test.maxMemoryUtil {
 			t.Errorf("Max memory utilization check failed. Expected %d, got %d", test.maxMemoryUtil, mem.GetMaxUtilization())

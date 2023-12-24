@@ -6,41 +6,6 @@ import (
 	"github.com/andey-robins/magical/sequence"
 )
 
-// SynthesizeSequence will return a sequence that is semantically valid
-// for the graph g. This sequence will be generated using a simple greedy
-// breadth first search. The algorithm will start at the root nodes
-// and build up. There are no guarantees about memory usage for this method
-// but it will guaranteed produce a solution if one exists.
-func (g *Graph) SynthesizeSequence() *sequence.Sequence {
-	roots := g.GetRoots()
-	seq := make([]int, 0)
-
-	in_seq := func(seq []int, id int) bool {
-		for _, val := range seq {
-			if val == id {
-				return true
-			}
-		}
-		return false
-	}
-
-	add_parents_to_seq := func(node *Node, seq []int) []int {
-		for _, parent := range node.parents {
-			if !in_seq(seq, parent.id) {
-				seq = append(seq, parent.id)
-			}
-		}
-		return seq
-	}
-
-	for _, root := range roots {
-		seq = append(seq, root.id)
-		seq = add_parents_to_seq(root, seq)
-	}
-
-	return sequence.NewSequence(seq)
-}
-
 // SynthesizeRandomValidSequence will return a sequence that is semantically valid
 // for the graph g. This sequence will be generated using a random breadth first
 // search. It searches from the top down by adding nodes to a front when they have
@@ -49,11 +14,11 @@ func (g *Graph) SynthesizeSequence() *sequence.Sequence {
 // long as one exists. It is used to seed our genetic population.
 func (g *Graph) SynthesizeRandomValidSequence(seed int) *sequence.Sequence {
 	rng := rand.New(rand.NewSource(int64(seed)))
-	processedNodes := g.GetRoots()
+	processedNodes := g.GetInputNodes()
 	frontNodes := make([]*Node, 0)
 	seq := make([]int, 0)
 
-	// a helper function which determines if a given node is in a sequence
+	// determines if a given node `id` is in a sequence `seq`
 	inSeq := func(seq []int, id int) bool {
 		for _, val := range seq {
 			if val == id {
@@ -63,7 +28,8 @@ func (g *Graph) SynthesizeRandomValidSequence(seed int) *sequence.Sequence {
 		return false
 	}
 
-	// a helper function which checks if all of a node's parents are already processed
+	// checks if all of a node `node`s parents are already in the list
+	// of processed nodes `seq`
 	readyToBeProcessed := func(node *Node, seq []int) bool {
 		for _, parent := range node.parents {
 			if !inSeq(seq, parent.id) {
@@ -73,7 +39,7 @@ func (g *Graph) SynthesizeRandomValidSequence(seed int) *sequence.Sequence {
 		return true
 	}
 
-	// a helper function which processes a node and adds its children to the frontNodes list
+	// processes a node and adds its children to the front list
 	// if they have all of their parents processed
 	processNode := func(node *Node, seq []int, front []*Node) ([]*Node, []int) {
 		if inSeq(seq, node.id) {
@@ -110,9 +76,8 @@ func (g *Graph) SynthesizeRandomValidSequence(seed int) *sequence.Sequence {
 		frontNodes, seq = processNode(nextNodeToProcess, seq, frontNodes)
 	}
 
-	// remove roots from seq since they don't need to be processed in actuality,
-	// but it made the algorithm simpler to include them and then remove them
-	// at the end
+	// removes the value `val` from `seq` it it's there. returns
+	// `seq` unchanged if `val` is not in `seq`
 	removeVal := func(seq []int, val int) []int {
 		for i, v := range seq {
 			if v == val {
@@ -122,13 +87,20 @@ func (g *Graph) SynthesizeRandomValidSequence(seed int) *sequence.Sequence {
 		return seq
 	}
 
-	for _, root := range g.GetRoots() {
+	// remove roots from seq since they don't need to be processed in actuality,
+	// but it made the algorithm simpler to include them and then remove them
+	// at the end
+	for _, root := range g.GetInputNodes() {
 		seq = removeVal(seq, root.id)
 	}
 
 	return sequence.NewSequence(seq)
 }
 
+// SmartMutate will take a sequence `s` and mutate it by swapping a node
+// if it is possible to do so without invalidating the sequence. It finds nodes
+// which are peers as discussed in the paper and swaps the node at the mutation
+// point with one of its peers.
 func (g *Graph) SmartMutate(s *sequence.Sequence, seed int) *sequence.Sequence {
 	nodes := append(make([]*Node, 0), g.nodes...)
 
@@ -153,7 +125,7 @@ func (g *Graph) SmartMutate(s *sequence.Sequence, seed int) *sequence.Sequence {
 	}
 
 	// remove all root nodes, since they can't be re-ordered
-	for _, r := range g.GetRoots() {
+	for _, r := range g.GetInputNodes() {
 		nodes = remove(nodes, r)
 	}
 
@@ -184,7 +156,7 @@ func (g *Graph) SmartMutate(s *sequence.Sequence, seed int) *sequence.Sequence {
 	return newSequence
 }
 
-func removeChildrenFromOptions(nodes []*Node, children []*Node) []*Node {
+func removeChildrenFromOptions(options []*Node, children []*Node) []*Node {
 	remove := func(seq []*Node, val *Node) []*Node {
 		for i, v := range seq {
 			if v.id == val.id {
@@ -195,14 +167,14 @@ func removeChildrenFromOptions(nodes []*Node, children []*Node) []*Node {
 	}
 
 	for _, child := range children {
-		nodes = remove(nodes, child)
-		nodes = removeChildrenFromOptions(nodes, child.children)
+		options = remove(options, child)
+		options = removeChildrenFromOptions(options, child.children)
 	}
 
-	return nodes
+	return options
 }
 
-func removeParentsFromOptions(nodes []*Node, parents []*Node) []*Node {
+func removeParentsFromOptions(options []*Node, parents []*Node) []*Node {
 	remove := func(seq []*Node, val *Node) []*Node {
 		for i, v := range seq {
 			if v.id == val.id {
@@ -213,9 +185,9 @@ func removeParentsFromOptions(nodes []*Node, parents []*Node) []*Node {
 	}
 
 	for _, parent := range parents {
-		nodes = remove(nodes, parent)
-		nodes = removeParentsFromOptions(nodes, parent.parents)
+		options = remove(options, parent)
+		options = removeParentsFromOptions(options, parent.parents)
 	}
 
-	return nodes
+	return options
 }

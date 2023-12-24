@@ -21,13 +21,18 @@ type Population struct {
 	bestFitness    int
 	bestGene       *Gene
 	avgFitness     float64
-	epsilon        int // the number of generations we will continue searching without improvements
 	generations    int
 	size           int
 	mutationChance float64
 	rng            *rand.Rand
+
+	// the number of generations we will continue searching without improvements
+	epsilon int
 }
 
+// NewPopulation will create a new population of population size `size` with a mutation
+// chance of `mut` and epsilon `e`. It will seed the population with random valid sequences
+// and evaluate them.
 func NewPopulation(size, e int, mut float64, graph *graph.Graph, seed int) *Population {
 	genes := make([]*Gene, size)
 
@@ -39,7 +44,11 @@ func NewPopulation(size, e int, mut float64, graph *graph.Graph, seed int) *Popu
 
 	for i := 0; i < size; i++ {
 		seq := graph.SynthesizeRandomValidSequence(rng.Int())
-		fitness := graph.SimulateSequence(seq).GetMaxUtilization()
+		mem, err := graph.SimulateSequence(seq)
+		if err != nil {
+			panic(err)
+		}
+		fitness := mem.GetMaxUtilization()
 
 		genes[i] = &Gene{seq, fitness}
 
@@ -63,6 +72,8 @@ func NewPopulation(size, e int, mut float64, graph *graph.Graph, seed int) *Popu
 	}
 }
 
+// Evolve will evolve the population until we have gone `epsilon` generations without
+// improving the best fitness
 func (p *Population) Evolve(g *graph.Graph) {
 	bestFitness := p.bestFitness
 	roundsWithoutImprovement := 0
@@ -105,7 +116,11 @@ func (p *Population) evaluation(g *graph.Graph) {
 			if !g.IsValidSequence(gene.sequence) {
 				panic("Invalid sequence")
 			}
-			gene.fitness = graph.SimulateSequence(gene.sequence).GetMaxUtilization()
+			mem, err := graph.SimulateSequence(gene.sequence)
+			if err != nil {
+				panic(err)
+			}
+			gene.fitness = mem.GetMaxUtilization()
 			wg.Done()
 		}(gene, g)
 	}
@@ -202,9 +217,16 @@ func (p *Population) mutate(g *graph.Graph) {
 	wg.Wait()
 }
 
+// GetBest will return the best gene in the population. If there are no valid
+// genes in the population, it will return a score of 0. Otherwise, it also returns
+// the best fitness and the best sequence
 func (p *Population) GetBest(g *graph.Graph) (int, *sequence.Sequence) {
 	for _, gene := range p.genes {
-		gene.fitness = g.SimulateSequence(gene.sequence).GetMaxUtilization()
+		mem, err := g.SimulateSequence(gene.sequence)
+		if err != nil {
+			panic(err)
+		}
+		gene.fitness = mem.GetMaxUtilization()
 	}
 
 	sort.Slice(p.genes, func(i, j int) bool {

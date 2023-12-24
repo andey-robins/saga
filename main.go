@@ -136,7 +136,10 @@ func memoryDriver(graphFpath, seqFpath string) {
 	g := graph.LoadGraphFromFile(graphFpath)
 	s := sequence.LoadSequenceFromFile(seqFpath)
 
-	m := g.SimulateSequence(s)
+	m, err := g.SimulateSequence(s)
+	if err != nil {
+		panic(err)
+	}
 
 	fmt.Printf("Maximum memory footprint: %d\n", m.GetMaxUtilization())
 }

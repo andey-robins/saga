@@ -23,32 +23,30 @@ func NewGraph(nodes []*Node, edges int) *Graph {
 	return &Graph{nodes, edges}
 }
 
-// GetLeaves will return a list of pointers to the leaf nodes in g
-// (nodes which are output nodes)
-func (g *Graph) GetLeaves() []*Node {
-	leaves := make([]*Node, 0)
+// GetOutputNodes will return a list of pointers to the output nodes in g
+func (g *Graph) GetOutputNodes() []*Node {
+	outputNodes := make([]*Node, 0)
 
 	for _, node := range g.nodes {
-		if !node.HasChildren() {
-			leaves = append(leaves, node)
+		if !node.HasAnyChildren() {
+			outputNodes = append(outputNodes, node)
 		}
 	}
 
-	return leaves
+	return outputNodes
 }
 
-// GetRoots will return a list of pointers to the root nodes in g
-// (nodes which are input nodes)
-func (g *Graph) GetRoots() []*Node {
-	roots := make([]*Node, 0)
+// GetInputNodes will return a list of pointers to the input nodes in g
+func (g *Graph) GetInputNodes() []*Node {
+	inputNodes := make([]*Node, 0)
 
 	for _, node := range g.nodes {
-		if !node.HasParents() {
-			roots = append(roots, node)
+		if !node.HasAnyParents() {
+			inputNodes = append(inputNodes, node)
 		}
 	}
 
-	return roots
+	return inputNodes
 }
 
 // GetNodeById will return a pointer to the node in g with the given id
@@ -78,7 +76,7 @@ func (g *Graph) IsValidSequence(s *sequence.Sequence) bool {
 	}
 
 	// mark all leaf nodes as processed
-	for _, leaf := range g.GetRoots() {
+	for _, leaf := range g.GetInputNodes() {
 		processedNodes[leaf.id] = true
 	}
 
@@ -120,16 +118,17 @@ func (g *Graph) IsValidSequence(s *sequence.Sequence) bool {
 // SimulateSequence takes a sequence s and simulates the execution
 // of that sequence over the graph. It returns a pointer to a Memory
 // object that had the simulation performed in it. This memory object
-// can be used to determine the maximum memory footprint of the sequence
-func (g *Graph) SimulateSequence(s *sequence.Sequence) *memory.Memory {
+// can be used to determine the maximum memory footprint of the sequence.
+// If the sequence is invalid, it returns an empty memory object.
+func (g *Graph) SimulateSequence(s *sequence.Sequence) (*memory.Memory, error) {
 	mem := memory.NewMemory()
 
 	if !g.IsValidSequence(s) {
-		return mem
+		return nil, fmt.Errorf("sequence is invalid for graph")
 	}
 
 	// load in initial memory to begin simulation
-	rootNodes := g.GetRoots()
+	rootNodes := g.GetInputNodes()
 	for _, node := range rootNodes {
 		mem.ProcessNode(node.id, node.GetChildCount(), []int{})
 	}
@@ -144,15 +143,17 @@ func (g *Graph) SimulateSequence(s *sequence.Sequence) *memory.Memory {
 		mem.ProcessNode(nodeId, node.GetChildCount(), dependentNodeIds)
 	}
 
-	return mem
+	return mem, nil
 }
 
 // ToString will return a string representation of g
 // that is semantically equivalent to the input string
-// used to create the graph object
+// used to create the graph object. It may not be identical
+// if the input wasn't produced by this tool, but will be
+// isomorphic to the input graph.
 func (g *Graph) ToString() string {
-	roots := g.GetRoots()
-	leaves := g.GetLeaves()
+	roots := g.GetInputNodes()
+	leaves := g.GetOutputNodes()
 	graphString := ""
 
 	// we use this anonymous function to take a list of nodes and

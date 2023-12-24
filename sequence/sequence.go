@@ -12,6 +12,10 @@ func NewSequence(sequence []int) *Sequence {
 	return &Sequence{sequence}
 }
 
+// GetSequence returns a copy of the sequence
+// so that the internal sequence cannot be modified
+// and we can mutate the copy without affecting the
+// original object
 func (s *Sequence) GetSequence() []int {
 	seq := make([]int, 0)
 	seq = append(seq, s.sequence...)
