@@ -12,10 +12,11 @@ _Current Version:_ `0.1.1`
 - [MAGICAL](#magical)
   - [Table of Contents](#table-of-contents)
   - [Getting Started Guide](#getting-started-guide)
-  - [Running](#running)
+  - [Execution](#execution)
     - [Verification Mode](#verification-mode)
     - [Memory Footprint Mode](#memory-footprint-mode)
     - [Minimization Mode](#minimization-mode)
+  - [API Usage](#api-usage)
   - [Building](#building)
   - [Papers](#papers)
     - [MAGICAL](#magical-1)
@@ -38,7 +39,7 @@ A number of operating modes are made available within the MAGICAL utility. For s
 
 Clone this repository and either run the command as detailed below or build the utility into an executable binary using the process in the section titled "Building"
 
-## Running
+## Execution
 
 The project can be run simply using `go run main.go`. Using that command will provide help information which details CLI arguments and flags. Each operating mode currently supported is enumerated with an example below.
 
@@ -72,6 +73,16 @@ This operating mode is the one which applies the genetic algorithms for which th
 > seed=2
 > Best fitness: 7
 > ```
+
+## API Usage
+
+A more robust public API is forth-coming in subsequent versions; however, replicating the workflow for minimization and evaluation of a graph can be performed manually through evaluation of the following methods:
+
+1. Create a population with the `genetics.NewPopulation(...)` function.
+    - This method takes as input configurations for the population such as mutation rate, maximum population size, etc. and a graph and produces population object which can be evaluated for more efficient solutions.
+2. Call the `(* population).Evolve(...)` method on the population.  
+   - This takes as an argument the graph. Both references passed to the population (for evolve and for NewPopulation) are immutable references. This will conceivably allow for multiple evolution pipelines to be run over a single graph object in future iterations, but for now is done to parameterize the behavior rather than including the graph as a part of the population.
+3. Retrieve the best performance from `(* population).GetBest(...)` which returns both the fitness (memory cost) of the solution and the solution sequence.
 
 ## Building
 
