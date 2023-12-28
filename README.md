@@ -4,7 +4,7 @@ Memristor Aided Genetic Intelligent Computation Algorithms -- is a footprint red
 
 This code is open source and licensed under the GPLv3 license. See `LICENSE` for complete licensing terms.
 
-_Current Version:_ `0.1.1`
+_Current Version:_ `0.1.2`
 
 [![Go](https://github.com/andey-robins/magical/actions/workflows/go.yml/badge.svg?branch=main)](https://github.com/andey-robins/magical/actions/workflows/go.yml)
 
@@ -21,11 +21,11 @@ _Current Version:_ `0.1.1`
   - [Papers](#papers)
     - [MAGICAL](#magical-1)
   - [Changelog](#changelog)
+    - [0.1.2](#012)
     - [0.1.1](#011)
     - [0.1.0](#010)
   - [What is Magic?](#what-is-magic)
   - [Roadmap](#roadmap)
-    - [0.1.2](#012)
     - [0.2.0](#020)
     - [0.3.0](#030)
     - [0.4.0](#040)
@@ -103,6 +103,16 @@ Genetic algorithms for more efficient in-memory computation through applied grap
 
 This section details changes between revisions of this utility.
 
+### 0.1.2
+
+- Updated project organization to more clearly segregate documentation/data from code/logic.
+- Updated go version to latest (1.21.5).
+- Reduced default output during genetic evolution. Prior behavior can be obtained with additional runtime data using the `-verbose` CLI flag.
+- Replaced `-minimize` flag with `-evolve` flag.
+- Replaced `-population` flag with `-pop` flag.
+- Updated reporting of argument validation and defaults.
+- Updated in-line documentation to conform to standard degree of explanation.
+
 ### 0.1.1
 
 - Finalize project migration to public namespace. Currently documentation and interaction are sub-optimal, so we'll do one big pass for the 0.1.2 publication before we do the major overhaul on configuration and execution that'll be numbered 0.2.0
@@ -120,11 +130,6 @@ More information on this technique should refer to the literature presented in t
 ## Roadmap
 
 These are planned features and the releases they are expected with. This should not be seen as a firm commitment but a clear signpost of what is to come provided I remain the sole developer of this tool.
-
-### 0.1.2
-
-- Major updates to documentation
-- Simplified CLI flags and arguments
 
 ### 0.2.0
 
