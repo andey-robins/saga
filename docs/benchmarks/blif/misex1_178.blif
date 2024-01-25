@@ -1,111 +1,89 @@
-# Benchmark "pla/misex1_178" written by ABC on Thu Jan 25 13:13:22 2024
+# Benchmark "pla/misex1_178" written by ABC on Thu Jan 25 13:45:29 2024
 .model pla/misex1_178
 .inputs x0 x1 x2 x3 x4 x5 x6 x7
 .outputs f0 f1 f2 f3 f4 f5 f6
-.names x0 x1 new_n16_
-01 1
-.names x3 new_n16_ new_n17_
-11 1
-.names x0 x1 new_n18_
-10 1
-.names x3 new_n18_ new_n19_
-01 1
-.names new_n17_ new_n19_ new_n20_
-00 1
-.names x2 new_n20_ f0
-10 1
-.names x2 x3 new_n22_
-01 1
-.names new_n18_ new_n22_ new_n23_
-11 1
-.names x3 x6 new_n24_
-01 1
-.names x1 new_n24_ new_n25_
-00 1
-.names x2 new_n25_ new_n26_
-01 1
-.names x2 x3 new_n27_
-10 1
-.names x5 new_n27_ new_n28_
-01 1
-.names x1 x2 new_n29_
-11 1
-.names new_n28_ new_n29_ new_n30_
-00 1
-.names new_n26_ new_n30_ new_n31_
-01 1
-.names x0 new_n31_ new_n32_
-01 1
-.names new_n23_ new_n32_ f1
-00 0
-.names x2 x5 new_n34_
-11 1
-.names x0 new_n34_ new_n35_
-00 1
-.names x3 new_n35_ new_n36_
-01 1
-.names x2 x6 new_n37_
-01 1
-.names x1 new_n37_ new_n38_
-00 1
-.names new_n36_ new_n38_ new_n39_
-11 1
-.names x0 new_n27_ new_n40_
-00 1
-.names x3 x4 new_n41_
-00 1
-.names new_n40_ new_n41_ new_n42_
-10 1
-.names x1 new_n42_ new_n43_
-11 1
-.names new_n23_ new_n43_ new_n44_
-00 1
-.names new_n39_ new_n44_ f2
-01 0
-.names x7 new_n41_ new_n46_
-10 1
-.names x2 new_n16_ new_n47_
-01 1
-.names new_n46_ new_n47_ new_n48_
-01 1
-.names x0 x5 new_n49_
-01 1
-.names x1 new_n27_ new_n50_
-01 1
-.names new_n49_ new_n50_ new_n51_
-01 1
-.names new_n48_ new_n51_ f3
-00 0
-.names new_n22_ new_n27_ new_n53_
-00 1
-.names x1 new_n53_ new_n54_
-00 1
-.names new_n40_ new_n54_ new_n55_
-10 1
-.names new_n40_ new_n54_ new_n56_
-01 1
-.names new_n55_ new_n56_ f4
-00 0
-.names x0 new_n53_ new_n58_
-10 1
-.names x0 new_n34_ new_n59_
-01 1
-.names new_n58_ new_n59_ new_n60_
-00 1
-.names x1 new_n60_ new_n61_
-00 1
-.names new_n26_ new_n40_ new_n62_
-01 1
-.names new_n61_ new_n62_ f5
-00 0
-.names x4 new_n47_ new_n64_
-01 1
-.names new_n28_ new_n58_ new_n65_
-00 1
-.names x1 new_n65_ new_n66_
-00 1
-.names new_n17_ new_n66_ new_n67_
-00 1
-.names new_n64_ new_n67_ f6
-01 0
+.gate NOT      A=x2 Y=new_n16_
+.gate NOT      A=x3 Y=new_n17_
+.gate NOT      A=x1 Y=new_n18_
+.gate NOR      A=new_n18_ B=x0 Y=new_n19_
+.gate NOT      A=new_n19_ Y=new_n20_
+.gate NOR      A=new_n20_ B=new_n17_ Y=new_n21_
+.gate NOT      A=x0 Y=new_n22_
+.gate NOR      A=x1 B=new_n22_ Y=new_n23_
+.gate NOT      A=new_n23_ Y=new_n24_
+.gate NOR      A=new_n24_ B=x3 Y=new_n25_
+.gate NOR      A=new_n25_ B=new_n21_ Y=new_n26_
+.gate NOR      A=new_n26_ B=new_n16_ Y=f0
+.gate NOR      A=x5 B=x3 Y=new_n28_
+.gate NOR      A=new_n16_ B=x1 Y=new_n29_
+.gate NOT      A=new_n29_ Y=new_n30_
+.gate NOR      A=new_n30_ B=new_n28_ Y=new_n31_
+.gate NOT      A=x6 Y=new_n32_
+.gate NOR      A=new_n32_ B=x3 Y=new_n33_
+.gate NOR      A=new_n33_ B=x1 Y=new_n34_
+.gate NOR      A=new_n34_ B=x2 Y=new_n35_
+.gate NOR      A=new_n35_ B=new_n31_ Y=new_n36_
+.gate NOR      A=new_n36_ B=x0 Y=new_n37_
+.gate NOR      A=new_n17_ B=x2 Y=new_n38_
+.gate NOT      A=new_n38_ Y=new_n39_
+.gate NOR      A=new_n39_ B=new_n24_ Y=new_n40_
+.gate NOR      A=new_n40_ B=new_n37_ Y=new_n41_
+.gate NOT      A=new_n41_ Y=f1
+.gate NOT      A=x4 Y=new_n43_
+.gate NOR      A=new_n43_ B=x2 Y=new_n44_
+.gate NOR      A=new_n44_ B=x3 Y=new_n45_
+.gate NOR      A=new_n45_ B=new_n18_ Y=new_n46_
+.gate NOR      A=x5 B=new_n16_ Y=new_n47_
+.gate NOR      A=x6 B=x2 Y=new_n48_
+.gate NOR      A=new_n48_ B=new_n47_ Y=new_n49_
+.gate NOR      A=x3 B=x1 Y=new_n50_
+.gate NOT      A=new_n50_ Y=new_n51_
+.gate NOR      A=new_n51_ B=new_n49_ Y=new_n52_
+.gate NOR      A=new_n52_ B=new_n46_ Y=new_n53_
+.gate NOR      A=new_n53_ B=x0 Y=new_n54_
+.gate NOR      A=new_n54_ B=new_n40_ Y=new_n55_
+.gate NOT      A=new_n55_ Y=f2
+.gate NOT      A=x7 Y=new_n57_
+.gate NOR      A=x4 B=x3 Y=new_n58_
+.gate NOR      A=new_n58_ B=new_n57_ Y=new_n59_
+.gate NOR      A=new_n20_ B=x2 Y=new_n60_
+.gate NOT      A=new_n60_ Y=new_n61_
+.gate NOR      A=new_n61_ B=new_n59_ Y=new_n62_
+.gate NOT      A=x5 Y=new_n63_
+.gate NOR      A=new_n63_ B=x0 Y=new_n64_
+.gate NOR      A=new_n30_ B=x3 Y=new_n65_
+.gate NOT      A=new_n65_ Y=new_n66_
+.gate NOR      A=new_n66_ B=new_n64_ Y=new_n67_
+.gate NOR      A=new_n67_ B=new_n62_ Y=new_n68_
+.gate NOT      A=new_n68_ Y=f3
+.gate NOR      A=new_n39_ B=new_n22_ Y=new_n70_
+.gate NOR      A=x3 B=new_n16_ Y=new_n71_
+.gate NOR      A=new_n71_ B=new_n70_ Y=new_n72_
+.gate NOR      A=new_n72_ B=x1 Y=new_n73_
+.gate NOR      A=new_n17_ B=x1 Y=new_n74_
+.gate NOR      A=new_n74_ B=x2 Y=new_n75_
+.gate NOR      A=new_n17_ B=new_n16_ Y=new_n76_
+.gate NOR      A=new_n76_ B=new_n75_ Y=new_n77_
+.gate NOR      A=new_n77_ B=x0 Y=new_n78_
+.gate NOR      A=new_n78_ B=new_n73_ Y=new_n79_
+.gate NOT      A=new_n79_ Y=f4
+.gate NOR      A=new_n71_ B=new_n38_ Y=new_n81_
+.gate NOR      A=new_n81_ B=new_n22_ Y=new_n82_
+.gate NOT      A=new_n64_ Y=new_n83_
+.gate NOR      A=new_n83_ B=new_n16_ Y=new_n84_
+.gate NOR      A=new_n84_ B=new_n82_ Y=new_n85_
+.gate NOR      A=new_n85_ B=x1 Y=new_n86_
+.gate NOR      A=new_n76_ B=new_n35_ Y=new_n87_
+.gate NOR      A=new_n87_ B=x0 Y=new_n88_
+.gate NOR      A=new_n88_ B=new_n86_ Y=new_n89_
+.gate NOT      A=new_n89_ Y=f5
+.gate NOT      A=new_n28_ Y=new_n91_
+.gate NOR      A=new_n91_ B=new_n16_ Y=new_n92_
+.gate NOR      A=new_n92_ B=new_n82_ Y=new_n93_
+.gate NOR      A=new_n93_ B=x1 Y=new_n94_
+.gate NOR      A=x4 B=x2 Y=new_n95_
+.gate NOR      A=new_n95_ B=x3 Y=new_n96_
+.gate NOR      A=new_n96_ B=new_n20_ Y=new_n97_
+.gate NOR      A=new_n97_ B=new_n94_ Y=new_n98_
+.gate NOT      A=new_n98_ Y=f6
 .end

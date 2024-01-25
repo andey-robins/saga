@@ -9,7 +9,7 @@ def main():
             blif_file_path = os.path.join("blif", filename[:-3] + "blif")
 
             # Invoke ABC to convert PLA to BLIF
-            abc_command = f'abc -c "read_pla {pla_file_path}; strash; dc2; map -M 2; write_blif {blif_file_path}"'
+            abc_command = f'abc -c "read_pla {pla_file_path}; read NIG.lib; strash; balance; map; write_blif {blif_file_path}"'
             os.system(abc_command)
 
 

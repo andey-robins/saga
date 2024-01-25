@@ -1,69 +1,81 @@
-# Benchmark "pla/cm163a_133" written by ABC on Thu Jan 25 13:13:23 2024
+# Benchmark "pla/cm163a_133" written by ABC on Thu Jan 25 13:45:30 2024
 .model pla/cm163a_133
 .inputs x0 x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12 x13 x14 x15
 .outputs f0 f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
-.names x1 x12 new_n30_
-00 1
-.names x11 new_n30_ f0
-01 0
-.names x11 x12 f1
-01 0
-.names x9 x12 new_n33_
-11 1
-.names x11 new_n33_ new_n34_
-11 1
-.names x7 x8 new_n35_
-11 1
-.names x5 x6 new_n36_
-11 1
-.names new_n35_ new_n36_ new_n37_
-11 1
-.names new_n34_ new_n37_ f2
-11 0
-.names new_n34_ new_n37_ f3
-10 0
-.names x2 x4 new_n40_
-11 1
-.names x3 new_n40_ new_n41_
-11 1
-.names f1 new_n41_ new_n42_
-11 1
-.names x1 new_n42_ new_n43_
-10 1
-.names x9 new_n43_ f6
-11 1
-.names new_n33_ new_n41_ new_n45_
-11 1
-.names x0 x10 new_n46_
-10 1
-.names x11 new_n46_ new_n47_
-11 1
-.names new_n45_ new_n47_ f8
-01 0
-.names x11 x12 new_n49_
-10 1
-.names new_n46_ new_n49_ new_n50_
-10 1
-.names f1 new_n50_ f9
-11 1
-.names new_n34_ new_n41_ new_n52_
-10 1
-.names new_n46_ new_n52_ f10
-11 1
-.names new_n30_ new_n47_ new_n54_
-11 1
-.names x1 f10 new_n55_
-11 1
-.names new_n54_ new_n55_ f11
-00 0
-.names x12 new_n47_ new_n57_
-11 1
-.names x9 new_n57_ f12
-01 1
-.names x14 f4
-0 1
-.names x13 f5
-0 1
-.names x15 f7
-0 1
+.gate NOR      A=x11 B=x1 Y=new_n30_
+.gate NOT      A=new_n30_ Y=new_n31_
+.gate NOR      A=new_n31_ B=x12 Y=new_n32_
+.gate NOT      A=new_n32_ Y=f0
+.gate NOT      A=x12 Y=new_n34_
+.gate NOR      A=new_n34_ B=x11 Y=new_n35_
+.gate NOT      A=new_n35_ Y=f1
+.gate NOT      A=x5 Y=new_n37_
+.gate NOT      A=x6 Y=new_n38_
+.gate NOR      A=new_n38_ B=new_n37_ Y=new_n39_
+.gate NOT      A=new_n39_ Y=new_n40_
+.gate NOT      A=x7 Y=new_n41_
+.gate NOT      A=x8 Y=new_n42_
+.gate NOR      A=new_n42_ B=new_n41_ Y=new_n43_
+.gate NOT      A=new_n43_ Y=new_n44_
+.gate NOR      A=new_n44_ B=new_n40_ Y=new_n45_
+.gate NOT      A=new_n45_ Y=new_n46_
+.gate NOT      A=x9 Y=new_n47_
+.gate NOT      A=x11 Y=new_n48_
+.gate NOR      A=new_n48_ B=new_n47_ Y=new_n49_
+.gate NOT      A=new_n49_ Y=new_n50_
+.gate NOR      A=new_n50_ B=new_n34_ Y=new_n51_
+.gate NOT      A=new_n51_ Y=new_n52_
+.gate NOR      A=new_n52_ B=new_n46_ Y=new_n53_
+.gate NOT      A=new_n53_ Y=f2
+.gate NOR      A=new_n34_ B=new_n48_ Y=new_n55_
+.gate NOT      A=new_n55_ Y=new_n56_
+.gate NOR      A=new_n56_ B=new_n47_ Y=new_n57_
+.gate NOT      A=new_n57_ Y=new_n58_
+.gate NOR      A=new_n58_ B=new_n45_ Y=new_n59_
+.gate NOT      A=new_n59_ Y=f3
+.gate NOT      A=x14 Y=f4
+.gate NOT      A=x13 Y=f5
+.gate NOT      A=x2 Y=new_n63_
+.gate NOT      A=x3 Y=new_n64_
+.gate NOR      A=new_n64_ B=new_n63_ Y=new_n65_
+.gate NOT      A=new_n65_ Y=new_n66_
+.gate NOT      A=x4 Y=new_n67_
+.gate NOR      A=new_n35_ B=new_n67_ Y=new_n68_
+.gate NOT      A=new_n68_ Y=new_n69_
+.gate NOR      A=new_n69_ B=new_n66_ Y=new_n70_
+.gate NOT      A=x1 Y=new_n71_
+.gate NOR      A=new_n47_ B=new_n71_ Y=new_n72_
+.gate NOT      A=new_n72_ Y=new_n73_
+.gate NOR      A=new_n73_ B=new_n70_ Y=f6
+.gate NOT      A=x15 Y=f7
+.gate NOR      A=new_n47_ B=new_n67_ Y=new_n76_
+.gate NOT      A=new_n76_ Y=new_n77_
+.gate NOR      A=new_n77_ B=new_n34_ Y=new_n78_
+.gate NOT      A=new_n78_ Y=new_n79_
+.gate NOR      A=new_n79_ B=new_n66_ Y=new_n80_
+.gate NOT      A=x0 Y=new_n81_
+.gate NOR      A=x10 B=new_n81_ Y=new_n82_
+.gate NOT      A=new_n82_ Y=new_n83_
+.gate NOR      A=new_n83_ B=new_n48_ Y=new_n84_
+.gate NOT      A=new_n84_ Y=new_n85_
+.gate NOR      A=new_n85_ B=new_n80_ Y=new_n86_
+.gate NOT      A=new_n86_ Y=f8
+.gate NOR      A=x12 B=x11 Y=new_n88_
+.gate NOR      A=new_n88_ B=new_n55_ Y=new_n89_
+.gate NOR      A=new_n89_ B=new_n83_ Y=f9
+.gate NOR      A=new_n66_ B=new_n67_ Y=new_n91_
+.gate NOR      A=new_n91_ B=new_n34_ Y=new_n92_
+.gate NOT      A=new_n92_ Y=new_n93_
+.gate NOR      A=new_n83_ B=new_n50_ Y=new_n94_
+.gate NOT      A=new_n94_ Y=new_n95_
+.gate NOR      A=new_n95_ B=new_n93_ Y=f10
+.gate NOR      A=new_n93_ B=new_n73_ Y=new_n97_
+.gate NOR      A=x12 B=x1 Y=new_n98_
+.gate NOR      A=new_n98_ B=new_n97_ Y=new_n99_
+.gate NOR      A=new_n99_ B=new_n85_ Y=f11
+.gate NOR      A=new_n48_ B=x9 Y=new_n101_
+.gate NOT      A=new_n101_ Y=new_n102_
+.gate NOR      A=new_n102_ B=new_n34_ Y=new_n103_
+.gate NOT      A=new_n103_ Y=new_n104_
+.gate NOR      A=new_n104_ B=new_n83_ Y=f12
 .end
