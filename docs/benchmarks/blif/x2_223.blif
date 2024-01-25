@@ -1,0 +1,77 @@
+# Benchmark "pla/x2_223" written by ABC on Thu Jan 25 13:13:23 2024
+.model pla/x2_223
+.inputs x0 x1 x2 x3 x4 x5 x6 x7 x8 x9
+.outputs f0 f1 f2 f3 f4 f5 f6
+.names x7 x9 new_n18_
+10 1
+.names x8 new_n18_ f0
+11 0
+.names x7 x9 new_n20_
+01 1
+.names x8 new_n20_ new_n21_
+00 1
+.names new_n18_ new_n21_ f1
+01 0
+.names x7 x8 new_n23_
+00 1
+.names x9 new_n23_ f2
+01 1
+.names x8 x9 new_n25_
+10 1
+.names x0 x1 new_n26_
+00 1
+.names x2 new_n26_ new_n27_
+01 1
+.names new_n25_ new_n27_ new_n28_
+11 1
+.names x7 new_n28_ f3
+01 0
+.names x8 x9 new_n30_
+11 1
+.names x6 new_n30_ new_n31_
+10 1
+.names x7 new_n31_ f4
+11 0
+.names x4 x7 new_n33_
+01 1
+.names x3 new_n33_ new_n34_
+11 1
+.names x8 new_n34_ new_n35_
+10 1
+.names x9 new_n35_ new_n36_
+00 1
+.names x7 new_n30_ new_n37_
+11 1
+.names new_n23_ new_n37_ new_n38_
+00 1
+.names x2 new_n26_ new_n39_
+11 1
+.names new_n38_ new_n39_ new_n40_
+01 1
+.names x8 new_n20_ new_n41_
+11 1
+.names x5 new_n41_ new_n42_
+11 1
+.names x6 new_n42_ new_n43_
+10 1
+.names new_n40_ new_n43_ new_n44_
+01 1
+.names new_n36_ new_n44_ f5
+01 0
+.names f2 new_n43_ new_n46_
+01 1
+.names x3 x4 new_n47_
+11 1
+.names x8 new_n47_ new_n48_
+11 1
+.names x9 new_n48_ new_n49_
+00 1
+.names new_n27_ new_n30_ new_n50_
+01 1
+.names x7 new_n50_ new_n51_
+10 1
+.names new_n49_ new_n51_ new_n52_
+01 1
+.names new_n46_ new_n52_ f6
+10 0
+.end

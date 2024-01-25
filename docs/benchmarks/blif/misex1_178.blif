@@ -1,0 +1,111 @@
+# Benchmark "pla/misex1_178" written by ABC on Thu Jan 25 13:13:22 2024
+.model pla/misex1_178
+.inputs x0 x1 x2 x3 x4 x5 x6 x7
+.outputs f0 f1 f2 f3 f4 f5 f6
+.names x0 x1 new_n16_
+01 1
+.names x3 new_n16_ new_n17_
+11 1
+.names x0 x1 new_n18_
+10 1
+.names x3 new_n18_ new_n19_
+01 1
+.names new_n17_ new_n19_ new_n20_
+00 1
+.names x2 new_n20_ f0
+10 1
+.names x2 x3 new_n22_
+01 1
+.names new_n18_ new_n22_ new_n23_
+11 1
+.names x3 x6 new_n24_
+01 1
+.names x1 new_n24_ new_n25_
+00 1
+.names x2 new_n25_ new_n26_
+01 1
+.names x2 x3 new_n27_
+10 1
+.names x5 new_n27_ new_n28_
+01 1
+.names x1 x2 new_n29_
+11 1
+.names new_n28_ new_n29_ new_n30_
+00 1
+.names new_n26_ new_n30_ new_n31_
+01 1
+.names x0 new_n31_ new_n32_
+01 1
+.names new_n23_ new_n32_ f1
+00 0
+.names x2 x5 new_n34_
+11 1
+.names x0 new_n34_ new_n35_
+00 1
+.names x3 new_n35_ new_n36_
+01 1
+.names x2 x6 new_n37_
+01 1
+.names x1 new_n37_ new_n38_
+00 1
+.names new_n36_ new_n38_ new_n39_
+11 1
+.names x0 new_n27_ new_n40_
+00 1
+.names x3 x4 new_n41_
+00 1
+.names new_n40_ new_n41_ new_n42_
+10 1
+.names x1 new_n42_ new_n43_
+11 1
+.names new_n23_ new_n43_ new_n44_
+00 1
+.names new_n39_ new_n44_ f2
+01 0
+.names x7 new_n41_ new_n46_
+10 1
+.names x2 new_n16_ new_n47_
+01 1
+.names new_n46_ new_n47_ new_n48_
+01 1
+.names x0 x5 new_n49_
+01 1
+.names x1 new_n27_ new_n50_
+01 1
+.names new_n49_ new_n50_ new_n51_
+01 1
+.names new_n48_ new_n51_ f3
+00 0
+.names new_n22_ new_n27_ new_n53_
+00 1
+.names x1 new_n53_ new_n54_
+00 1
+.names new_n40_ new_n54_ new_n55_
+10 1
+.names new_n40_ new_n54_ new_n56_
+01 1
+.names new_n55_ new_n56_ f4
+00 0
+.names x0 new_n53_ new_n58_
+10 1
+.names x0 new_n34_ new_n59_
+01 1
+.names new_n58_ new_n59_ new_n60_
+00 1
+.names x1 new_n60_ new_n61_
+00 1
+.names new_n26_ new_n40_ new_n62_
+01 1
+.names new_n61_ new_n62_ f5
+00 0
+.names x4 new_n47_ new_n64_
+01 1
+.names new_n28_ new_n58_ new_n65_
+00 1
+.names x1 new_n65_ new_n66_
+00 1
+.names new_n17_ new_n66_ new_n67_
+00 1
+.names new_n64_ new_n67_ f6
+01 0
+.end

@@ -1,0 +1,79 @@
+# Benchmark "pla/cm162a" written by ABC on Thu Jan 25 13:13:22 2024
+.model pla/cm162a
+.inputs a b c d e f g h i j k l m n
+.outputs o p q r s
+.names c e new_n20_
+11 1
+.names i new_n20_ new_n21_
+10 1
+.names e n new_n22_
+11 1
+.names j new_n22_ s
+11 1
+.names c s new_n24_
+11 1
+.names new_n21_ new_n24_ new_n25_
+00 1
+.names d new_n25_ new_n26_
+10 1
+.names i new_n20_ new_n27_
+01 1
+.names d new_n27_ new_n28_
+11 1
+.names a d new_n29_
+00 1
+.names new_n28_ new_n29_ new_n30_
+00 1
+.names f new_n30_ new_n31_
+11 1
+.names new_n26_ new_n31_ o
+01 0
+.names k new_n27_ new_n33_
+10 1
+.names new_n24_ new_n33_ new_n34_
+00 1
+.names d new_n34_ new_n35_
+10 1
+.names b d new_n36_
+00 1
+.names k new_n28_ new_n37_
+01 1
+.names new_n36_ new_n37_ new_n38_
+00 1
+.names new_n35_ new_n38_ new_n39_
+01 1
+.names f new_n39_ p
+11 0
+.names d g new_n41_
+01 1
+.names k new_n27_ new_n42_
+01 1
+.names l new_n42_ new_n43_
+10 1
+.names d new_n24_ new_n44_
+10 1
+.names l new_n42_ new_n45_
+01 1
+.names new_n44_ new_n45_ new_n46_
+10 1
+.names new_n43_ new_n46_ new_n47_
+01 1
+.names new_n41_ new_n47_ new_n48_
+00 1
+.names f new_n48_ q
+10 0
+.names d h new_n50_
+01 1
+.names m new_n45_ new_n51_
+11 1
+.names m new_n45_ new_n52_
+00 1
+.names new_n51_ new_n52_ new_n53_
+00 1
+.names new_n44_ new_n53_ new_n54_
+10 1
+.names new_n50_ new_n54_ new_n55_
+00 1
+.names f new_n55_ r
+10 0
+.end
