@@ -23,3 +23,6 @@ go.work
 # potential intermediary typst files
 paper/circuits.pdf
 paper/template.pdf
+
+# compiled binary
+magical
