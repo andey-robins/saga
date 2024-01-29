@@ -14,4 +14,8 @@ def main():
 
 
 if __name__ == "__main__":
+    print(
+        "blifify will process all provided pla files into a technology mapped set of blif files."
+    )
+    print("berkeley abc must be installed and accessible with the alias abc")
     main()
