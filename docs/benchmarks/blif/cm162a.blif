@@ -1,4 +1,4 @@
-# Benchmark "pla/cm162a" written by ABC on Thu Jan 25 13:45:29 2024
+# Benchmark "pla/cm162a" written by ABC on Fri Feb  2 13:21:01 2024
 .model pla/cm162a
 .inputs a b c d e f g h i j k l m n
 .outputs o p q r s
