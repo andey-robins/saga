@@ -30,6 +30,14 @@ func TestBlifParser(t *testing.T) {
 .gate NOR      A=new_n18_ B=x14 Y=new_n19_
 .gate NOT      A=x14 Y=new_n20_
 .end`},
+		{`# Benchmark "pla/5xp1_90" written by ABC on Fri Feb  2 13:21:01 2024
+.model pla/5xp1_90
+.inputs x0 x1 x2 x3 x4 x5 x6
+.outputs f0 f1 f2 f3 f4 f5 f6 f7 f8 f9
+.gate NOT      A=x4 Y=new_n18_
+.gate NOT      A=x5 Y=new_n19_
+.gate NOT      A=x1 Y=new_n20_
+.end`},
 	}
 
 	for _, test := range tests {

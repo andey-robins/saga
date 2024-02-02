@@ -72,7 +72,7 @@ func main() {
 	}
 
 	if blif {
-		blifTest(graphFile)
+		blifTest(graphFile, out)
 	}
 
 	if graphFile == "" {
@@ -168,7 +168,7 @@ func minimizeDriver(graphFpath, seqFpath string, generation, epsilon, seed int, 
 	seq.WriteToFile(seqFpath)
 }
 
-func blifTest(graphFpath string) {
+func blifTest(graphFpath, outputFpath string) {
 	g := blif.LoadBlifAsGraph(graphFpath)
 	p := genetics.NewPopulation(2000, 500, 0.2, g, 0)
 
@@ -179,5 +179,6 @@ func blifTest(graphFpath string) {
 	fmt.Printf("seed=%d\n", 0)
 	fmt.Printf("Best fitness: %d\n", fit)
 
-	seq.WriteToFile("blif_test_out.seq")
+	fmt.Println(outputFpath)
+	seq.WriteToFile(outputFpath)
 }
