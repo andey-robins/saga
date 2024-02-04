@@ -19,7 +19,7 @@ func main() {
 	}
 
 	var graphFile, sequenceFile, out string
-	var help, verify, memory, evolve, verbose, blif bool
+	var help, verify, memory, evolve, verbose bool
 	var seed, population, epsilon int
 	var mutation float64
 	flag.StringVar(&graphFile, "graph", "", "the path to a graph file")
@@ -30,7 +30,6 @@ func main() {
 	flag.BoolVar(&evolve, "evolve", false, "use to minimize the memory utilization of a sequence over a graph with genetic evolution")
 	flag.BoolVar(&verbose, "verbose", false, "use to display verbose output")
 	flag.BoolVar(&help, "help", false, "use to display help text")
-	flag.BoolVar(&blif, "blif", false, "(in progress) a blif interpreter")
 	flag.IntVar(&population, "pop", 400, "the size of the population to use for genetic algorithms")
 	flag.IntVar(&epsilon, "epsilon", 100, "the number of generations to keep running without any improvement")
 	flag.Float64Var(&mutation, "mutation", 0.2, "the chance of a mutation occuring in a sequence [0.0 - 1.0]")
@@ -69,10 +68,6 @@ func main() {
 
 	if !verbose {
 		log.SetOutput(io.Discard)
-	}
-
-	if blif {
-		blifTest(graphFile, out)
 	}
 
 	if graphFile == "" {
@@ -155,7 +150,7 @@ func minimizeDriver(graphFpath, seqFpath string, generation, epsilon, seed int, 
 		log.Println("Using random seed")
 		seed = int(time.Now().UnixNano())
 	}
-	g := graph.LoadGraphFromFile(graphFpath)
+	g := loadGraphByFileType(graphFpath)
 	p := genetics.NewPopulation(generation, epsilon, mutation, g, seed)
 
 	p.Evolve(g)
@@ -168,17 +163,10 @@ func minimizeDriver(graphFpath, seqFpath string, generation, epsilon, seed int, 
 	seq.WriteToFile(seqFpath)
 }
 
-func blifTest(graphFpath, outputFpath string) {
-	g := blif.LoadBlifAsGraph(graphFpath)
-	p := genetics.NewPopulation(2000, 500, 0.2, g, 0)
+func loadGraphByFileType(graphFpath string) *graph.Graph {
+	if graphFpath[len(graphFpath)-5:] == ".blif" {
+		return blif.LoadBlifAsGraph(graphFpath)
+	}
 
-	p.Evolve(g)
-
-	fit, seq := p.GetBest(g)
-
-	fmt.Printf("seed=%d\n", 0)
-	fmt.Printf("Best fitness: %d\n", fit)
-
-	fmt.Println(outputFpath)
-	seq.WriteToFile(outputFpath)
+	return graph.LoadGraphFromFile(graphFpath)
 }
