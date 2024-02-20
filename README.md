@@ -1,15 +1,15 @@
-# MAGICAL
+# SAGA
 
-Memristor Aided Genetic Intelligent Computation Algorithms -- is a footprint reduction tool for in-memory computation with memristors. 
+Synthesis Augmentation with Genetic Algorithms, SAGA -- is a footprint reduction tool for in-memory computation with MAGIC (memristor aided logic). 
 
 This code is open source and licensed under the GPLv3 license. See `LICENSE` for complete licensing terms.
 
 _Current Version:_ `0.1.2`
 
-[![Go](https://github.com/andey-robins/magical/actions/workflows/go.yml/badge.svg?branch=main)](https://github.com/andey-robins/magical/actions/workflows/go.yml)
+[![Go](https://github.com/andey-robins/saga/actions/workflows/go.yml/badge.svg?branch=main)](https://github.com/andey-robins/saga/actions/workflows/go.yml)
 
 ## Table of Contents
-- [MAGICAL](#magical)
+- [SAGA](#saga)
   - [Table of Contents](#table-of-contents)
   - [Getting Started Guide](#getting-started-guide)
   - [Execution](#execution)
@@ -18,24 +18,12 @@ _Current Version:_ `0.1.2`
     - [Minimization Mode](#minimization-mode)
   - [API Usage](#api-usage)
   - [Building](#building)
-  - [Papers](#papers)
-    - [MAGICAL](#magical-1)
-  - [Changelog](#changelog)
-    - [0.1.2](#012)
-    - [0.1.1](#011)
-    - [0.1.0](#010)
-  - [What is Magic?](#what-is-magic)
-  - [Roadmap](#roadmap)
-    - [0.2.0](#020)
-    - [0.3.0](#030)
-    - [0.4.0](#040)
-    - [0.5.0](#050)
-    - [1.0.0](#100)
+  - [What is MAGIC?](#what-is-magic)
 
 
 ## Getting Started Guide
 
-A number of operating modes are made available within the MAGICAL utility. For synthesizing new execution sequences using genetic evolution, see the section on the Minimization Mode below.
+A number of operating modes are made available within the SAGA utility. For synthesizing new execution sequences using genetic evolution, see the section on the Minimization Mode below.
 
 Clone this repository and either run the command as detailed below or build the utility into an executable binary using the process in the section titled "Building"
 
@@ -86,70 +74,12 @@ A more robust public API is forth-coming in subsequent versions; however, replic
 
 ## Building
 
-This project is built with go version `1.21.5`.
+This project is built with go version `1.22.0`.
 
-Run `go build -o magical` to build from source.
+Run `go build -o saga` to build from source.
 
-
-## Papers
-
-### MAGICAL
-
-Genetic algorithms for more efficient in-memory computation through applied graph analysis is a report which details some initial motivation and refers to the literature which introduced this problem. It presents initial performance of the v0.1.1 version of the software and describes some insights which were used to justify the mapping of this problem to a genetic algorithm.
-
-[Read the paper here.](https://github.com/andey-robins/magical/docs/paper/main.pdf)
-
-## Changelog
-
-This section details changes between revisions of this utility.
-
-### 0.1.2
-
-- Updated project organization to more clearly segregate documentation/data from code/logic.
-- Updated go version to latest (1.21.5).
-- Reduced default output during genetic evolution. Prior behavior can be obtained with additional runtime data using the `-verbose` CLI flag.
-- Replaced `-minimize` flag with `-evolve` flag.
-- Replaced `-population` flag with `-pop` flag.
-- Updated reporting of argument validation and defaults.
-- Updated in-line documentation to conform to standard degree of explanation.
-
-### 0.1.1
-
-- Finalize project migration to public namespace. Currently documentation and interaction are sub-optimal, so we'll do one big pass for the 0.1.2 publication before we do the major overhaul on configuration and execution that'll be numbered 0.2.0
-
-### 0.1.0
-
-- Added initial project version
-
-## What is Magic?
+## What is MAGIC?
 
 MAGIC, also known as Memristor-Aided Logic, is an emerging computer paradigm that performs computation in-memory rather than on a CPU or other processing device. Values of digital logic can be stored in special memristor-based memory cells. Computation is then performed by issuing read commands to specific addresses and the binary computation is the value available at that address. 
 
-More information on this technique should refer to the literature presented in the file [here](https://github.com/andey-robins/magical/docs/paper/main.pdf) or the foundational paper [here](https://ieeexplore.ieee.org/abstract/document/6895258/).
-
-## Roadmap
-
-These are planned features and the releases they are expected with. This should not be seen as a firm commitment but a clear signpost of what is to come provided I remain the sole developer of this tool.
-
-### 0.2.0
-
-- Experimental configuration files
-- Checkpointing
-- Intermediary saving
-
-### 0.3.0
-
-- External API
-
-### 0.4.0
-
-- Performance analysis
-- Additional genetic algorithms
-
-### 0.5.0
-
-- Configurable genetic algorithms and pipelines
-
-### 1.0.0
-
-- Configurable, distributed synthesis
+More information on this technique can be found in the foundational paper [here](https://ieeexplore.ieee.org/abstract/document/6895258/).
