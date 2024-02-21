@@ -3,10 +3,20 @@
 This section details changes between revisions of this utility.
 
 - [Changelog](#changelog)
+  - [0.2.0](#020)
   - [0.1.2](#012)
   - [0.1.1](#011)
   - [0.1.0](#010)
 
+
+## 0.2.0
+
+The increment to the minor version here represents an organizational re-arrangement in addition to expanded functionality. This repository will maintain an identity solely as the SAGA tool while other information has been migrated to [another repository](https://gitlab.com/ucfdracolab/saga-data).
+
+The following changes are present in v0.2.0
+
+- Bumped go version to latest (1.22.x)
+- Re-organized and renamed project to match publishing
 
 ## 0.1.2
 
