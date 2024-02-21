@@ -1,0 +1,1558 @@
+# Benchmark "pla/apex5_104" written by ABC on Fri Feb  2 13:21:01 2024
+.model pla/apex5_104
+.inputs x0 x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12 x13 x14 x15 x16 x17 x18  x19 x20 x21 x22 x23 x24 x25 x26 x27 x28 x29 x30 x31 x32 x33 x34 x35 x36  x37 x38 x39 x40 x41 x42 x43 x44 x45 x46 x47 x48 x49 x50 x51 x52 x53 x54  x55 x56 x57 x58 x59 x60 x61 x62 x63 x64 x65 x66 x67 x68 x69 x70 x71 x72  x73 x74 x75 x76 x77 x78 x79 x80 x81 x82 x83 x84 x85 x86 x87 x88 x89 x90  x91 x92 x93 x94 x95 x96 x97 x98 x99 x100 x101 x102 x103 x104 x105 x106 x107 x108 x109 x110 x111 x112 x113 x114 x115 x116
+.outputs f0 f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 f13 f14 f15 f16 f17 f18  f19 f20 f21 f22 f23 f24 f25 f26 f27 f28 f29 f30 f31 f32 f33 f34 f35 f36  f37 f38 f39 f40 f41 f42 f43 f44 f45 f46 f47 f48 f49 f50 f51 f52 f53 f54  f55 f56 f57 f58 f59 f60 f61 f62 f63 f64 f65 f66 f67 f68 f69 f70 f71 f72  f73 f74 f75 f76 f77 f78 f79 f80 f81 f82 f83 f84 f85 f86 f87
+.gate NOR      A=x98 B=x97 Y=new_n206_
+.gate NOT      A=new_n206_ Y=new_n207_
+.gate NOR      A=x100 B=x99 Y=new_n208_
+.gate NOT      A=new_n208_ Y=new_n209_
+.gate NOR      A=new_n209_ B=new_n207_ Y=new_n210_
+.gate NOT      A=new_n210_ Y=new_n211_
+.gate NOR      A=x94 B=x93 Y=new_n212_
+.gate NOT      A=new_n212_ Y=new_n213_
+.gate NOR      A=x96 B=x95 Y=new_n214_
+.gate NOT      A=new_n214_ Y=new_n215_
+.gate NOR      A=new_n215_ B=new_n213_ Y=new_n216_
+.gate NOT      A=new_n216_ Y=new_n217_
+.gate NOR      A=new_n217_ B=new_n211_ Y=new_n218_
+.gate NOT      A=new_n218_ Y=f1
+.gate NOT      A=x36 Y=new_n220_
+.gate NOT      A=x4 Y=new_n221_
+.gate NOT      A=x1 Y=new_n222_
+.gate NOR      A=new_n222_ B=x0 Y=new_n223_
+.gate NOT      A=new_n223_ Y=new_n224_
+.gate NOR      A=new_n224_ B=new_n221_ Y=new_n225_
+.gate NOR      A=new_n225_ B=new_n220_ Y=new_n226_
+.gate NOT      A=x28 Y=new_n227_
+.gate NOR      A=new_n227_ B=new_n221_ Y=new_n228_
+.gate NOT      A=new_n228_ Y=new_n229_
+.gate NOR      A=new_n229_ B=new_n224_ Y=new_n230_
+.gate NOR      A=new_n230_ B=new_n226_ Y=new_n231_
+.gate NOT      A=new_n231_ Y=f2
+.gate NOT      A=x61 Y=new_n233_
+.gate NOT      A=x26 Y=new_n234_
+.gate NOR      A=new_n234_ B=x24 Y=new_n235_
+.gate NOT      A=new_n235_ Y=new_n236_
+.gate NOR      A=new_n236_ B=new_n233_ Y=new_n237_
+.gate NOT      A=x77 Y=new_n238_
+.gate NOT      A=x24 Y=new_n239_
+.gate NOR      A=x26 B=new_n239_ Y=new_n240_
+.gate NOT      A=new_n240_ Y=new_n241_
+.gate NOR      A=new_n241_ B=new_n238_ Y=new_n242_
+.gate NOR      A=new_n242_ B=new_n237_ Y=new_n243_
+.gate NOR      A=new_n243_ B=x23 Y=new_n244_
+.gate NOT      A=x23 Y=new_n245_
+.gate NOT      A=x69 Y=new_n246_
+.gate NOR      A=new_n246_ B=new_n234_ Y=new_n247_
+.gate NOT      A=x93 Y=new_n248_
+.gate NOR      A=new_n248_ B=x26 Y=new_n249_
+.gate NOR      A=new_n249_ B=new_n247_ Y=new_n250_
+.gate NOR      A=new_n250_ B=x24 Y=new_n251_
+.gate NOT      A=x85 Y=new_n252_
+.gate NOR      A=new_n241_ B=new_n252_ Y=new_n253_
+.gate NOR      A=new_n253_ B=new_n251_ Y=new_n254_
+.gate NOR      A=new_n254_ B=new_n245_ Y=new_n255_
+.gate NOR      A=new_n255_ B=new_n244_ Y=new_n256_
+.gate NOR      A=new_n256_ B=x27 Y=new_n257_
+.gate NOR      A=x24 B=x23 Y=new_n258_
+.gate NOT      A=new_n258_ Y=new_n259_
+.gate NOT      A=x45 Y=new_n260_
+.gate NOT      A=x27 Y=new_n261_
+.gate NOR      A=new_n261_ B=x26 Y=new_n262_
+.gate NOT      A=new_n262_ Y=new_n263_
+.gate NOR      A=new_n263_ B=new_n260_ Y=new_n264_
+.gate NOT      A=new_n264_ Y=new_n265_
+.gate NOR      A=new_n265_ B=new_n259_ Y=new_n266_
+.gate NOR      A=new_n266_ B=new_n257_ Y=new_n267_
+.gate NOR      A=new_n267_ B=x25 Y=new_n268_
+.gate NOT      A=x25 Y=new_n269_
+.gate NOR      A=new_n269_ B=x24 Y=new_n270_
+.gate NOT      A=new_n270_ Y=new_n271_
+.gate NOR      A=new_n271_ B=x23 Y=new_n272_
+.gate NOT      A=new_n272_ Y=new_n273_
+.gate NOT      A=x53 Y=new_n274_
+.gate NOR      A=x27 B=x26 Y=new_n275_
+.gate NOT      A=new_n275_ Y=new_n276_
+.gate NOR      A=new_n276_ B=new_n274_ Y=new_n277_
+.gate NOT      A=new_n277_ Y=new_n278_
+.gate NOR      A=new_n278_ B=new_n273_ Y=new_n279_
+.gate NOR      A=new_n279_ B=new_n268_ Y=new_n280_
+.gate NOT      A=x0 Y=new_n281_
+.gate NOR      A=new_n222_ B=new_n281_ Y=new_n282_
+.gate NOT      A=new_n282_ Y=new_n283_
+.gate NOR      A=new_n283_ B=x28 Y=new_n284_
+.gate NOT      A=new_n284_ Y=new_n285_
+.gate NOR      A=new_n285_ B=new_n280_ Y=new_n286_
+.gate NOT      A=x37 Y=new_n287_
+.gate NOR      A=new_n259_ B=x25 Y=new_n288_
+.gate NOT      A=new_n288_ Y=new_n289_
+.gate NOR      A=new_n289_ B=new_n276_ Y=new_n290_
+.gate NOR      A=x27 B=x25 Y=new_n291_
+.gate NOR      A=new_n259_ B=x26 Y=new_n292_
+.gate NOR      A=new_n292_ B=new_n291_ Y=new_n293_
+.gate NOR      A=new_n234_ B=new_n239_ Y=new_n294_
+.gate NOR      A=new_n261_ B=new_n269_ Y=new_n295_
+.gate NOR      A=new_n295_ B=new_n294_ Y=new_n296_
+.gate NOT      A=new_n296_ Y=new_n297_
+.gate NOR      A=new_n297_ B=new_n285_ Y=new_n298_
+.gate NOT      A=new_n298_ Y=new_n299_
+.gate NOR      A=new_n299_ B=new_n293_ Y=new_n300_
+.gate NOT      A=new_n300_ Y=new_n301_
+.gate NOR      A=new_n301_ B=new_n290_ Y=new_n302_
+.gate NOR      A=new_n302_ B=new_n287_ Y=new_n303_
+.gate NOR      A=new_n303_ B=new_n286_ Y=new_n304_
+.gate NOR      A=new_n304_ B=new_n221_ Y=f3
+.gate NOT      A=x62 Y=new_n306_
+.gate NOR      A=new_n236_ B=new_n306_ Y=new_n307_
+.gate NOT      A=x78 Y=new_n308_
+.gate NOR      A=new_n241_ B=new_n308_ Y=new_n309_
+.gate NOR      A=new_n309_ B=new_n307_ Y=new_n310_
+.gate NOR      A=new_n310_ B=x23 Y=new_n311_
+.gate NOT      A=x70 Y=new_n312_
+.gate NOR      A=new_n312_ B=new_n234_ Y=new_n313_
+.gate NOT      A=x94 Y=new_n314_
+.gate NOR      A=new_n314_ B=x26 Y=new_n315_
+.gate NOR      A=new_n315_ B=new_n313_ Y=new_n316_
+.gate NOR      A=new_n316_ B=x24 Y=new_n317_
+.gate NOT      A=x86 Y=new_n318_
+.gate NOR      A=new_n241_ B=new_n318_ Y=new_n319_
+.gate NOR      A=new_n319_ B=new_n317_ Y=new_n320_
+.gate NOR      A=new_n320_ B=new_n245_ Y=new_n321_
+.gate NOR      A=new_n321_ B=new_n311_ Y=new_n322_
+.gate NOR      A=new_n322_ B=x27 Y=new_n323_
+.gate NOT      A=x46 Y=new_n324_
+.gate NOR      A=new_n263_ B=new_n324_ Y=new_n325_
+.gate NOT      A=new_n325_ Y=new_n326_
+.gate NOR      A=new_n326_ B=new_n259_ Y=new_n327_
+.gate NOR      A=new_n327_ B=new_n323_ Y=new_n328_
+.gate NOR      A=new_n328_ B=x25 Y=new_n329_
+.gate NOT      A=x54 Y=new_n330_
+.gate NOR      A=new_n276_ B=new_n330_ Y=new_n331_
+.gate NOT      A=new_n331_ Y=new_n332_
+.gate NOR      A=new_n332_ B=new_n273_ Y=new_n333_
+.gate NOR      A=new_n333_ B=new_n329_ Y=new_n334_
+.gate NOR      A=new_n334_ B=new_n285_ Y=new_n335_
+.gate NOT      A=x38 Y=new_n336_
+.gate NOR      A=new_n302_ B=new_n336_ Y=new_n337_
+.gate NOR      A=new_n337_ B=new_n335_ Y=new_n338_
+.gate NOR      A=new_n338_ B=new_n221_ Y=f4
+.gate NOT      A=x63 Y=new_n340_
+.gate NOR      A=new_n236_ B=new_n340_ Y=new_n341_
+.gate NOT      A=x79 Y=new_n342_
+.gate NOR      A=new_n241_ B=new_n342_ Y=new_n343_
+.gate NOR      A=new_n343_ B=new_n341_ Y=new_n344_
+.gate NOR      A=new_n344_ B=x23 Y=new_n345_
+.gate NOT      A=x71 Y=new_n346_
+.gate NOR      A=new_n346_ B=new_n234_ Y=new_n347_
+.gate NOT      A=x95 Y=new_n348_
+.gate NOR      A=new_n348_ B=x26 Y=new_n349_
+.gate NOR      A=new_n349_ B=new_n347_ Y=new_n350_
+.gate NOR      A=new_n350_ B=x24 Y=new_n351_
+.gate NOT      A=x87 Y=new_n352_
+.gate NOR      A=new_n241_ B=new_n352_ Y=new_n353_
+.gate NOR      A=new_n353_ B=new_n351_ Y=new_n354_
+.gate NOR      A=new_n354_ B=new_n245_ Y=new_n355_
+.gate NOR      A=new_n355_ B=new_n345_ Y=new_n356_
+.gate NOR      A=new_n356_ B=x27 Y=new_n357_
+.gate NOT      A=x47 Y=new_n358_
+.gate NOR      A=new_n263_ B=new_n358_ Y=new_n359_
+.gate NOT      A=new_n359_ Y=new_n360_
+.gate NOR      A=new_n360_ B=new_n259_ Y=new_n361_
+.gate NOR      A=new_n361_ B=new_n357_ Y=new_n362_
+.gate NOR      A=new_n362_ B=x25 Y=new_n363_
+.gate NOT      A=x55 Y=new_n364_
+.gate NOR      A=new_n276_ B=new_n364_ Y=new_n365_
+.gate NOT      A=new_n365_ Y=new_n366_
+.gate NOR      A=new_n366_ B=new_n273_ Y=new_n367_
+.gate NOR      A=new_n367_ B=new_n363_ Y=new_n368_
+.gate NOR      A=new_n368_ B=new_n285_ Y=new_n369_
+.gate NOT      A=x39 Y=new_n370_
+.gate NOR      A=new_n302_ B=new_n370_ Y=new_n371_
+.gate NOR      A=new_n371_ B=new_n369_ Y=new_n372_
+.gate NOR      A=new_n372_ B=new_n221_ Y=f5
+.gate NOT      A=x64 Y=new_n374_
+.gate NOR      A=new_n236_ B=new_n374_ Y=new_n375_
+.gate NOT      A=x80 Y=new_n376_
+.gate NOR      A=new_n241_ B=new_n376_ Y=new_n377_
+.gate NOR      A=new_n377_ B=new_n375_ Y=new_n378_
+.gate NOR      A=new_n378_ B=x23 Y=new_n379_
+.gate NOT      A=x72 Y=new_n380_
+.gate NOR      A=new_n380_ B=new_n234_ Y=new_n381_
+.gate NOT      A=x96 Y=new_n382_
+.gate NOR      A=new_n382_ B=x26 Y=new_n383_
+.gate NOR      A=new_n383_ B=new_n381_ Y=new_n384_
+.gate NOR      A=new_n384_ B=x24 Y=new_n385_
+.gate NOT      A=x88 Y=new_n386_
+.gate NOR      A=new_n241_ B=new_n386_ Y=new_n387_
+.gate NOR      A=new_n387_ B=new_n385_ Y=new_n388_
+.gate NOR      A=new_n388_ B=new_n245_ Y=new_n389_
+.gate NOR      A=new_n389_ B=new_n379_ Y=new_n390_
+.gate NOR      A=new_n390_ B=x27 Y=new_n391_
+.gate NOT      A=x48 Y=new_n392_
+.gate NOR      A=new_n263_ B=new_n392_ Y=new_n393_
+.gate NOT      A=new_n393_ Y=new_n394_
+.gate NOR      A=new_n394_ B=new_n259_ Y=new_n395_
+.gate NOR      A=new_n395_ B=new_n391_ Y=new_n396_
+.gate NOR      A=new_n396_ B=x25 Y=new_n397_
+.gate NOT      A=x56 Y=new_n398_
+.gate NOR      A=new_n276_ B=new_n398_ Y=new_n399_
+.gate NOT      A=new_n399_ Y=new_n400_
+.gate NOR      A=new_n400_ B=new_n273_ Y=new_n401_
+.gate NOR      A=new_n401_ B=new_n397_ Y=new_n402_
+.gate NOR      A=new_n402_ B=new_n285_ Y=new_n403_
+.gate NOT      A=x40 Y=new_n404_
+.gate NOR      A=new_n302_ B=new_n404_ Y=new_n405_
+.gate NOR      A=new_n405_ B=new_n403_ Y=new_n406_
+.gate NOR      A=new_n406_ B=new_n221_ Y=f6
+.gate NOT      A=x65 Y=new_n408_
+.gate NOR      A=new_n236_ B=new_n408_ Y=new_n409_
+.gate NOT      A=x81 Y=new_n410_
+.gate NOR      A=new_n241_ B=new_n410_ Y=new_n411_
+.gate NOR      A=new_n411_ B=new_n409_ Y=new_n412_
+.gate NOR      A=new_n412_ B=x23 Y=new_n413_
+.gate NOT      A=x73 Y=new_n414_
+.gate NOR      A=new_n414_ B=new_n234_ Y=new_n415_
+.gate NOT      A=x97 Y=new_n416_
+.gate NOR      A=new_n416_ B=x26 Y=new_n417_
+.gate NOR      A=new_n417_ B=new_n415_ Y=new_n418_
+.gate NOR      A=new_n418_ B=x24 Y=new_n419_
+.gate NOT      A=x89 Y=new_n420_
+.gate NOR      A=new_n241_ B=new_n420_ Y=new_n421_
+.gate NOR      A=new_n421_ B=new_n419_ Y=new_n422_
+.gate NOR      A=new_n422_ B=new_n245_ Y=new_n423_
+.gate NOR      A=new_n423_ B=new_n413_ Y=new_n424_
+.gate NOR      A=new_n424_ B=x27 Y=new_n425_
+.gate NOT      A=x49 Y=new_n426_
+.gate NOR      A=new_n263_ B=new_n426_ Y=new_n427_
+.gate NOT      A=new_n427_ Y=new_n428_
+.gate NOR      A=new_n428_ B=new_n259_ Y=new_n429_
+.gate NOR      A=new_n429_ B=new_n425_ Y=new_n430_
+.gate NOR      A=new_n430_ B=x25 Y=new_n431_
+.gate NOT      A=x57 Y=new_n432_
+.gate NOR      A=new_n276_ B=new_n432_ Y=new_n433_
+.gate NOT      A=new_n433_ Y=new_n434_
+.gate NOR      A=new_n434_ B=new_n273_ Y=new_n435_
+.gate NOR      A=new_n435_ B=new_n431_ Y=new_n436_
+.gate NOR      A=new_n436_ B=new_n285_ Y=new_n437_
+.gate NOT      A=x41 Y=new_n438_
+.gate NOR      A=new_n302_ B=new_n438_ Y=new_n439_
+.gate NOR      A=new_n439_ B=new_n437_ Y=new_n440_
+.gate NOR      A=new_n440_ B=new_n221_ Y=f7
+.gate NOT      A=x66 Y=new_n442_
+.gate NOR      A=new_n236_ B=new_n442_ Y=new_n443_
+.gate NOT      A=x82 Y=new_n444_
+.gate NOR      A=new_n241_ B=new_n444_ Y=new_n445_
+.gate NOR      A=new_n445_ B=new_n443_ Y=new_n446_
+.gate NOR      A=new_n446_ B=x23 Y=new_n447_
+.gate NOT      A=x74 Y=new_n448_
+.gate NOR      A=new_n448_ B=new_n234_ Y=new_n449_
+.gate NOT      A=x98 Y=new_n450_
+.gate NOR      A=new_n450_ B=x26 Y=new_n451_
+.gate NOR      A=new_n451_ B=new_n449_ Y=new_n452_
+.gate NOR      A=new_n452_ B=x24 Y=new_n453_
+.gate NOT      A=x90 Y=new_n454_
+.gate NOR      A=new_n241_ B=new_n454_ Y=new_n455_
+.gate NOR      A=new_n455_ B=new_n453_ Y=new_n456_
+.gate NOR      A=new_n456_ B=new_n245_ Y=new_n457_
+.gate NOR      A=new_n457_ B=new_n447_ Y=new_n458_
+.gate NOR      A=new_n458_ B=x27 Y=new_n459_
+.gate NOT      A=x50 Y=new_n460_
+.gate NOR      A=new_n263_ B=new_n460_ Y=new_n461_
+.gate NOT      A=new_n461_ Y=new_n462_
+.gate NOR      A=new_n462_ B=new_n259_ Y=new_n463_
+.gate NOR      A=new_n463_ B=new_n459_ Y=new_n464_
+.gate NOR      A=new_n464_ B=x25 Y=new_n465_
+.gate NOT      A=x58 Y=new_n466_
+.gate NOR      A=new_n276_ B=new_n466_ Y=new_n467_
+.gate NOT      A=new_n467_ Y=new_n468_
+.gate NOR      A=new_n468_ B=new_n273_ Y=new_n469_
+.gate NOR      A=new_n469_ B=new_n465_ Y=new_n470_
+.gate NOR      A=new_n470_ B=new_n285_ Y=new_n471_
+.gate NOT      A=x42 Y=new_n472_
+.gate NOR      A=new_n302_ B=new_n472_ Y=new_n473_
+.gate NOR      A=new_n473_ B=new_n471_ Y=new_n474_
+.gate NOR      A=new_n474_ B=new_n221_ Y=f8
+.gate NOT      A=x67 Y=new_n476_
+.gate NOR      A=new_n236_ B=new_n476_ Y=new_n477_
+.gate NOT      A=x83 Y=new_n478_
+.gate NOR      A=new_n241_ B=new_n478_ Y=new_n479_
+.gate NOR      A=new_n479_ B=new_n477_ Y=new_n480_
+.gate NOR      A=new_n480_ B=x23 Y=new_n481_
+.gate NOT      A=x75 Y=new_n482_
+.gate NOR      A=new_n482_ B=new_n234_ Y=new_n483_
+.gate NOT      A=x99 Y=new_n484_
+.gate NOR      A=new_n484_ B=x26 Y=new_n485_
+.gate NOR      A=new_n485_ B=new_n483_ Y=new_n486_
+.gate NOR      A=new_n486_ B=x24 Y=new_n487_
+.gate NOT      A=x91 Y=new_n488_
+.gate NOR      A=new_n241_ B=new_n488_ Y=new_n489_
+.gate NOR      A=new_n489_ B=new_n487_ Y=new_n490_
+.gate NOR      A=new_n490_ B=new_n245_ Y=new_n491_
+.gate NOR      A=new_n491_ B=new_n481_ Y=new_n492_
+.gate NOR      A=new_n492_ B=x27 Y=new_n493_
+.gate NOT      A=x51 Y=new_n494_
+.gate NOR      A=new_n263_ B=new_n494_ Y=new_n495_
+.gate NOT      A=new_n495_ Y=new_n496_
+.gate NOR      A=new_n496_ B=new_n259_ Y=new_n497_
+.gate NOR      A=new_n497_ B=new_n493_ Y=new_n498_
+.gate NOR      A=x28 B=x25 Y=new_n499_
+.gate NOT      A=new_n499_ Y=new_n500_
+.gate NOR      A=new_n500_ B=new_n283_ Y=new_n501_
+.gate NOT      A=new_n501_ Y=new_n502_
+.gate NOR      A=new_n502_ B=new_n498_ Y=new_n503_
+.gate NOT      A=x43 Y=new_n504_
+.gate NOR      A=new_n275_ B=new_n239_ Y=new_n505_
+.gate NOR      A=new_n505_ B=new_n502_ Y=new_n506_
+.gate NOT      A=new_n506_ Y=new_n507_
+.gate NOR      A=x26 B=x23 Y=new_n508_
+.gate NOR      A=new_n508_ B=new_n261_ Y=new_n509_
+.gate NOR      A=new_n276_ B=new_n259_ Y=new_n510_
+.gate NOR      A=new_n510_ B=new_n509_ Y=new_n511_
+.gate NOT      A=new_n511_ Y=new_n512_
+.gate NOR      A=new_n512_ B=new_n507_ Y=new_n513_
+.gate NOR      A=new_n513_ B=new_n504_ Y=new_n514_
+.gate NOR      A=new_n514_ B=new_n503_ Y=new_n515_
+.gate NOR      A=new_n515_ B=new_n221_ Y=f9
+.gate NOT      A=x68 Y=new_n517_
+.gate NOR      A=new_n236_ B=new_n517_ Y=new_n518_
+.gate NOT      A=x84 Y=new_n519_
+.gate NOR      A=new_n241_ B=new_n519_ Y=new_n520_
+.gate NOR      A=new_n520_ B=new_n518_ Y=new_n521_
+.gate NOR      A=new_n521_ B=x23 Y=new_n522_
+.gate NOT      A=x76 Y=new_n523_
+.gate NOR      A=new_n523_ B=new_n234_ Y=new_n524_
+.gate NOT      A=x100 Y=new_n525_
+.gate NOR      A=new_n525_ B=x26 Y=new_n526_
+.gate NOR      A=new_n526_ B=new_n524_ Y=new_n527_
+.gate NOR      A=new_n527_ B=x24 Y=new_n528_
+.gate NOT      A=x92 Y=new_n529_
+.gate NOR      A=new_n241_ B=new_n529_ Y=new_n530_
+.gate NOR      A=new_n530_ B=new_n528_ Y=new_n531_
+.gate NOR      A=new_n531_ B=new_n245_ Y=new_n532_
+.gate NOR      A=new_n532_ B=new_n522_ Y=new_n533_
+.gate NOR      A=new_n533_ B=x27 Y=new_n534_
+.gate NOT      A=x52 Y=new_n535_
+.gate NOR      A=new_n263_ B=new_n535_ Y=new_n536_
+.gate NOT      A=new_n536_ Y=new_n537_
+.gate NOR      A=new_n537_ B=new_n259_ Y=new_n538_
+.gate NOR      A=new_n538_ B=new_n534_ Y=new_n539_
+.gate NOR      A=new_n539_ B=new_n502_ Y=new_n540_
+.gate NOT      A=x44 Y=new_n541_
+.gate NOR      A=new_n513_ B=new_n541_ Y=new_n542_
+.gate NOR      A=new_n542_ B=new_n540_ Y=new_n543_
+.gate NOR      A=new_n543_ B=new_n221_ Y=f10
+.gate NOR      A=new_n259_ B=new_n224_ Y=new_n545_
+.gate NOT      A=new_n545_ Y=new_n546_
+.gate NOR      A=x26 B=x25 Y=new_n547_
+.gate NOT      A=new_n547_ Y=new_n548_
+.gate NOR      A=x28 B=new_n261_ Y=new_n549_
+.gate NOT      A=new_n549_ Y=new_n550_
+.gate NOR      A=new_n550_ B=new_n548_ Y=new_n551_
+.gate NOT      A=new_n551_ Y=new_n552_
+.gate NOR      A=new_n552_ B=new_n546_ Y=new_n553_
+.gate NOR      A=new_n553_ B=new_n260_ Y=new_n554_
+.gate NOT      A=x15 Y=new_n555_
+.gate NOR      A=x23 B=new_n555_ Y=new_n556_
+.gate NOT      A=new_n556_ Y=new_n557_
+.gate NOR      A=new_n557_ B=new_n224_ Y=new_n558_
+.gate NOT      A=new_n558_ Y=new_n559_
+.gate NOR      A=x25 B=x24 Y=new_n560_
+.gate NOT      A=new_n560_ Y=new_n561_
+.gate NOR      A=new_n550_ B=x26 Y=new_n562_
+.gate NOT      A=new_n562_ Y=new_n563_
+.gate NOR      A=new_n563_ B=new_n561_ Y=new_n564_
+.gate NOT      A=new_n564_ Y=new_n565_
+.gate NOR      A=new_n565_ B=new_n559_ Y=new_n566_
+.gate NOR      A=new_n566_ B=new_n554_ Y=new_n567_
+.gate NOR      A=new_n567_ B=new_n221_ Y=f11
+.gate NOR      A=new_n553_ B=new_n324_ Y=new_n569_
+.gate NOT      A=x16 Y=new_n570_
+.gate NOR      A=x23 B=new_n570_ Y=new_n571_
+.gate NOT      A=new_n571_ Y=new_n572_
+.gate NOR      A=new_n572_ B=new_n224_ Y=new_n573_
+.gate NOT      A=new_n573_ Y=new_n574_
+.gate NOR      A=new_n574_ B=new_n565_ Y=new_n575_
+.gate NOR      A=new_n575_ B=new_n569_ Y=new_n576_
+.gate NOR      A=new_n576_ B=new_n221_ Y=f12
+.gate NOR      A=new_n553_ B=new_n358_ Y=new_n578_
+.gate NOT      A=x17 Y=new_n579_
+.gate NOR      A=x23 B=new_n579_ Y=new_n580_
+.gate NOT      A=new_n580_ Y=new_n581_
+.gate NOR      A=new_n581_ B=new_n224_ Y=new_n582_
+.gate NOT      A=new_n582_ Y=new_n583_
+.gate NOR      A=new_n583_ B=new_n565_ Y=new_n584_
+.gate NOR      A=new_n584_ B=new_n578_ Y=new_n585_
+.gate NOR      A=new_n585_ B=new_n221_ Y=f13
+.gate NOR      A=new_n553_ B=new_n392_ Y=new_n587_
+.gate NOT      A=x18 Y=new_n588_
+.gate NOR      A=x23 B=new_n588_ Y=new_n589_
+.gate NOT      A=new_n589_ Y=new_n590_
+.gate NOR      A=new_n590_ B=new_n224_ Y=new_n591_
+.gate NOT      A=new_n591_ Y=new_n592_
+.gate NOR      A=new_n592_ B=new_n565_ Y=new_n593_
+.gate NOR      A=new_n593_ B=new_n587_ Y=new_n594_
+.gate NOR      A=new_n594_ B=new_n221_ Y=f14
+.gate NOR      A=new_n553_ B=new_n426_ Y=new_n596_
+.gate NOT      A=x19 Y=new_n597_
+.gate NOR      A=x23 B=new_n597_ Y=new_n598_
+.gate NOT      A=new_n598_ Y=new_n599_
+.gate NOR      A=new_n599_ B=new_n224_ Y=new_n600_
+.gate NOT      A=new_n600_ Y=new_n601_
+.gate NOR      A=new_n601_ B=new_n565_ Y=new_n602_
+.gate NOR      A=new_n602_ B=new_n596_ Y=new_n603_
+.gate NOR      A=new_n603_ B=new_n221_ Y=f15
+.gate NOR      A=new_n553_ B=new_n460_ Y=new_n605_
+.gate NOT      A=x20 Y=new_n606_
+.gate NOR      A=x23 B=new_n606_ Y=new_n607_
+.gate NOT      A=new_n607_ Y=new_n608_
+.gate NOR      A=new_n608_ B=new_n224_ Y=new_n609_
+.gate NOT      A=new_n609_ Y=new_n610_
+.gate NOR      A=new_n610_ B=new_n565_ Y=new_n611_
+.gate NOR      A=new_n611_ B=new_n605_ Y=new_n612_
+.gate NOR      A=new_n612_ B=new_n221_ Y=f16
+.gate NOR      A=new_n553_ B=new_n494_ Y=new_n614_
+.gate NOT      A=x21 Y=new_n615_
+.gate NOR      A=x23 B=new_n615_ Y=new_n616_
+.gate NOT      A=new_n616_ Y=new_n617_
+.gate NOR      A=new_n617_ B=new_n224_ Y=new_n618_
+.gate NOT      A=new_n618_ Y=new_n619_
+.gate NOR      A=new_n619_ B=new_n565_ Y=new_n620_
+.gate NOR      A=new_n620_ B=new_n614_ Y=new_n621_
+.gate NOR      A=new_n621_ B=new_n221_ Y=f17
+.gate NOR      A=new_n553_ B=new_n535_ Y=new_n623_
+.gate NOT      A=x22 Y=new_n624_
+.gate NOR      A=x23 B=new_n624_ Y=new_n625_
+.gate NOT      A=new_n625_ Y=new_n626_
+.gate NOR      A=new_n626_ B=new_n224_ Y=new_n627_
+.gate NOT      A=new_n627_ Y=new_n628_
+.gate NOR      A=new_n628_ B=new_n565_ Y=new_n629_
+.gate NOR      A=new_n629_ B=new_n623_ Y=new_n630_
+.gate NOR      A=new_n630_ B=new_n221_ Y=f18
+.gate NOR      A=x28 B=x27 Y=new_n632_
+.gate NOT      A=new_n632_ Y=new_n633_
+.gate NOR      A=x26 B=new_n269_ Y=new_n634_
+.gate NOT      A=new_n634_ Y=new_n635_
+.gate NOR      A=new_n635_ B=new_n633_ Y=new_n636_
+.gate NOT      A=new_n636_ Y=new_n637_
+.gate NOR      A=new_n637_ B=new_n546_ Y=new_n638_
+.gate NOR      A=new_n638_ B=new_n274_ Y=new_n639_
+.gate NOR      A=new_n633_ B=x26 Y=new_n640_
+.gate NOT      A=new_n640_ Y=new_n641_
+.gate NOR      A=new_n641_ B=new_n271_ Y=new_n642_
+.gate NOT      A=new_n642_ Y=new_n643_
+.gate NOR      A=new_n643_ B=new_n559_ Y=new_n644_
+.gate NOR      A=new_n644_ B=new_n639_ Y=new_n645_
+.gate NOR      A=new_n645_ B=new_n221_ Y=f21
+.gate NOR      A=new_n638_ B=new_n330_ Y=new_n647_
+.gate NOR      A=new_n643_ B=new_n574_ Y=new_n648_
+.gate NOR      A=new_n648_ B=new_n647_ Y=new_n649_
+.gate NOR      A=new_n649_ B=new_n221_ Y=f22
+.gate NOR      A=new_n638_ B=new_n364_ Y=new_n651_
+.gate NOR      A=new_n643_ B=new_n583_ Y=new_n652_
+.gate NOR      A=new_n652_ B=new_n651_ Y=new_n653_
+.gate NOR      A=new_n653_ B=new_n221_ Y=f23
+.gate NOR      A=new_n638_ B=new_n398_ Y=new_n655_
+.gate NOR      A=new_n643_ B=new_n592_ Y=new_n656_
+.gate NOR      A=new_n656_ B=new_n655_ Y=new_n657_
+.gate NOR      A=new_n657_ B=new_n221_ Y=f24
+.gate NOR      A=new_n638_ B=new_n432_ Y=new_n659_
+.gate NOR      A=new_n643_ B=new_n601_ Y=new_n660_
+.gate NOR      A=new_n660_ B=new_n659_ Y=new_n661_
+.gate NOR      A=new_n661_ B=new_n221_ Y=f25
+.gate NOR      A=new_n638_ B=new_n466_ Y=new_n663_
+.gate NOR      A=new_n643_ B=new_n610_ Y=new_n664_
+.gate NOR      A=new_n664_ B=new_n663_ Y=new_n665_
+.gate NOR      A=new_n665_ B=new_n221_ Y=f26
+.gate NOT      A=x35 Y=new_n667_
+.gate NOR      A=new_n667_ B=new_n221_ Y=f27
+.gate NOT      A=x34 Y=new_n669_
+.gate NOR      A=new_n669_ B=new_n221_ Y=f28
+.gate NOT      A=x6 Y=new_n674_
+.gate NOR      A=new_n234_ B=x25 Y=new_n675_
+.gate NOT      A=new_n675_ Y=new_n676_
+.gate NOR      A=new_n676_ B=new_n633_ Y=new_n677_
+.gate NOT      A=new_n677_ Y=new_n678_
+.gate NOR      A=new_n259_ B=new_n222_ Y=new_n679_
+.gate NOT      A=new_n679_ Y=new_n680_
+.gate NOR      A=new_n680_ B=new_n678_ Y=new_n681_
+.gate NOR      A=new_n681_ B=new_n674_ Y=new_n682_
+.gate NOR      A=new_n682_ B=new_n281_ Y=new_n683_
+.gate NOR      A=new_n681_ B=x6 Y=new_n684_
+.gate NOR      A=new_n684_ B=new_n683_ Y=new_n685_
+.gate NOR      A=new_n685_ B=new_n233_ Y=new_n686_
+.gate NOT      A=x101 Y=new_n687_
+.gate NOR      A=new_n687_ B=new_n674_ Y=new_n688_
+.gate NOT      A=new_n688_ Y=new_n689_
+.gate NOR      A=new_n689_ B=new_n681_ Y=new_n690_
+.gate NOR      A=new_n561_ B=new_n234_ Y=new_n691_
+.gate NOT      A=new_n691_ Y=new_n692_
+.gate NOR      A=new_n692_ B=new_n633_ Y=new_n693_
+.gate NOT      A=new_n693_ Y=new_n694_
+.gate NOR      A=new_n694_ B=new_n559_ Y=new_n695_
+.gate NOR      A=new_n695_ B=new_n690_ Y=new_n696_
+.gate NOT      A=new_n696_ Y=new_n697_
+.gate NOR      A=new_n697_ B=new_n686_ Y=new_n698_
+.gate NOR      A=new_n698_ B=new_n221_ Y=f32
+.gate NOR      A=new_n685_ B=new_n306_ Y=new_n700_
+.gate NOT      A=x102 Y=new_n701_
+.gate NOR      A=new_n701_ B=new_n674_ Y=new_n702_
+.gate NOT      A=new_n702_ Y=new_n703_
+.gate NOR      A=new_n703_ B=new_n681_ Y=new_n704_
+.gate NOR      A=new_n694_ B=new_n574_ Y=new_n705_
+.gate NOR      A=new_n705_ B=new_n704_ Y=new_n706_
+.gate NOT      A=new_n706_ Y=new_n707_
+.gate NOR      A=new_n707_ B=new_n700_ Y=new_n708_
+.gate NOR      A=new_n708_ B=new_n221_ Y=f33
+.gate NOR      A=new_n685_ B=new_n340_ Y=new_n710_
+.gate NOT      A=x103 Y=new_n711_
+.gate NOR      A=new_n711_ B=new_n674_ Y=new_n712_
+.gate NOT      A=new_n712_ Y=new_n713_
+.gate NOR      A=new_n713_ B=new_n681_ Y=new_n714_
+.gate NOR      A=new_n694_ B=new_n583_ Y=new_n715_
+.gate NOR      A=new_n715_ B=new_n714_ Y=new_n716_
+.gate NOT      A=new_n716_ Y=new_n717_
+.gate NOR      A=new_n717_ B=new_n710_ Y=new_n718_
+.gate NOR      A=new_n718_ B=new_n221_ Y=f34
+.gate NOR      A=new_n685_ B=new_n374_ Y=new_n720_
+.gate NOT      A=x104 Y=new_n721_
+.gate NOR      A=new_n721_ B=new_n674_ Y=new_n722_
+.gate NOT      A=new_n722_ Y=new_n723_
+.gate NOR      A=new_n723_ B=new_n681_ Y=new_n724_
+.gate NOR      A=new_n694_ B=new_n592_ Y=new_n725_
+.gate NOR      A=new_n725_ B=new_n724_ Y=new_n726_
+.gate NOT      A=new_n726_ Y=new_n727_
+.gate NOR      A=new_n727_ B=new_n720_ Y=new_n728_
+.gate NOR      A=new_n728_ B=new_n221_ Y=f35
+.gate NOR      A=new_n685_ B=new_n408_ Y=new_n730_
+.gate NOT      A=x105 Y=new_n731_
+.gate NOR      A=new_n731_ B=new_n674_ Y=new_n732_
+.gate NOT      A=new_n732_ Y=new_n733_
+.gate NOR      A=new_n733_ B=new_n681_ Y=new_n734_
+.gate NOR      A=new_n694_ B=new_n601_ Y=new_n735_
+.gate NOR      A=new_n735_ B=new_n734_ Y=new_n736_
+.gate NOT      A=new_n736_ Y=new_n737_
+.gate NOR      A=new_n737_ B=new_n730_ Y=new_n738_
+.gate NOR      A=new_n738_ B=new_n221_ Y=f36
+.gate NOR      A=new_n685_ B=new_n442_ Y=new_n740_
+.gate NOT      A=x106 Y=new_n741_
+.gate NOR      A=new_n741_ B=new_n674_ Y=new_n742_
+.gate NOT      A=new_n742_ Y=new_n743_
+.gate NOR      A=new_n743_ B=new_n681_ Y=new_n744_
+.gate NOR      A=new_n694_ B=new_n610_ Y=new_n745_
+.gate NOR      A=new_n745_ B=new_n744_ Y=new_n746_
+.gate NOT      A=new_n746_ Y=new_n747_
+.gate NOR      A=new_n747_ B=new_n740_ Y=new_n748_
+.gate NOR      A=new_n748_ B=new_n221_ Y=f37
+.gate NOR      A=new_n685_ B=new_n476_ Y=new_n750_
+.gate NOT      A=x107 Y=new_n751_
+.gate NOR      A=new_n751_ B=new_n674_ Y=new_n752_
+.gate NOT      A=new_n752_ Y=new_n753_
+.gate NOR      A=new_n753_ B=new_n681_ Y=new_n754_
+.gate NOR      A=new_n694_ B=new_n619_ Y=new_n755_
+.gate NOR      A=new_n755_ B=new_n754_ Y=new_n756_
+.gate NOT      A=new_n756_ Y=new_n757_
+.gate NOR      A=new_n757_ B=new_n750_ Y=new_n758_
+.gate NOR      A=new_n758_ B=new_n221_ Y=f38
+.gate NOR      A=new_n685_ B=new_n517_ Y=new_n760_
+.gate NOT      A=x108 Y=new_n761_
+.gate NOR      A=new_n761_ B=new_n674_ Y=new_n762_
+.gate NOT      A=new_n762_ Y=new_n763_
+.gate NOR      A=new_n763_ B=new_n681_ Y=new_n764_
+.gate NOR      A=new_n694_ B=new_n628_ Y=new_n765_
+.gate NOR      A=new_n765_ B=new_n764_ Y=new_n766_
+.gate NOT      A=new_n766_ Y=new_n767_
+.gate NOR      A=new_n767_ B=new_n760_ Y=new_n768_
+.gate NOR      A=new_n768_ B=new_n221_ Y=f39
+.gate NOR      A=x24 B=new_n245_ Y=new_n770_
+.gate NOT      A=new_n770_ Y=new_n771_
+.gate NOR      A=new_n771_ B=new_n222_ Y=new_n772_
+.gate NOT      A=new_n772_ Y=new_n773_
+.gate NOR      A=new_n773_ B=new_n678_ Y=new_n774_
+.gate NOR      A=new_n774_ B=new_n674_ Y=new_n775_
+.gate NOR      A=new_n775_ B=new_n281_ Y=new_n776_
+.gate NOR      A=new_n774_ B=x6 Y=new_n777_
+.gate NOR      A=new_n777_ B=new_n776_ Y=new_n778_
+.gate NOR      A=new_n778_ B=new_n246_ Y=new_n779_
+.gate NOT      A=x109 Y=new_n780_
+.gate NOR      A=new_n780_ B=new_n674_ Y=new_n781_
+.gate NOT      A=new_n781_ Y=new_n782_
+.gate NOR      A=new_n782_ B=new_n774_ Y=new_n783_
+.gate NOR      A=new_n245_ B=new_n555_ Y=new_n784_
+.gate NOT      A=new_n784_ Y=new_n785_
+.gate NOR      A=new_n785_ B=new_n224_ Y=new_n786_
+.gate NOT      A=new_n786_ Y=new_n787_
+.gate NOR      A=new_n787_ B=new_n694_ Y=new_n788_
+.gate NOR      A=new_n788_ B=new_n783_ Y=new_n789_
+.gate NOT      A=new_n789_ Y=new_n790_
+.gate NOR      A=new_n790_ B=new_n779_ Y=new_n791_
+.gate NOR      A=new_n791_ B=new_n221_ Y=f40
+.gate NOR      A=new_n778_ B=new_n312_ Y=new_n793_
+.gate NOT      A=x110 Y=new_n794_
+.gate NOR      A=new_n794_ B=new_n674_ Y=new_n795_
+.gate NOT      A=new_n795_ Y=new_n796_
+.gate NOR      A=new_n796_ B=new_n774_ Y=new_n797_
+.gate NOR      A=new_n245_ B=new_n570_ Y=new_n798_
+.gate NOT      A=new_n798_ Y=new_n799_
+.gate NOR      A=new_n799_ B=new_n224_ Y=new_n800_
+.gate NOT      A=new_n800_ Y=new_n801_
+.gate NOR      A=new_n801_ B=new_n694_ Y=new_n802_
+.gate NOR      A=new_n802_ B=new_n797_ Y=new_n803_
+.gate NOT      A=new_n803_ Y=new_n804_
+.gate NOR      A=new_n804_ B=new_n793_ Y=new_n805_
+.gate NOR      A=new_n805_ B=new_n221_ Y=f41
+.gate NOR      A=new_n778_ B=new_n346_ Y=new_n807_
+.gate NOT      A=x111 Y=new_n808_
+.gate NOR      A=new_n808_ B=new_n674_ Y=new_n809_
+.gate NOT      A=new_n809_ Y=new_n810_
+.gate NOR      A=new_n810_ B=new_n774_ Y=new_n811_
+.gate NOR      A=new_n245_ B=new_n579_ Y=new_n812_
+.gate NOT      A=new_n812_ Y=new_n813_
+.gate NOR      A=new_n813_ B=new_n224_ Y=new_n814_
+.gate NOT      A=new_n814_ Y=new_n815_
+.gate NOR      A=new_n815_ B=new_n694_ Y=new_n816_
+.gate NOR      A=new_n816_ B=new_n811_ Y=new_n817_
+.gate NOT      A=new_n817_ Y=new_n818_
+.gate NOR      A=new_n818_ B=new_n807_ Y=new_n819_
+.gate NOR      A=new_n819_ B=new_n221_ Y=f42
+.gate NOR      A=new_n778_ B=new_n380_ Y=new_n821_
+.gate NOT      A=x112 Y=new_n822_
+.gate NOR      A=new_n822_ B=new_n674_ Y=new_n823_
+.gate NOT      A=new_n823_ Y=new_n824_
+.gate NOR      A=new_n824_ B=new_n774_ Y=new_n825_
+.gate NOR      A=new_n245_ B=new_n588_ Y=new_n826_
+.gate NOT      A=new_n826_ Y=new_n827_
+.gate NOR      A=new_n827_ B=new_n224_ Y=new_n828_
+.gate NOT      A=new_n828_ Y=new_n829_
+.gate NOR      A=new_n829_ B=new_n694_ Y=new_n830_
+.gate NOR      A=new_n830_ B=new_n825_ Y=new_n831_
+.gate NOT      A=new_n831_ Y=new_n832_
+.gate NOR      A=new_n832_ B=new_n821_ Y=new_n833_
+.gate NOR      A=new_n833_ B=new_n221_ Y=f43
+.gate NOR      A=new_n778_ B=new_n414_ Y=new_n835_
+.gate NOT      A=x113 Y=new_n836_
+.gate NOR      A=new_n836_ B=new_n674_ Y=new_n837_
+.gate NOT      A=new_n837_ Y=new_n838_
+.gate NOR      A=new_n838_ B=new_n774_ Y=new_n839_
+.gate NOR      A=new_n245_ B=new_n597_ Y=new_n840_
+.gate NOT      A=new_n840_ Y=new_n841_
+.gate NOR      A=new_n841_ B=new_n224_ Y=new_n842_
+.gate NOT      A=new_n842_ Y=new_n843_
+.gate NOR      A=new_n843_ B=new_n694_ Y=new_n844_
+.gate NOR      A=new_n844_ B=new_n839_ Y=new_n845_
+.gate NOT      A=new_n845_ Y=new_n846_
+.gate NOR      A=new_n846_ B=new_n835_ Y=new_n847_
+.gate NOR      A=new_n847_ B=new_n221_ Y=f44
+.gate NOR      A=new_n778_ B=new_n448_ Y=new_n849_
+.gate NOT      A=x114 Y=new_n850_
+.gate NOR      A=new_n850_ B=new_n674_ Y=new_n851_
+.gate NOT      A=new_n851_ Y=new_n852_
+.gate NOR      A=new_n852_ B=new_n774_ Y=new_n853_
+.gate NOR      A=new_n245_ B=new_n606_ Y=new_n854_
+.gate NOT      A=new_n854_ Y=new_n855_
+.gate NOR      A=new_n855_ B=new_n224_ Y=new_n856_
+.gate NOT      A=new_n856_ Y=new_n857_
+.gate NOR      A=new_n857_ B=new_n694_ Y=new_n858_
+.gate NOR      A=new_n858_ B=new_n853_ Y=new_n859_
+.gate NOT      A=new_n859_ Y=new_n860_
+.gate NOR      A=new_n860_ B=new_n849_ Y=new_n861_
+.gate NOR      A=new_n861_ B=new_n221_ Y=f45
+.gate NOR      A=new_n778_ B=new_n482_ Y=new_n863_
+.gate NOT      A=x115 Y=new_n864_
+.gate NOR      A=new_n864_ B=new_n674_ Y=new_n865_
+.gate NOT      A=new_n865_ Y=new_n866_
+.gate NOR      A=new_n866_ B=new_n774_ Y=new_n867_
+.gate NOR      A=new_n245_ B=new_n615_ Y=new_n868_
+.gate NOT      A=new_n868_ Y=new_n869_
+.gate NOR      A=new_n869_ B=new_n224_ Y=new_n870_
+.gate NOT      A=new_n870_ Y=new_n871_
+.gate NOR      A=new_n871_ B=new_n694_ Y=new_n872_
+.gate NOR      A=new_n872_ B=new_n867_ Y=new_n873_
+.gate NOT      A=new_n873_ Y=new_n874_
+.gate NOR      A=new_n874_ B=new_n863_ Y=new_n875_
+.gate NOR      A=new_n875_ B=new_n221_ Y=f46
+.gate NOR      A=new_n778_ B=new_n523_ Y=new_n877_
+.gate NOT      A=x116 Y=new_n878_
+.gate NOR      A=new_n878_ B=new_n674_ Y=new_n879_
+.gate NOT      A=new_n879_ Y=new_n880_
+.gate NOR      A=new_n880_ B=new_n774_ Y=new_n881_
+.gate NOR      A=new_n245_ B=new_n624_ Y=new_n882_
+.gate NOT      A=new_n882_ Y=new_n883_
+.gate NOR      A=new_n883_ B=new_n224_ Y=new_n884_
+.gate NOT      A=new_n884_ Y=new_n885_
+.gate NOR      A=new_n885_ B=new_n694_ Y=new_n886_
+.gate NOR      A=new_n886_ B=new_n881_ Y=new_n887_
+.gate NOT      A=new_n887_ Y=new_n888_
+.gate NOR      A=new_n888_ B=new_n877_ Y=new_n889_
+.gate NOR      A=new_n889_ B=new_n221_ Y=f47
+.gate NOR      A=x25 B=new_n239_ Y=new_n891_
+.gate NOT      A=new_n891_ Y=new_n892_
+.gate NOR      A=new_n892_ B=new_n641_ Y=new_n893_
+.gate NOT      A=new_n893_ Y=new_n894_
+.gate NOR      A=new_n894_ B=new_n559_ Y=new_n895_
+.gate NOR      A=new_n633_ B=new_n548_ Y=new_n896_
+.gate NOT      A=new_n896_ Y=new_n897_
+.gate NOR      A=new_n239_ B=x23 Y=new_n898_
+.gate NOT      A=new_n898_ Y=new_n899_
+.gate NOR      A=new_n899_ B=new_n224_ Y=new_n900_
+.gate NOT      A=new_n900_ Y=new_n901_
+.gate NOR      A=new_n901_ B=new_n897_ Y=new_n902_
+.gate NOR      A=new_n902_ B=new_n238_ Y=new_n903_
+.gate NOR      A=new_n903_ B=new_n221_ Y=new_n904_
+.gate NOT      A=new_n904_ Y=new_n905_
+.gate NOR      A=new_n905_ B=new_n895_ Y=new_n906_
+.gate NOT      A=new_n906_ Y=f48
+.gate NOR      A=new_n894_ B=new_n574_ Y=new_n908_
+.gate NOR      A=new_n902_ B=new_n308_ Y=new_n909_
+.gate NOR      A=new_n909_ B=new_n221_ Y=new_n910_
+.gate NOT      A=new_n910_ Y=new_n911_
+.gate NOR      A=new_n911_ B=new_n908_ Y=new_n912_
+.gate NOT      A=new_n912_ Y=f49
+.gate NOR      A=new_n894_ B=new_n583_ Y=new_n914_
+.gate NOR      A=new_n902_ B=new_n342_ Y=new_n915_
+.gate NOR      A=new_n915_ B=new_n221_ Y=new_n916_
+.gate NOT      A=new_n916_ Y=new_n917_
+.gate NOR      A=new_n917_ B=new_n914_ Y=new_n918_
+.gate NOT      A=new_n918_ Y=f50
+.gate NOR      A=new_n894_ B=new_n592_ Y=new_n920_
+.gate NOR      A=new_n902_ B=new_n376_ Y=new_n921_
+.gate NOR      A=new_n921_ B=new_n221_ Y=new_n922_
+.gate NOT      A=new_n922_ Y=new_n923_
+.gate NOR      A=new_n923_ B=new_n920_ Y=new_n924_
+.gate NOT      A=new_n924_ Y=f51
+.gate NOR      A=new_n894_ B=new_n601_ Y=new_n926_
+.gate NOR      A=new_n902_ B=new_n410_ Y=new_n927_
+.gate NOR      A=new_n927_ B=new_n221_ Y=new_n928_
+.gate NOT      A=new_n928_ Y=new_n929_
+.gate NOR      A=new_n929_ B=new_n926_ Y=new_n930_
+.gate NOT      A=new_n930_ Y=f52
+.gate NOR      A=new_n894_ B=new_n610_ Y=new_n932_
+.gate NOR      A=new_n902_ B=new_n444_ Y=new_n933_
+.gate NOR      A=new_n933_ B=new_n221_ Y=new_n934_
+.gate NOT      A=new_n934_ Y=new_n935_
+.gate NOR      A=new_n935_ B=new_n932_ Y=new_n936_
+.gate NOT      A=new_n936_ Y=f53
+.gate NOR      A=new_n894_ B=new_n619_ Y=new_n938_
+.gate NOR      A=new_n902_ B=new_n478_ Y=new_n939_
+.gate NOR      A=new_n939_ B=new_n221_ Y=new_n940_
+.gate NOT      A=new_n940_ Y=new_n941_
+.gate NOR      A=new_n941_ B=new_n938_ Y=new_n942_
+.gate NOT      A=new_n942_ Y=f54
+.gate NOR      A=new_n894_ B=new_n628_ Y=new_n944_
+.gate NOR      A=new_n902_ B=new_n519_ Y=new_n945_
+.gate NOR      A=new_n945_ B=new_n221_ Y=new_n946_
+.gate NOT      A=new_n946_ Y=new_n947_
+.gate NOR      A=new_n947_ B=new_n944_ Y=new_n948_
+.gate NOT      A=new_n948_ Y=f55
+.gate NOR      A=new_n239_ B=new_n245_ Y=new_n950_
+.gate NOT      A=new_n950_ Y=new_n951_
+.gate NOR      A=new_n951_ B=new_n224_ Y=new_n952_
+.gate NOT      A=new_n952_ Y=new_n953_
+.gate NOR      A=new_n953_ B=new_n897_ Y=new_n954_
+.gate NOR      A=new_n954_ B=new_n252_ Y=new_n955_
+.gate NOR      A=new_n894_ B=new_n787_ Y=new_n956_
+.gate NOR      A=new_n956_ B=new_n955_ Y=new_n957_
+.gate NOR      A=new_n957_ B=new_n221_ Y=f56
+.gate NOR      A=new_n954_ B=new_n318_ Y=new_n959_
+.gate NOR      A=new_n894_ B=new_n801_ Y=new_n960_
+.gate NOR      A=new_n960_ B=new_n959_ Y=new_n961_
+.gate NOR      A=new_n961_ B=new_n221_ Y=f57
+.gate NOR      A=new_n954_ B=new_n352_ Y=new_n963_
+.gate NOR      A=new_n894_ B=new_n815_ Y=new_n964_
+.gate NOR      A=new_n964_ B=new_n963_ Y=new_n965_
+.gate NOR      A=new_n965_ B=new_n221_ Y=f58
+.gate NOR      A=new_n954_ B=new_n386_ Y=new_n967_
+.gate NOR      A=new_n894_ B=new_n829_ Y=new_n968_
+.gate NOR      A=new_n968_ B=new_n967_ Y=new_n969_
+.gate NOR      A=new_n969_ B=new_n221_ Y=f59
+.gate NOR      A=new_n954_ B=new_n420_ Y=new_n971_
+.gate NOR      A=new_n894_ B=new_n843_ Y=new_n972_
+.gate NOR      A=new_n972_ B=new_n971_ Y=new_n973_
+.gate NOR      A=new_n973_ B=new_n221_ Y=f60
+.gate NOR      A=new_n954_ B=new_n454_ Y=new_n975_
+.gate NOR      A=new_n894_ B=new_n857_ Y=new_n976_
+.gate NOR      A=new_n976_ B=new_n975_ Y=new_n977_
+.gate NOR      A=new_n977_ B=new_n221_ Y=f61
+.gate NOR      A=new_n954_ B=new_n488_ Y=new_n979_
+.gate NOR      A=new_n894_ B=new_n871_ Y=new_n980_
+.gate NOR      A=new_n980_ B=new_n979_ Y=new_n981_
+.gate NOR      A=new_n981_ B=new_n221_ Y=f62
+.gate NOR      A=new_n954_ B=new_n529_ Y=new_n983_
+.gate NOR      A=new_n894_ B=new_n885_ Y=new_n984_
+.gate NOR      A=new_n984_ B=new_n983_ Y=new_n985_
+.gate NOR      A=new_n985_ B=new_n221_ Y=f63
+.gate NOT      A=x7 Y=new_n987_
+.gate NOR      A=x77 B=new_n245_ Y=new_n988_
+.gate NOR      A=x85 B=x23 Y=new_n989_
+.gate NOR      A=new_n989_ B=new_n988_ Y=new_n990_
+.gate NOR      A=new_n990_ B=new_n987_ Y=new_n991_
+.gate NOR      A=x23 B=x7 Y=new_n992_
+.gate NOT      A=new_n992_ Y=new_n993_
+.gate NOR      A=new_n993_ B=new_n252_ Y=new_n994_
+.gate NOR      A=new_n994_ B=new_n991_ Y=new_n995_
+.gate NOR      A=new_n239_ B=x15 Y=new_n996_
+.gate NOT      A=new_n996_ Y=new_n997_
+.gate NOR      A=new_n997_ B=new_n995_ Y=new_n998_
+.gate NOT      A=new_n988_ Y=new_n999_
+.gate NOR      A=new_n555_ B=x7 Y=new_n1000_
+.gate NOT      A=new_n1000_ Y=new_n1001_
+.gate NOR      A=new_n1001_ B=new_n999_ Y=new_n1002_
+.gate NOR      A=new_n1002_ B=new_n998_ Y=new_n1003_
+.gate NOT      A=x29 Y=new_n1004_
+.gate NOT      A=x30 Y=new_n1005_
+.gate NOR      A=new_n1005_ B=new_n1004_ Y=new_n1006_
+.gate NOT      A=new_n1006_ Y=new_n1007_
+.gate NOT      A=x31 Y=new_n1008_
+.gate NOT      A=x32 Y=new_n1009_
+.gate NOR      A=new_n1009_ B=new_n1008_ Y=new_n1010_
+.gate NOT      A=new_n1010_ Y=new_n1011_
+.gate NOR      A=new_n1011_ B=x33 Y=new_n1012_
+.gate NOT      A=new_n1012_ Y=new_n1013_
+.gate NOR      A=new_n1013_ B=new_n1007_ Y=new_n1014_
+.gate NOT      A=new_n1014_ Y=new_n1015_
+.gate NOR      A=new_n1015_ B=new_n1003_ Y=new_n1016_
+.gate NOR      A=new_n771_ B=new_n555_ Y=new_n1017_
+.gate NOR      A=new_n1017_ B=new_n1016_ Y=new_n1018_
+.gate NOR      A=new_n897_ B=new_n224_ Y=new_n1019_
+.gate NOT      A=new_n1019_ Y=new_n1020_
+.gate NOR      A=new_n1020_ B=new_n1018_ Y=new_n1021_
+.gate NOR      A=new_n239_ B=new_n281_ Y=new_n1022_
+.gate NOR      A=new_n258_ B=new_n222_ Y=new_n1023_
+.gate NOT      A=new_n1023_ Y=new_n1024_
+.gate NOR      A=new_n1024_ B=new_n1022_ Y=new_n1025_
+.gate NOT      A=new_n1025_ Y=new_n1026_
+.gate NOR      A=new_n1026_ B=new_n897_ Y=new_n1027_
+.gate NOR      A=new_n252_ B=x7 Y=new_n1028_
+.gate NOR      A=x85 B=new_n987_ Y=new_n1029_
+.gate NOR      A=new_n1029_ B=new_n1028_ Y=new_n1030_
+.gate NOR      A=x77 B=x33 Y=new_n1031_
+.gate NOT      A=new_n1031_ Y=new_n1032_
+.gate NOR      A=new_n1032_ B=new_n1011_ Y=new_n1033_
+.gate NOT      A=new_n1033_ Y=new_n1034_
+.gate NOR      A=new_n1034_ B=new_n1007_ Y=new_n1035_
+.gate NOT      A=new_n1035_ Y=new_n1036_
+.gate NOR      A=new_n1036_ B=new_n1030_ Y=new_n1037_
+.gate NOT      A=new_n1037_ Y=new_n1038_
+.gate NOR      A=new_n1038_ B=new_n1027_ Y=new_n1039_
+.gate NOR      A=new_n771_ B=new_n224_ Y=new_n1040_
+.gate NOT      A=new_n1040_ Y=new_n1041_
+.gate NOR      A=new_n1041_ B=new_n897_ Y=new_n1042_
+.gate NOR      A=new_n1042_ B=new_n248_ Y=new_n1043_
+.gate NOR      A=new_n1043_ B=new_n1039_ Y=new_n1044_
+.gate NOT      A=new_n1044_ Y=new_n1045_
+.gate NOR      A=new_n1045_ B=new_n1021_ Y=new_n1046_
+.gate NOR      A=new_n1046_ B=new_n221_ Y=f64
+.gate NOT      A=x8 Y=new_n1048_
+.gate NOR      A=x78 B=new_n245_ Y=new_n1049_
+.gate NOR      A=x86 B=x23 Y=new_n1050_
+.gate NOR      A=new_n1050_ B=new_n1049_ Y=new_n1051_
+.gate NOR      A=new_n1051_ B=new_n1048_ Y=new_n1052_
+.gate NOR      A=x23 B=x8 Y=new_n1053_
+.gate NOT      A=new_n1053_ Y=new_n1054_
+.gate NOR      A=new_n1054_ B=new_n318_ Y=new_n1055_
+.gate NOR      A=new_n1055_ B=new_n1052_ Y=new_n1056_
+.gate NOR      A=new_n239_ B=x16 Y=new_n1057_
+.gate NOT      A=new_n1057_ Y=new_n1058_
+.gate NOR      A=new_n1058_ B=new_n1056_ Y=new_n1059_
+.gate NOT      A=new_n1049_ Y=new_n1060_
+.gate NOR      A=new_n570_ B=x8 Y=new_n1061_
+.gate NOT      A=new_n1061_ Y=new_n1062_
+.gate NOR      A=new_n1062_ B=new_n1060_ Y=new_n1063_
+.gate NOR      A=new_n1063_ B=new_n1059_ Y=new_n1064_
+.gate NOR      A=new_n1064_ B=new_n1015_ Y=new_n1065_
+.gate NOR      A=new_n771_ B=new_n570_ Y=new_n1066_
+.gate NOR      A=new_n1066_ B=new_n1065_ Y=new_n1067_
+.gate NOR      A=new_n1067_ B=new_n1020_ Y=new_n1068_
+.gate NOR      A=new_n318_ B=x8 Y=new_n1069_
+.gate NOR      A=x86 B=new_n1048_ Y=new_n1070_
+.gate NOR      A=new_n1070_ B=new_n1069_ Y=new_n1071_
+.gate NOR      A=x78 B=x33 Y=new_n1072_
+.gate NOT      A=new_n1072_ Y=new_n1073_
+.gate NOR      A=new_n1073_ B=new_n1011_ Y=new_n1074_
+.gate NOT      A=new_n1074_ Y=new_n1075_
+.gate NOR      A=new_n1075_ B=new_n1007_ Y=new_n1076_
+.gate NOT      A=new_n1076_ Y=new_n1077_
+.gate NOR      A=new_n1077_ B=new_n1071_ Y=new_n1078_
+.gate NOT      A=new_n1078_ Y=new_n1079_
+.gate NOR      A=new_n1079_ B=new_n1027_ Y=new_n1080_
+.gate NOR      A=new_n1042_ B=new_n314_ Y=new_n1081_
+.gate NOR      A=new_n1081_ B=new_n1080_ Y=new_n1082_
+.gate NOT      A=new_n1082_ Y=new_n1083_
+.gate NOR      A=new_n1083_ B=new_n1068_ Y=new_n1084_
+.gate NOR      A=new_n1084_ B=new_n221_ Y=f65
+.gate NOR      A=new_n771_ B=new_n579_ Y=new_n1086_
+.gate NOR      A=x33 B=new_n1009_ Y=new_n1087_
+.gate NOT      A=new_n1087_ Y=new_n1088_
+.gate NOR      A=new_n1088_ B=new_n1008_ Y=new_n1089_
+.gate NOT      A=new_n1089_ Y=new_n1090_
+.gate NOR      A=new_n1090_ B=new_n1007_ Y=new_n1091_
+.gate NOT      A=new_n1091_ Y=new_n1092_
+.gate NOT      A=x9 Y=new_n1093_
+.gate NOR      A=x17 B=new_n1093_ Y=new_n1094_
+.gate NOT      A=new_n1094_ Y=new_n1095_
+.gate NOR      A=new_n1095_ B=new_n899_ Y=new_n1096_
+.gate NOT      A=new_n1096_ Y=new_n1097_
+.gate NOR      A=new_n1097_ B=new_n1092_ Y=new_n1098_
+.gate NOR      A=new_n1098_ B=new_n1086_ Y=new_n1099_
+.gate NOR      A=new_n1099_ B=new_n1020_ Y=new_n1100_
+.gate NOR      A=x79 B=x33 Y=new_n1101_
+.gate NOT      A=new_n1101_ Y=new_n1102_
+.gate NOR      A=new_n1102_ B=new_n1011_ Y=new_n1103_
+.gate NOT      A=new_n1103_ Y=new_n1104_
+.gate NOR      A=new_n1007_ B=new_n1093_ Y=new_n1105_
+.gate NOT      A=new_n1105_ Y=new_n1106_
+.gate NOR      A=new_n1106_ B=new_n1104_ Y=new_n1107_
+.gate NOR      A=new_n1107_ B=x95 Y=new_n1108_
+.gate NOR      A=x25 B=new_n222_ Y=new_n1109_
+.gate NOT      A=new_n1109_ Y=new_n1110_
+.gate NOR      A=new_n1110_ B=new_n641_ Y=new_n1111_
+.gate NOR      A=new_n1111_ B=new_n1108_ Y=new_n1112_
+.gate NOR      A=x23 B=new_n1093_ Y=new_n1113_
+.gate NOT      A=new_n1113_ Y=new_n1114_
+.gate NOR      A=new_n1114_ B=new_n1007_ Y=new_n1115_
+.gate NOT      A=new_n1115_ Y=new_n1116_
+.gate NOR      A=new_n1116_ B=new_n1104_ Y=new_n1117_
+.gate NOR      A=new_n1117_ B=x95 Y=new_n1118_
+.gate NOR      A=new_n1118_ B=new_n281_ Y=new_n1119_
+.gate NOR      A=new_n950_ B=new_n258_ Y=new_n1120_
+.gate NOR      A=new_n1088_ B=x79 Y=new_n1121_
+.gate NOT      A=new_n1121_ Y=new_n1122_
+.gate NOR      A=new_n1004_ B=new_n1093_ Y=new_n1123_
+.gate NOT      A=new_n1123_ Y=new_n1124_
+.gate NOR      A=new_n1008_ B=new_n1005_ Y=new_n1125_
+.gate NOT      A=new_n1125_ Y=new_n1126_
+.gate NOR      A=new_n1126_ B=new_n1124_ Y=new_n1127_
+.gate NOT      A=new_n1127_ Y=new_n1128_
+.gate NOR      A=new_n1128_ B=new_n1122_ Y=new_n1129_
+.gate NOT      A=new_n1129_ Y=new_n1130_
+.gate NOR      A=new_n1130_ B=new_n1120_ Y=new_n1131_
+.gate NOR      A=new_n770_ B=new_n348_ Y=new_n1132_
+.gate NOR      A=new_n1132_ B=new_n1131_ Y=new_n1133_
+.gate NOT      A=new_n1133_ Y=new_n1134_
+.gate NOR      A=new_n1134_ B=new_n1119_ Y=new_n1135_
+.gate NOT      A=new_n1135_ Y=new_n1136_
+.gate NOR      A=new_n1136_ B=new_n1112_ Y=new_n1137_
+.gate NOT      A=new_n1137_ Y=new_n1138_
+.gate NOR      A=new_n1138_ B=new_n1100_ Y=new_n1139_
+.gate NOR      A=new_n1139_ B=new_n221_ Y=f66
+.gate NOR      A=new_n771_ B=new_n588_ Y=new_n1141_
+.gate NOT      A=x10 Y=new_n1142_
+.gate NOR      A=x18 B=new_n1142_ Y=new_n1143_
+.gate NOT      A=new_n1143_ Y=new_n1144_
+.gate NOR      A=new_n1144_ B=new_n899_ Y=new_n1145_
+.gate NOT      A=new_n1145_ Y=new_n1146_
+.gate NOR      A=new_n1146_ B=new_n1092_ Y=new_n1147_
+.gate NOR      A=new_n1147_ B=new_n1141_ Y=new_n1148_
+.gate NOR      A=new_n1148_ B=new_n1020_ Y=new_n1149_
+.gate NOR      A=x80 B=x33 Y=new_n1150_
+.gate NOT      A=new_n1150_ Y=new_n1151_
+.gate NOR      A=new_n1151_ B=new_n1011_ Y=new_n1152_
+.gate NOT      A=new_n1152_ Y=new_n1153_
+.gate NOR      A=new_n1007_ B=new_n1142_ Y=new_n1154_
+.gate NOT      A=new_n1154_ Y=new_n1155_
+.gate NOR      A=new_n1155_ B=new_n1153_ Y=new_n1156_
+.gate NOR      A=new_n1156_ B=x96 Y=new_n1157_
+.gate NOR      A=new_n1157_ B=new_n1111_ Y=new_n1158_
+.gate NOR      A=x23 B=new_n1142_ Y=new_n1159_
+.gate NOT      A=new_n1159_ Y=new_n1160_
+.gate NOR      A=new_n1160_ B=new_n1007_ Y=new_n1161_
+.gate NOT      A=new_n1161_ Y=new_n1162_
+.gate NOR      A=new_n1162_ B=new_n1153_ Y=new_n1163_
+.gate NOR      A=new_n1163_ B=x96 Y=new_n1164_
+.gate NOR      A=new_n1164_ B=new_n281_ Y=new_n1165_
+.gate NOR      A=new_n1088_ B=x80 Y=new_n1166_
+.gate NOT      A=new_n1166_ Y=new_n1167_
+.gate NOR      A=new_n1004_ B=new_n1142_ Y=new_n1168_
+.gate NOT      A=new_n1168_ Y=new_n1169_
+.gate NOR      A=new_n1169_ B=new_n1126_ Y=new_n1170_
+.gate NOT      A=new_n1170_ Y=new_n1171_
+.gate NOR      A=new_n1171_ B=new_n1167_ Y=new_n1172_
+.gate NOT      A=new_n1172_ Y=new_n1173_
+.gate NOR      A=new_n1173_ B=new_n1120_ Y=new_n1174_
+.gate NOR      A=new_n770_ B=new_n382_ Y=new_n1175_
+.gate NOR      A=new_n1175_ B=new_n1174_ Y=new_n1176_
+.gate NOT      A=new_n1176_ Y=new_n1177_
+.gate NOR      A=new_n1177_ B=new_n1165_ Y=new_n1178_
+.gate NOT      A=new_n1178_ Y=new_n1179_
+.gate NOR      A=new_n1179_ B=new_n1158_ Y=new_n1180_
+.gate NOT      A=new_n1180_ Y=new_n1181_
+.gate NOR      A=new_n1181_ B=new_n1149_ Y=new_n1182_
+.gate NOR      A=new_n1182_ B=new_n221_ Y=f67
+.gate NOT      A=x11 Y=new_n1184_
+.gate NOR      A=x81 B=new_n245_ Y=new_n1185_
+.gate NOR      A=x89 B=x23 Y=new_n1186_
+.gate NOR      A=new_n1186_ B=new_n1185_ Y=new_n1187_
+.gate NOR      A=new_n1187_ B=new_n1184_ Y=new_n1188_
+.gate NOR      A=x23 B=x11 Y=new_n1189_
+.gate NOT      A=new_n1189_ Y=new_n1190_
+.gate NOR      A=new_n1190_ B=new_n420_ Y=new_n1191_
+.gate NOR      A=new_n1191_ B=new_n1188_ Y=new_n1192_
+.gate NOR      A=new_n239_ B=x19 Y=new_n1193_
+.gate NOT      A=new_n1193_ Y=new_n1194_
+.gate NOR      A=new_n1194_ B=new_n1192_ Y=new_n1195_
+.gate NOT      A=new_n1185_ Y=new_n1196_
+.gate NOR      A=new_n597_ B=x11 Y=new_n1197_
+.gate NOT      A=new_n1197_ Y=new_n1198_
+.gate NOR      A=new_n1198_ B=new_n1196_ Y=new_n1199_
+.gate NOR      A=new_n1199_ B=new_n1195_ Y=new_n1200_
+.gate NOR      A=new_n1200_ B=new_n1015_ Y=new_n1201_
+.gate NOR      A=new_n771_ B=new_n597_ Y=new_n1202_
+.gate NOR      A=new_n1202_ B=new_n1201_ Y=new_n1203_
+.gate NOR      A=new_n1203_ B=new_n1020_ Y=new_n1204_
+.gate NOR      A=new_n420_ B=x11 Y=new_n1205_
+.gate NOR      A=x89 B=new_n1184_ Y=new_n1206_
+.gate NOR      A=new_n1206_ B=new_n1205_ Y=new_n1207_
+.gate NOR      A=x81 B=x33 Y=new_n1208_
+.gate NOT      A=new_n1208_ Y=new_n1209_
+.gate NOR      A=new_n1209_ B=new_n1011_ Y=new_n1210_
+.gate NOT      A=new_n1210_ Y=new_n1211_
+.gate NOR      A=new_n1211_ B=new_n1007_ Y=new_n1212_
+.gate NOT      A=new_n1212_ Y=new_n1213_
+.gate NOR      A=new_n1213_ B=new_n1207_ Y=new_n1214_
+.gate NOT      A=new_n1214_ Y=new_n1215_
+.gate NOR      A=new_n1215_ B=new_n1027_ Y=new_n1216_
+.gate NOR      A=new_n1042_ B=new_n416_ Y=new_n1217_
+.gate NOR      A=new_n1217_ B=new_n1216_ Y=new_n1218_
+.gate NOT      A=new_n1218_ Y=new_n1219_
+.gate NOR      A=new_n1219_ B=new_n1204_ Y=new_n1220_
+.gate NOR      A=new_n1220_ B=new_n221_ Y=f68
+.gate NOT      A=x12 Y=new_n1222_
+.gate NOR      A=x82 B=new_n245_ Y=new_n1223_
+.gate NOR      A=x90 B=x23 Y=new_n1224_
+.gate NOR      A=new_n1224_ B=new_n1223_ Y=new_n1225_
+.gate NOR      A=new_n1225_ B=new_n1222_ Y=new_n1226_
+.gate NOR      A=x23 B=x12 Y=new_n1227_
+.gate NOT      A=new_n1227_ Y=new_n1228_
+.gate NOR      A=new_n1228_ B=new_n454_ Y=new_n1229_
+.gate NOR      A=new_n1229_ B=new_n1226_ Y=new_n1230_
+.gate NOR      A=new_n239_ B=x20 Y=new_n1231_
+.gate NOT      A=new_n1231_ Y=new_n1232_
+.gate NOR      A=new_n1232_ B=new_n1230_ Y=new_n1233_
+.gate NOT      A=new_n1223_ Y=new_n1234_
+.gate NOR      A=new_n606_ B=x12 Y=new_n1235_
+.gate NOT      A=new_n1235_ Y=new_n1236_
+.gate NOR      A=new_n1236_ B=new_n1234_ Y=new_n1237_
+.gate NOR      A=new_n1237_ B=new_n1233_ Y=new_n1238_
+.gate NOR      A=new_n1238_ B=new_n1015_ Y=new_n1239_
+.gate NOR      A=new_n771_ B=new_n606_ Y=new_n1240_
+.gate NOR      A=new_n1240_ B=new_n1239_ Y=new_n1241_
+.gate NOR      A=new_n1241_ B=new_n1020_ Y=new_n1242_
+.gate NOR      A=new_n454_ B=x12 Y=new_n1243_
+.gate NOR      A=x90 B=new_n1222_ Y=new_n1244_
+.gate NOR      A=new_n1244_ B=new_n1243_ Y=new_n1245_
+.gate NOR      A=x82 B=x33 Y=new_n1246_
+.gate NOT      A=new_n1246_ Y=new_n1247_
+.gate NOR      A=new_n1247_ B=new_n1011_ Y=new_n1248_
+.gate NOT      A=new_n1248_ Y=new_n1249_
+.gate NOR      A=new_n1249_ B=new_n1007_ Y=new_n1250_
+.gate NOT      A=new_n1250_ Y=new_n1251_
+.gate NOR      A=new_n1251_ B=new_n1245_ Y=new_n1252_
+.gate NOT      A=new_n1252_ Y=new_n1253_
+.gate NOR      A=new_n1253_ B=new_n1027_ Y=new_n1254_
+.gate NOR      A=new_n1042_ B=new_n450_ Y=new_n1255_
+.gate NOR      A=new_n1255_ B=new_n1254_ Y=new_n1256_
+.gate NOT      A=new_n1256_ Y=new_n1257_
+.gate NOR      A=new_n1257_ B=new_n1242_ Y=new_n1258_
+.gate NOR      A=new_n1258_ B=new_n221_ Y=f69
+.gate NOT      A=x13 Y=new_n1260_
+.gate NOR      A=x83 B=new_n245_ Y=new_n1261_
+.gate NOR      A=x91 B=x23 Y=new_n1262_
+.gate NOR      A=new_n1262_ B=new_n1261_ Y=new_n1263_
+.gate NOR      A=new_n1263_ B=new_n1260_ Y=new_n1264_
+.gate NOR      A=x23 B=x13 Y=new_n1265_
+.gate NOT      A=new_n1265_ Y=new_n1266_
+.gate NOR      A=new_n1266_ B=new_n488_ Y=new_n1267_
+.gate NOR      A=new_n1267_ B=new_n1264_ Y=new_n1268_
+.gate NOR      A=new_n239_ B=x21 Y=new_n1269_
+.gate NOT      A=new_n1269_ Y=new_n1270_
+.gate NOR      A=new_n1270_ B=new_n1268_ Y=new_n1271_
+.gate NOT      A=new_n1261_ Y=new_n1272_
+.gate NOR      A=new_n615_ B=x13 Y=new_n1273_
+.gate NOT      A=new_n1273_ Y=new_n1274_
+.gate NOR      A=new_n1274_ B=new_n1272_ Y=new_n1275_
+.gate NOR      A=new_n1275_ B=new_n1271_ Y=new_n1276_
+.gate NOR      A=new_n1276_ B=new_n1015_ Y=new_n1277_
+.gate NOR      A=new_n771_ B=new_n615_ Y=new_n1278_
+.gate NOR      A=new_n1278_ B=new_n1277_ Y=new_n1279_
+.gate NOR      A=new_n1279_ B=new_n1020_ Y=new_n1280_
+.gate NOR      A=new_n488_ B=x13 Y=new_n1281_
+.gate NOR      A=x91 B=new_n1260_ Y=new_n1282_
+.gate NOR      A=new_n1282_ B=new_n1281_ Y=new_n1283_
+.gate NOR      A=x83 B=x33 Y=new_n1284_
+.gate NOT      A=new_n1284_ Y=new_n1285_
+.gate NOR      A=new_n1285_ B=new_n1011_ Y=new_n1286_
+.gate NOT      A=new_n1286_ Y=new_n1287_
+.gate NOR      A=new_n1287_ B=new_n1007_ Y=new_n1288_
+.gate NOT      A=new_n1288_ Y=new_n1289_
+.gate NOR      A=new_n1289_ B=new_n1283_ Y=new_n1290_
+.gate NOT      A=new_n1290_ Y=new_n1291_
+.gate NOR      A=new_n1291_ B=new_n1027_ Y=new_n1292_
+.gate NOR      A=new_n1042_ B=new_n484_ Y=new_n1293_
+.gate NOR      A=new_n1293_ B=new_n1292_ Y=new_n1294_
+.gate NOT      A=new_n1294_ Y=new_n1295_
+.gate NOR      A=new_n1295_ B=new_n1280_ Y=new_n1296_
+.gate NOR      A=new_n1296_ B=new_n221_ Y=f70
+.gate NOR      A=new_n771_ B=new_n624_ Y=new_n1298_
+.gate NOT      A=x14 Y=new_n1299_
+.gate NOR      A=x22 B=new_n1299_ Y=new_n1300_
+.gate NOT      A=new_n1300_ Y=new_n1301_
+.gate NOR      A=new_n1301_ B=new_n899_ Y=new_n1302_
+.gate NOT      A=new_n1302_ Y=new_n1303_
+.gate NOR      A=new_n1303_ B=new_n1092_ Y=new_n1304_
+.gate NOR      A=new_n1304_ B=new_n1298_ Y=new_n1305_
+.gate NOR      A=new_n1305_ B=new_n1020_ Y=new_n1306_
+.gate NOR      A=x84 B=x33 Y=new_n1307_
+.gate NOT      A=new_n1307_ Y=new_n1308_
+.gate NOR      A=new_n1308_ B=new_n1011_ Y=new_n1309_
+.gate NOT      A=new_n1309_ Y=new_n1310_
+.gate NOR      A=new_n1007_ B=new_n1299_ Y=new_n1311_
+.gate NOT      A=new_n1311_ Y=new_n1312_
+.gate NOR      A=new_n1312_ B=new_n1310_ Y=new_n1313_
+.gate NOR      A=new_n1313_ B=x100 Y=new_n1314_
+.gate NOR      A=new_n1314_ B=new_n1111_ Y=new_n1315_
+.gate NOR      A=x23 B=new_n1299_ Y=new_n1316_
+.gate NOT      A=new_n1316_ Y=new_n1317_
+.gate NOR      A=new_n1317_ B=new_n1007_ Y=new_n1318_
+.gate NOT      A=new_n1318_ Y=new_n1319_
+.gate NOR      A=new_n1319_ B=new_n1310_ Y=new_n1320_
+.gate NOR      A=new_n1320_ B=x100 Y=new_n1321_
+.gate NOR      A=new_n1321_ B=new_n281_ Y=new_n1322_
+.gate NOR      A=new_n1088_ B=x84 Y=new_n1323_
+.gate NOT      A=new_n1323_ Y=new_n1324_
+.gate NOR      A=new_n1004_ B=new_n1299_ Y=new_n1325_
+.gate NOT      A=new_n1325_ Y=new_n1326_
+.gate NOR      A=new_n1326_ B=new_n1126_ Y=new_n1327_
+.gate NOT      A=new_n1327_ Y=new_n1328_
+.gate NOR      A=new_n1328_ B=new_n1324_ Y=new_n1329_
+.gate NOT      A=new_n1329_ Y=new_n1330_
+.gate NOR      A=new_n1330_ B=new_n1120_ Y=new_n1331_
+.gate NOR      A=new_n770_ B=new_n525_ Y=new_n1332_
+.gate NOR      A=new_n1332_ B=new_n1331_ Y=new_n1333_
+.gate NOT      A=new_n1333_ Y=new_n1334_
+.gate NOR      A=new_n1334_ B=new_n1322_ Y=new_n1335_
+.gate NOT      A=new_n1335_ Y=new_n1336_
+.gate NOR      A=new_n1336_ B=new_n1315_ Y=new_n1337_
+.gate NOT      A=new_n1337_ Y=new_n1338_
+.gate NOR      A=new_n1338_ B=new_n1306_ Y=new_n1339_
+.gate NOR      A=new_n1339_ B=new_n221_ Y=f71
+.gate NOR      A=new_n850_ B=new_n836_ Y=new_n1341_
+.gate NOT      A=new_n1341_ Y=new_n1342_
+.gate NOR      A=new_n878_ B=new_n864_ Y=new_n1343_
+.gate NOT      A=new_n1343_ Y=new_n1344_
+.gate NOR      A=new_n1344_ B=new_n1342_ Y=new_n1345_
+.gate NOT      A=new_n1345_ Y=new_n1346_
+.gate NOR      A=new_n794_ B=new_n780_ Y=new_n1347_
+.gate NOT      A=new_n1347_ Y=new_n1348_
+.gate NOR      A=new_n822_ B=new_n808_ Y=new_n1349_
+.gate NOT      A=new_n1349_ Y=new_n1350_
+.gate NOR      A=new_n1350_ B=new_n1348_ Y=new_n1351_
+.gate NOT      A=new_n1351_ Y=new_n1352_
+.gate NOR      A=new_n1352_ B=new_n1346_ Y=new_n1353_
+.gate NOT      A=new_n1353_ Y=new_n1354_
+.gate NOR      A=new_n741_ B=new_n731_ Y=new_n1355_
+.gate NOT      A=new_n1355_ Y=new_n1356_
+.gate NOR      A=new_n761_ B=new_n751_ Y=new_n1357_
+.gate NOT      A=new_n1357_ Y=new_n1358_
+.gate NOR      A=new_n1358_ B=new_n1356_ Y=new_n1359_
+.gate NOT      A=new_n1359_ Y=new_n1360_
+.gate NOR      A=new_n721_ B=new_n711_ Y=new_n1361_
+.gate NOT      A=new_n1361_ Y=new_n1362_
+.gate NOR      A=new_n1362_ B=new_n701_ Y=new_n1363_
+.gate NOT      A=new_n1363_ Y=new_n1364_
+.gate NOR      A=new_n1364_ B=new_n1360_ Y=new_n1365_
+.gate NOT      A=new_n1365_ Y=new_n1366_
+.gate NOR      A=new_n1366_ B=new_n1354_ Y=new_n1367_
+.gate NOT      A=x3 Y=new_n1368_
+.gate NOR      A=new_n1007_ B=new_n1368_ Y=new_n1369_
+.gate NOT      A=new_n1369_ Y=new_n1370_
+.gate NOR      A=new_n1370_ B=new_n1013_ Y=new_n1371_
+.gate NOT      A=new_n1371_ Y=new_n1372_
+.gate NOR      A=new_n1372_ B=new_n1367_ Y=new_n1373_
+.gate NOR      A=new_n687_ B=x6 Y=new_n1374_
+.gate NOT      A=new_n1374_ Y=new_n1375_
+.gate NOR      A=new_n1375_ B=new_n1373_ Y=new_n1376_
+.gate NOR      A=new_n1367_ B=new_n674_ Y=new_n1377_
+.gate NOR      A=new_n1377_ B=new_n687_ Y=new_n1378_
+.gate NOR      A=new_n1004_ B=new_n1368_ Y=new_n1379_
+.gate NOT      A=new_n1379_ Y=new_n1380_
+.gate NOR      A=new_n1126_ B=new_n1088_ Y=new_n1381_
+.gate NOT      A=new_n1381_ Y=new_n1382_
+.gate NOR      A=new_n1382_ B=new_n1380_ Y=new_n1383_
+.gate NOT      A=new_n1383_ Y=new_n1384_
+.gate NOR      A=new_n1384_ B=new_n1378_ Y=new_n1385_
+.gate NOR      A=new_n1385_ B=new_n1376_ Y=new_n1386_
+.gate NOR      A=new_n1386_ B=new_n221_ Y=f72
+.gate NOR      A=x102 B=x33 Y=new_n1388_
+.gate NOT      A=new_n1388_ Y=new_n1389_
+.gate NOR      A=new_n1389_ B=new_n1011_ Y=new_n1390_
+.gate NOT      A=new_n1390_ Y=new_n1391_
+.gate NOR      A=new_n1391_ B=new_n1370_ Y=new_n1392_
+.gate NOR      A=new_n1392_ B=new_n1367_ Y=new_n1393_
+.gate NOR      A=new_n1393_ B=new_n687_ Y=new_n1394_
+.gate NOR      A=new_n687_ B=x33 Y=new_n1395_
+.gate NOT      A=new_n1395_ Y=new_n1396_
+.gate NOR      A=new_n1396_ B=new_n1011_ Y=new_n1397_
+.gate NOT      A=new_n1397_ Y=new_n1398_
+.gate NOR      A=new_n1398_ B=new_n1370_ Y=new_n1399_
+.gate NOR      A=new_n1399_ B=new_n701_ Y=new_n1400_
+.gate NOR      A=new_n1400_ B=new_n1394_ Y=new_n1401_
+.gate NOR      A=x6 B=new_n221_ Y=new_n1402_
+.gate NOT      A=new_n1402_ Y=new_n1403_
+.gate NOR      A=new_n1403_ B=new_n1401_ Y=f73
+.gate NOR      A=x103 B=x33 Y=new_n1405_
+.gate NOT      A=new_n1405_ Y=new_n1406_
+.gate NOR      A=new_n1406_ B=new_n1011_ Y=new_n1407_
+.gate NOT      A=new_n1407_ Y=new_n1408_
+.gate NOR      A=new_n1408_ B=new_n1370_ Y=new_n1409_
+.gate NOR      A=new_n1350_ B=new_n794_ Y=new_n1410_
+.gate NOT      A=new_n1410_ Y=new_n1411_
+.gate NOR      A=new_n1411_ B=new_n1346_ Y=new_n1412_
+.gate NOT      A=new_n1412_ Y=new_n1413_
+.gate NOR      A=new_n731_ B=new_n721_ Y=new_n1414_
+.gate NOT      A=new_n1414_ Y=new_n1415_
+.gate NOR      A=new_n1415_ B=new_n711_ Y=new_n1416_
+.gate NOT      A=new_n1416_ Y=new_n1417_
+.gate NOR      A=new_n751_ B=new_n741_ Y=new_n1418_
+.gate NOT      A=new_n1418_ Y=new_n1419_
+.gate NOR      A=new_n780_ B=new_n761_ Y=new_n1420_
+.gate NOT      A=new_n1420_ Y=new_n1421_
+.gate NOR      A=new_n1421_ B=new_n1419_ Y=new_n1422_
+.gate NOT      A=new_n1422_ Y=new_n1423_
+.gate NOR      A=new_n1423_ B=new_n1417_ Y=new_n1424_
+.gate NOT      A=new_n1424_ Y=new_n1425_
+.gate NOR      A=new_n1425_ B=new_n1413_ Y=new_n1426_
+.gate NOR      A=new_n1426_ B=new_n1409_ Y=new_n1427_
+.gate NOR      A=new_n701_ B=new_n687_ Y=new_n1428_
+.gate NOT      A=new_n1428_ Y=new_n1429_
+.gate NOR      A=new_n1429_ B=new_n1427_ Y=new_n1430_
+.gate NOR      A=new_n1380_ B=new_n1126_ Y=new_n1431_
+.gate NOT      A=new_n1431_ Y=new_n1432_
+.gate NOR      A=new_n1429_ B=new_n1088_ Y=new_n1433_
+.gate NOT      A=new_n1433_ Y=new_n1434_
+.gate NOR      A=new_n1434_ B=new_n1432_ Y=new_n1435_
+.gate NOR      A=new_n1435_ B=new_n711_ Y=new_n1436_
+.gate NOR      A=new_n1436_ B=new_n1430_ Y=new_n1437_
+.gate NOR      A=new_n1437_ B=new_n1403_ Y=f74
+.gate NOR      A=x104 B=x33 Y=new_n1439_
+.gate NOT      A=new_n1439_ Y=new_n1440_
+.gate NOR      A=new_n1440_ B=new_n1011_ Y=new_n1441_
+.gate NOT      A=new_n1441_ Y=new_n1442_
+.gate NOR      A=new_n1442_ B=new_n1370_ Y=new_n1443_
+.gate NOR      A=new_n1356_ B=new_n721_ Y=new_n1444_
+.gate NOT      A=new_n1444_ Y=new_n1445_
+.gate NOR      A=new_n1421_ B=new_n751_ Y=new_n1446_
+.gate NOT      A=new_n1446_ Y=new_n1447_
+.gate NOR      A=new_n1447_ B=new_n1445_ Y=new_n1448_
+.gate NOT      A=new_n1448_ Y=new_n1449_
+.gate NOR      A=new_n1449_ B=new_n1413_ Y=new_n1450_
+.gate NOR      A=new_n1450_ B=new_n1443_ Y=new_n1451_
+.gate NOR      A=new_n1429_ B=new_n711_ Y=new_n1452_
+.gate NOT      A=new_n1452_ Y=new_n1453_
+.gate NOR      A=new_n1453_ B=new_n1451_ Y=new_n1454_
+.gate NOR      A=new_n1432_ B=new_n1088_ Y=new_n1455_
+.gate NOT      A=new_n1455_ Y=new_n1456_
+.gate NOR      A=new_n1456_ B=new_n1453_ Y=new_n1457_
+.gate NOR      A=new_n1457_ B=new_n721_ Y=new_n1458_
+.gate NOR      A=new_n1458_ B=new_n1454_ Y=new_n1459_
+.gate NOR      A=new_n1459_ B=new_n1403_ Y=f75
+.gate NOR      A=x105 B=x33 Y=new_n1461_
+.gate NOT      A=new_n1461_ Y=new_n1462_
+.gate NOR      A=new_n1462_ B=new_n1011_ Y=new_n1463_
+.gate NOT      A=new_n1463_ Y=new_n1464_
+.gate NOR      A=new_n1464_ B=new_n1370_ Y=new_n1465_
+.gate NOR      A=new_n1350_ B=new_n1346_ Y=new_n1466_
+.gate NOT      A=new_n1466_ Y=new_n1467_
+.gate NOR      A=new_n1419_ B=new_n731_ Y=new_n1468_
+.gate NOT      A=new_n1468_ Y=new_n1469_
+.gate NOR      A=new_n1348_ B=new_n761_ Y=new_n1470_
+.gate NOT      A=new_n1470_ Y=new_n1471_
+.gate NOR      A=new_n1471_ B=new_n1469_ Y=new_n1472_
+.gate NOT      A=new_n1472_ Y=new_n1473_
+.gate NOR      A=new_n1473_ B=new_n1467_ Y=new_n1474_
+.gate NOR      A=new_n1474_ B=new_n1465_ Y=new_n1475_
+.gate NOR      A=new_n1429_ B=new_n1362_ Y=new_n1476_
+.gate NOT      A=new_n1476_ Y=new_n1477_
+.gate NOR      A=new_n1477_ B=new_n1475_ Y=new_n1478_
+.gate NOT      A=x5 Y=new_n1479_
+.gate NOR      A=new_n1476_ B=new_n1479_ Y=new_n1480_
+.gate NOR      A=new_n1370_ B=new_n1090_ Y=new_n1481_
+.gate NOT      A=new_n1481_ Y=new_n1482_
+.gate NOR      A=new_n1482_ B=new_n1480_ Y=new_n1483_
+.gate NOR      A=new_n1483_ B=new_n731_ Y=new_n1484_
+.gate NOR      A=new_n1484_ B=new_n1478_ Y=new_n1485_
+.gate NOR      A=new_n1485_ B=x6 Y=new_n1486_
+.gate NOR      A=new_n741_ B=new_n721_ Y=new_n1487_
+.gate NOT      A=new_n1487_ Y=new_n1488_
+.gate NOR      A=new_n1488_ B=new_n1358_ Y=new_n1489_
+.gate NOT      A=new_n1489_ Y=new_n1490_
+.gate NOR      A=new_n1490_ B=new_n1453_ Y=new_n1491_
+.gate NOT      A=new_n1491_ Y=new_n1492_
+.gate NOR      A=new_n1492_ B=new_n1354_ Y=new_n1493_
+.gate NOR      A=new_n1493_ B=new_n674_ Y=new_n1494_
+.gate NOR      A=new_n1494_ B=new_n731_ Y=new_n1495_
+.gate NOR      A=new_n1005_ B=x5 Y=new_n1496_
+.gate NOT      A=new_n1496_ Y=new_n1497_
+.gate NOR      A=new_n1497_ B=new_n1380_ Y=new_n1498_
+.gate NOT      A=new_n1498_ Y=new_n1499_
+.gate NOR      A=new_n1499_ B=new_n1013_ Y=new_n1500_
+.gate NOT      A=new_n1500_ Y=new_n1501_
+.gate NOR      A=new_n1501_ B=new_n1495_ Y=new_n1502_
+.gate NOR      A=new_n1502_ B=new_n1486_ Y=new_n1503_
+.gate NOR      A=new_n1503_ B=new_n221_ Y=f76
+.gate NOR      A=new_n1088_ B=x106 Y=new_n1505_
+.gate NOT      A=new_n1505_ Y=new_n1506_
+.gate NOR      A=new_n1506_ B=new_n1432_ Y=new_n1507_
+.gate NOT      A=new_n1507_ Y=new_n1508_
+.gate NOR      A=new_n1508_ B=new_n1480_ Y=new_n1509_
+.gate NOR      A=new_n1509_ B=new_n1493_ Y=new_n1510_
+.gate NOR      A=new_n1510_ B=new_n731_ Y=new_n1511_
+.gate NOR      A=new_n731_ B=x33 Y=new_n1512_
+.gate NOT      A=new_n1512_ Y=new_n1513_
+.gate NOR      A=new_n1513_ B=new_n1011_ Y=new_n1514_
+.gate NOT      A=new_n1514_ Y=new_n1515_
+.gate NOR      A=new_n1515_ B=new_n1370_ Y=new_n1516_
+.gate NOT      A=new_n1516_ Y=new_n1517_
+.gate NOR      A=new_n1517_ B=new_n1480_ Y=new_n1518_
+.gate NOR      A=new_n1518_ B=new_n741_ Y=new_n1519_
+.gate NOR      A=new_n1519_ B=new_n1511_ Y=new_n1520_
+.gate NOR      A=new_n1520_ B=new_n1403_ Y=f77
+.gate NOR      A=new_n1088_ B=x107 Y=new_n1522_
+.gate NOT      A=new_n1522_ Y=new_n1523_
+.gate NOR      A=new_n1523_ B=new_n1432_ Y=new_n1524_
+.gate NOT      A=new_n1524_ Y=new_n1525_
+.gate NOR      A=new_n1525_ B=new_n1480_ Y=new_n1526_
+.gate NOR      A=new_n751_ B=new_n721_ Y=new_n1527_
+.gate NOT      A=new_n1527_ Y=new_n1528_
+.gate NOR      A=new_n1528_ B=new_n1421_ Y=new_n1529_
+.gate NOT      A=new_n1529_ Y=new_n1530_
+.gate NOR      A=new_n1530_ B=new_n1453_ Y=new_n1531_
+.gate NOT      A=new_n1531_ Y=new_n1532_
+.gate NOR      A=new_n1532_ B=new_n1413_ Y=new_n1533_
+.gate NOR      A=new_n1533_ B=new_n1526_ Y=new_n1534_
+.gate NOR      A=new_n1534_ B=new_n1356_ Y=new_n1535_
+.gate NOR      A=new_n1356_ B=new_n1088_ Y=new_n1536_
+.gate NOT      A=new_n1536_ Y=new_n1537_
+.gate NOR      A=new_n1537_ B=new_n1432_ Y=new_n1538_
+.gate NOT      A=new_n1538_ Y=new_n1539_
+.gate NOR      A=new_n1539_ B=new_n1480_ Y=new_n1540_
+.gate NOR      A=new_n1540_ B=new_n751_ Y=new_n1541_
+.gate NOR      A=new_n1541_ B=new_n1535_ Y=new_n1542_
+.gate NOR      A=new_n1542_ B=new_n1403_ Y=f78
+.gate NOR      A=new_n1088_ B=x108 Y=new_n1544_
+.gate NOT      A=new_n1544_ Y=new_n1545_
+.gate NOR      A=new_n1545_ B=new_n1432_ Y=new_n1546_
+.gate NOT      A=new_n1546_ Y=new_n1547_
+.gate NOR      A=new_n1547_ B=new_n1480_ Y=new_n1548_
+.gate NOR      A=new_n1421_ B=new_n721_ Y=new_n1549_
+.gate NOT      A=new_n1549_ Y=new_n1550_
+.gate NOR      A=new_n1550_ B=new_n1453_ Y=new_n1551_
+.gate NOT      A=new_n1551_ Y=new_n1552_
+.gate NOR      A=new_n1552_ B=new_n1413_ Y=new_n1553_
+.gate NOR      A=new_n1553_ B=new_n1548_ Y=new_n1554_
+.gate NOR      A=new_n1356_ B=new_n751_ Y=new_n1555_
+.gate NOT      A=new_n1555_ Y=new_n1556_
+.gate NOR      A=new_n1556_ B=new_n1554_ Y=new_n1557_
+.gate NOR      A=new_n1469_ B=new_n1456_ Y=new_n1558_
+.gate NOT      A=new_n1558_ Y=new_n1559_
+.gate NOR      A=new_n1559_ B=new_n1480_ Y=new_n1560_
+.gate NOR      A=new_n1560_ B=new_n761_ Y=new_n1561_
+.gate NOR      A=new_n1561_ B=new_n1557_ Y=new_n1562_
+.gate NOR      A=new_n1562_ B=new_n1403_ Y=f79
+.gate NOR      A=new_n1419_ B=new_n1415_ Y=new_n1564_
+.gate NOT      A=new_n1564_ Y=new_n1565_
+.gate NOR      A=new_n1565_ B=new_n1453_ Y=new_n1566_
+.gate NOT      A=new_n1566_ Y=new_n1567_
+.gate NOR      A=new_n794_ B=new_n761_ Y=new_n1568_
+.gate NOT      A=new_n1568_ Y=new_n1569_
+.gate NOR      A=new_n1569_ B=new_n1350_ Y=new_n1570_
+.gate NOT      A=new_n1570_ Y=new_n1571_
+.gate NOR      A=new_n1571_ B=new_n1346_ Y=new_n1572_
+.gate NOT      A=new_n1572_ Y=new_n1573_
+.gate NOR      A=new_n1573_ B=new_n1567_ Y=new_n1574_
+.gate NOR      A=new_n1574_ B=new_n1372_ Y=new_n1575_
+.gate NOR      A=new_n780_ B=x6 Y=new_n1576_
+.gate NOT      A=new_n1576_ Y=new_n1577_
+.gate NOR      A=new_n1577_ B=new_n1575_ Y=new_n1578_
+.gate NOR      A=new_n674_ B=x5 Y=new_n1579_
+.gate NOT      A=new_n1579_ Y=new_n1580_
+.gate NOR      A=new_n1580_ B=new_n1380_ Y=new_n1581_
+.gate NOT      A=new_n1581_ Y=new_n1582_
+.gate NOR      A=new_n1582_ B=new_n1382_ Y=new_n1583_
+.gate NOR      A=x6 B=new_n1479_ Y=new_n1584_
+.gate NOT      A=new_n1584_ Y=new_n1585_
+.gate NOR      A=new_n1585_ B=new_n780_ Y=new_n1586_
+.gate NOR      A=new_n1586_ B=new_n1583_ Y=new_n1587_
+.gate NOR      A=new_n1477_ B=new_n1360_ Y=new_n1588_
+.gate NOR      A=new_n1588_ B=new_n1587_ Y=new_n1589_
+.gate NOR      A=new_n1412_ B=new_n674_ Y=new_n1590_
+.gate NOR      A=new_n1590_ B=new_n780_ Y=new_n1591_
+.gate NOR      A=new_n1588_ B=new_n1479_ Y=new_n1592_
+.gate NOR      A=new_n1592_ B=new_n1384_ Y=new_n1593_
+.gate NOT      A=new_n1593_ Y=new_n1594_
+.gate NOR      A=new_n1594_ B=new_n1591_ Y=new_n1595_
+.gate NOR      A=new_n1595_ B=new_n1589_ Y=new_n1596_
+.gate NOT      A=new_n1596_ Y=new_n1597_
+.gate NOR      A=new_n1597_ B=new_n1578_ Y=new_n1598_
+.gate NOR      A=new_n1598_ B=new_n221_ Y=f80
+.gate NOR      A=new_n1088_ B=x110 Y=new_n1600_
+.gate NOT      A=new_n1600_ Y=new_n1601_
+.gate NOR      A=new_n1601_ B=new_n1432_ Y=new_n1602_
+.gate NOT      A=new_n1602_ Y=new_n1603_
+.gate NOR      A=new_n1603_ B=new_n1592_ Y=new_n1604_
+.gate NOR      A=new_n1604_ B=new_n1574_ Y=new_n1605_
+.gate NOR      A=new_n1605_ B=new_n780_ Y=new_n1606_
+.gate NOR      A=new_n780_ B=x33 Y=new_n1607_
+.gate NOT      A=new_n1607_ Y=new_n1608_
+.gate NOR      A=new_n1608_ B=new_n1011_ Y=new_n1609_
+.gate NOT      A=new_n1609_ Y=new_n1610_
+.gate NOR      A=new_n1610_ B=new_n1370_ Y=new_n1611_
+.gate NOT      A=new_n1611_ Y=new_n1612_
+.gate NOR      A=new_n1612_ B=new_n1592_ Y=new_n1613_
+.gate NOR      A=new_n1613_ B=new_n794_ Y=new_n1614_
+.gate NOR      A=new_n1614_ B=new_n1606_ Y=new_n1615_
+.gate NOR      A=new_n1615_ B=new_n1403_ Y=f81
+.gate NOR      A=new_n1088_ B=x111 Y=new_n1617_
+.gate NOT      A=new_n1617_ Y=new_n1618_
+.gate NOR      A=new_n1618_ B=new_n1432_ Y=new_n1619_
+.gate NOT      A=new_n1619_ Y=new_n1620_
+.gate NOR      A=new_n1620_ B=new_n1592_ Y=new_n1621_
+.gate NOR      A=new_n1350_ B=new_n761_ Y=new_n1622_
+.gate NOT      A=new_n1622_ Y=new_n1623_
+.gate NOR      A=new_n1623_ B=new_n1346_ Y=new_n1624_
+.gate NOT      A=new_n1624_ Y=new_n1625_
+.gate NOR      A=new_n1625_ B=new_n1567_ Y=new_n1626_
+.gate NOR      A=new_n1626_ B=new_n1621_ Y=new_n1627_
+.gate NOR      A=new_n1627_ B=new_n1348_ Y=new_n1628_
+.gate NOR      A=new_n1348_ B=new_n1088_ Y=new_n1629_
+.gate NOT      A=new_n1629_ Y=new_n1630_
+.gate NOR      A=new_n1630_ B=new_n1432_ Y=new_n1631_
+.gate NOT      A=new_n1631_ Y=new_n1632_
+.gate NOR      A=new_n1632_ B=new_n1592_ Y=new_n1633_
+.gate NOR      A=new_n1633_ B=new_n808_ Y=new_n1634_
+.gate NOR      A=new_n1634_ B=new_n1628_ Y=new_n1635_
+.gate NOR      A=new_n1635_ B=new_n1403_ Y=f82
+.gate NOR      A=new_n1088_ B=x112 Y=new_n1637_
+.gate NOT      A=new_n1637_ Y=new_n1638_
+.gate NOR      A=new_n1638_ B=new_n1432_ Y=new_n1639_
+.gate NOT      A=new_n1639_ Y=new_n1640_
+.gate NOR      A=new_n1640_ B=new_n1592_ Y=new_n1641_
+.gate NOR      A=new_n1453_ B=new_n1445_ Y=new_n1642_
+.gate NOT      A=new_n1642_ Y=new_n1643_
+.gate NOR      A=new_n1358_ B=new_n822_ Y=new_n1644_
+.gate NOT      A=new_n1644_ Y=new_n1645_
+.gate NOR      A=new_n1645_ B=new_n1346_ Y=new_n1646_
+.gate NOT      A=new_n1646_ Y=new_n1647_
+.gate NOR      A=new_n1647_ B=new_n1643_ Y=new_n1648_
+.gate NOR      A=new_n1648_ B=new_n1641_ Y=new_n1649_
+.gate NOR      A=new_n1348_ B=new_n808_ Y=new_n1650_
+.gate NOT      A=new_n1650_ Y=new_n1651_
+.gate NOR      A=new_n1651_ B=new_n1649_ Y=new_n1652_
+.gate NOR      A=new_n808_ B=new_n794_ Y=new_n1653_
+.gate NOT      A=new_n1653_ Y=new_n1654_
+.gate NOR      A=new_n1088_ B=new_n780_ Y=new_n1655_
+.gate NOT      A=new_n1655_ Y=new_n1656_
+.gate NOR      A=new_n1656_ B=new_n1654_ Y=new_n1657_
+.gate NOT      A=new_n1657_ Y=new_n1658_
+.gate NOR      A=new_n1658_ B=new_n1432_ Y=new_n1659_
+.gate NOT      A=new_n1659_ Y=new_n1660_
+.gate NOR      A=new_n1660_ B=new_n1592_ Y=new_n1661_
+.gate NOR      A=new_n1661_ B=new_n822_ Y=new_n1662_
+.gate NOR      A=new_n1662_ B=new_n1652_ Y=new_n1663_
+.gate NOR      A=new_n1663_ B=new_n1403_ Y=f83
+.gate NOR      A=x113 B=x33 Y=new_n1665_
+.gate NOT      A=new_n1665_ Y=new_n1666_
+.gate NOR      A=new_n1666_ B=new_n1011_ Y=new_n1667_
+.gate NOT      A=new_n1667_ Y=new_n1668_
+.gate NOR      A=new_n1668_ B=new_n1370_ Y=new_n1669_
+.gate NOR      A=new_n1669_ B=new_n1345_ Y=new_n1670_
+.gate NOT      A=new_n1588_ Y=new_n1671_
+.gate NOR      A=new_n1671_ B=new_n1352_ Y=new_n1672_
+.gate NOT      A=new_n1672_ Y=new_n1673_
+.gate NOR      A=new_n1673_ B=new_n1670_ Y=new_n1674_
+.gate NOR      A=new_n1447_ B=new_n1411_ Y=new_n1675_
+.gate NOT      A=new_n1675_ Y=new_n1676_
+.gate NOR      A=new_n1676_ B=new_n1643_ Y=new_n1677_
+.gate NOR      A=new_n1677_ B=new_n1479_ Y=new_n1678_
+.gate NOR      A=new_n1678_ B=new_n1482_ Y=new_n1679_
+.gate NOR      A=new_n1679_ B=new_n836_ Y=new_n1680_
+.gate NOR      A=new_n1680_ B=new_n1674_ Y=new_n1681_
+.gate NOR      A=new_n1681_ B=x6 Y=new_n1682_
+.gate NOR      A=new_n850_ B=new_n822_ Y=new_n1683_
+.gate NOT      A=new_n1683_ Y=new_n1684_
+.gate NOR      A=new_n1684_ B=new_n1344_ Y=new_n1685_
+.gate NOT      A=new_n1685_ Y=new_n1686_
+.gate NOR      A=new_n1654_ B=new_n1421_ Y=new_n1687_
+.gate NOT      A=new_n1687_ Y=new_n1688_
+.gate NOR      A=new_n1688_ B=new_n1686_ Y=new_n1689_
+.gate NOT      A=new_n1689_ Y=new_n1690_
+.gate NOR      A=new_n1690_ B=new_n1567_ Y=new_n1691_
+.gate NOR      A=new_n1691_ B=new_n674_ Y=new_n1692_
+.gate NOR      A=new_n1692_ B=new_n836_ Y=new_n1693_
+.gate NOR      A=new_n1693_ B=new_n1501_ Y=new_n1694_
+.gate NOR      A=new_n1694_ B=new_n1682_ Y=new_n1695_
+.gate NOR      A=new_n1695_ B=new_n221_ Y=f84
+.gate NOR      A=new_n1088_ B=x114 Y=new_n1697_
+.gate NOT      A=new_n1697_ Y=new_n1698_
+.gate NOR      A=new_n1698_ B=new_n1432_ Y=new_n1699_
+.gate NOT      A=new_n1699_ Y=new_n1700_
+.gate NOR      A=new_n1700_ B=new_n1678_ Y=new_n1701_
+.gate NOR      A=new_n1701_ B=new_n1691_ Y=new_n1702_
+.gate NOR      A=new_n1702_ B=new_n836_ Y=new_n1703_
+.gate NOR      A=new_n836_ B=x33 Y=new_n1704_
+.gate NOT      A=new_n1704_ Y=new_n1705_
+.gate NOR      A=new_n1705_ B=new_n1011_ Y=new_n1706_
+.gate NOT      A=new_n1706_ Y=new_n1707_
+.gate NOR      A=new_n1707_ B=new_n1370_ Y=new_n1708_
+.gate NOT      A=new_n1708_ Y=new_n1709_
+.gate NOR      A=new_n1709_ B=new_n1678_ Y=new_n1710_
+.gate NOR      A=new_n1710_ B=new_n850_ Y=new_n1711_
+.gate NOR      A=new_n1711_ B=new_n1703_ Y=new_n1712_
+.gate NOR      A=new_n1712_ B=new_n1403_ Y=f85
+.gate NOR      A=new_n1088_ B=x115 Y=new_n1714_
+.gate NOT      A=new_n1714_ Y=new_n1715_
+.gate NOR      A=new_n1715_ B=new_n1432_ Y=new_n1716_
+.gate NOT      A=new_n1716_ Y=new_n1717_
+.gate NOR      A=new_n1717_ B=new_n1678_ Y=new_n1718_
+.gate NOR      A=new_n1350_ B=new_n1344_ Y=new_n1719_
+.gate NOT      A=new_n1719_ Y=new_n1720_
+.gate NOR      A=new_n1720_ B=new_n1471_ Y=new_n1721_
+.gate NOT      A=new_n1721_ Y=new_n1722_
+.gate NOR      A=new_n1722_ B=new_n1567_ Y=new_n1723_
+.gate NOR      A=new_n1723_ B=new_n1718_ Y=new_n1724_
+.gate NOR      A=new_n1724_ B=new_n1342_ Y=new_n1725_
+.gate NOR      A=new_n1342_ B=new_n1088_ Y=new_n1726_
+.gate NOT      A=new_n1726_ Y=new_n1727_
+.gate NOR      A=new_n1727_ B=new_n1432_ Y=new_n1728_
+.gate NOT      A=new_n1728_ Y=new_n1729_
+.gate NOR      A=new_n1729_ B=new_n1678_ Y=new_n1730_
+.gate NOR      A=new_n1730_ B=new_n864_ Y=new_n1731_
+.gate NOR      A=new_n1731_ B=new_n1725_ Y=new_n1732_
+.gate NOR      A=new_n1732_ B=new_n1403_ Y=f86
+.gate NOR      A=new_n1088_ B=x116 Y=new_n1734_
+.gate NOT      A=new_n1734_ Y=new_n1735_
+.gate NOR      A=new_n1735_ B=new_n1432_ Y=new_n1736_
+.gate NOT      A=new_n1736_ Y=new_n1737_
+.gate NOR      A=new_n1737_ B=new_n1678_ Y=new_n1738_
+.gate NOR      A=new_n878_ B=new_n822_ Y=new_n1739_
+.gate NOT      A=new_n1739_ Y=new_n1740_
+.gate NOR      A=new_n1740_ B=new_n1654_ Y=new_n1741_
+.gate NOT      A=new_n1741_ Y=new_n1742_
+.gate NOR      A=new_n1742_ B=new_n1447_ Y=new_n1743_
+.gate NOT      A=new_n1743_ Y=new_n1744_
+.gate NOR      A=new_n1744_ B=new_n1643_ Y=new_n1745_
+.gate NOR      A=new_n1745_ B=new_n1738_ Y=new_n1746_
+.gate NOR      A=new_n1342_ B=new_n864_ Y=new_n1747_
+.gate NOT      A=new_n1747_ Y=new_n1748_
+.gate NOR      A=new_n1748_ B=new_n1746_ Y=new_n1749_
+.gate NOR      A=new_n1748_ B=new_n1456_ Y=new_n1750_
+.gate NOT      A=new_n1750_ Y=new_n1751_
+.gate NOR      A=new_n1751_ B=new_n1678_ Y=new_n1752_
+.gate NOR      A=new_n1752_ B=new_n878_ Y=new_n1753_
+.gate NOR      A=new_n1753_ B=new_n1749_ Y=new_n1754_
+.gate NOR      A=new_n1754_ B=new_n1403_ Y=f87
+.gate _const0_ z=f29
+.gate _const0_ z=f30
+.gate _const0_ z=f31
+.gate BUF      A=x92 Y=f0
+.gate BUF      A=x87 Y=f19
+.gate BUF      A=x88 Y=f20
+.end
