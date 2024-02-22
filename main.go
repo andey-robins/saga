@@ -7,6 +7,7 @@ import (
 	"log"
 	"time"
 
+	"github.com/andey-robins/magical/checkpoint"
 	"github.com/andey-robins/magical/genetics"
 	"github.com/andey-robins/magical/graph"
 	"github.com/andey-robins/magical/parsers/blif"
@@ -18,22 +19,26 @@ func main() {
 		fmt.Println("Run with -help for help information.")
 	}
 
-	var graphFile, sequenceFile, out string
+	var graphFile, sequenceFile, out, resume string
 	var help, verify, memory, evolve, verbose bool
 	var seed, population, epsilon int
 	var mutation float64
 	flag.StringVar(&graphFile, "graph", "", "the path to a graph file")
 	flag.StringVar(&sequenceFile, "sequence", "", "the path to a sequence file")
 	flag.StringVar(&out, "out", "", "the path to an output file")
+	flag.StringVar(&resume, "resume", "", "use to resume from a checkpoint file")
+
 	flag.BoolVar(&verify, "verify", false, "use to verify that a sequence is valid for a graph")
 	flag.BoolVar(&memory, "memory", false, "use to get the memory utilization of a sequence over a graph")
 	flag.BoolVar(&evolve, "evolve", false, "use to minimize the memory utilization of a sequence over a graph with genetic evolution")
 	flag.BoolVar(&verbose, "verbose", false, "use to display verbose output")
 	flag.BoolVar(&help, "help", false, "use to display help text")
+
 	flag.IntVar(&population, "pop", 400, "the size of the population to use for genetic algorithms")
 	flag.IntVar(&epsilon, "epsilon", 100, "the number of generations to keep running without any improvement")
 	flag.Float64Var(&mutation, "mutation", 0.2, "the chance of a mutation occuring in a sequence [0.0 - 1.0]")
 	flag.IntVar(&seed, "seed", 1, "the seed to use for the random number generator")
+
 	flag.Parse()
 
 	if help {
@@ -42,13 +47,14 @@ func main() {
 		}
 
 		pad()
-		fmt.Println(" Welcome to the MAGICAL CLI utility (v0.1.1)")
-		fmt.Println(" This code is licensed under GPLv3")
+		fmt.Println(" Welcome to the SAGA CLI utility (v0.2.0)")
+		fmt.Println(" This code is licensed under GPLv3. Source on GitHub.")
 		pad()
 		fmt.Println(" Args:")
 		fmt.Println("  -graph:      The path to an input graph file")
 		fmt.Println("  -sequence:   The path to an input sequence file")
 		fmt.Println("  -out:        The path to an output file. Output will be to STDOUT if\n\t\t none is specified")
+		fmt.Println("  -resume:     The path to a checkpoint file to resume from. NOTE: This will override any other flags.")
 		pad()
 		fmt.Println(" Flags:")
 		fmt.Println("  -verify:     Use to verify that a sequence is valid for a graph.\n\t\tRequires graph and sequence arguments")
@@ -75,8 +81,28 @@ func main() {
 		return
 	}
 
-	// driver flags, run the specified portion of the application
-	if verify || memory {
+	if resume != "" {
+		if out == "" {
+			fmt.Println("No output file specified. Run with -help for help information.")
+			return
+		}
+
+		fmt.Println("Resuming from checkpoint file:", resume)
+		p := &genetics.Population{}
+		checkpoint.Load(resume, p)
+		p.SynchronizeRNG()
+
+		g := loadGraphByFileType(graphFile)
+		p.Evolve(g)
+
+		fit, seq := p.GetBest(g)
+
+		fmt.Printf("seed=%d\n", p.Seed)
+		fmt.Printf("Best fitness: %d\n", fit)
+
+		seq.WriteToFile(out)
+
+	} else if verify || memory {
 
 		if sequenceFile == "" {
 			fmt.Println("No sequence file specified. Run with -help for help information.")
@@ -157,7 +183,7 @@ func minimizeDriver(graphFpath, seqFpath string, generation, epsilon, seed int, 
 
 	fit, seq := p.GetBest(g)
 
-	fmt.Printf("seed=%d\n", seed)
+	fmt.Printf("seed=%d\n", p.Seed)
 	fmt.Printf("Best fitness: %d\n", fit)
 
 	seq.WriteToFile(seqFpath)
