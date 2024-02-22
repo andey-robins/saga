@@ -12,22 +12,23 @@ import (
 )
 
 type Gene struct {
-	sequence *sequence.Sequence
-	fitness  int
+	Sequence *sequence.Sequence `json:"sequence"`
+	Fitness  int                `json:"fitness"`
 }
 
 type Population struct {
-	genes          []*Gene
-	bestFitness    int
-	bestGene       *Gene
-	avgFitness     float64
-	generations    int
-	size           int
-	mutationChance float64
+	Genes          []*Gene `json:"genes"`
+	BestFitness    int     `json:"bestFitness"`
+	BestGene       *Gene   `json:"bestGene"`
+	AvgFitness     float64 `json:"avgFitness"`
+	Generations    int     `json:"generations"`
+	Size           int     `json:"size"`
+	MutationChance float64 `json:"mutationChance"`
+	Seed           int     `json:"seed"`
 	rng            *rand.Rand
 
 	// the number of generations we will continue searching without improvements
-	epsilon int
+	Epsilon int `json:"epsilon"`
 }
 
 // NewPopulation will create a new population of population size `size` with a mutation
@@ -60,14 +61,15 @@ func NewPopulation(size, e int, mut float64, graph *graph.Graph, seed int) *Popu
 	}
 
 	return &Population{
-		genes:          genes,
-		epsilon:        e,
-		avgFitness:     float64(totalFitness) / float64(size),
-		bestFitness:    bestFitness,
-		bestGene:       bestGene,
-		generations:    0,
-		size:           size,
-		mutationChance: mut,
+		Genes:          genes,
+		Epsilon:        e,
+		AvgFitness:     float64(totalFitness) / float64(size),
+		BestFitness:    bestFitness,
+		BestGene:       bestGene,
+		Generations:    0,
+		Size:           size,
+		MutationChance: mut,
+		Seed:           seed,
 		rng:            rng,
 	}
 }
@@ -75,18 +77,22 @@ func NewPopulation(size, e int, mut float64, graph *graph.Graph, seed int) *Popu
 // Evolve will evolve the population until we have gone `epsilon` generations without
 // improving the best fitness
 func (p *Population) Evolve(g *graph.Graph) {
-	bestFitness := p.bestFitness
+	if p.rng == nil {
+		p.SynchronizeRNG()
+	}
+
+	bestFitness := p.BestFitness
 	roundsWithoutImprovement := 0
 
 	reportEpoch := func() {
-		log.Printf("Epoch %d: Best fitness: %d Avg fitness: %v\n", p.generations, p.bestFitness, p.avgFitness)
+		log.Printf("Epoch %d: Best fitness: %d Avg fitness: %v\n", p.Generations, p.BestFitness, p.AvgFitness)
 	}
 
-	for roundsWithoutImprovement < p.epsilon {
+	for roundsWithoutImprovement < p.Epsilon {
 		p.nextEpoch(g)
-		if p.bestFitness < bestFitness {
+		if p.BestFitness < bestFitness {
 			roundsWithoutImprovement = 0
-			bestFitness = p.bestFitness
+			bestFitness = p.BestFitness
 		} else {
 			roundsWithoutImprovement++
 		}
@@ -99,7 +105,7 @@ func (p *Population) nextEpoch(g *graph.Graph) {
 	p.execute()
 	p.crossover(g)
 	p.mutate(g)
-	p.generations++
+	p.Generations++
 }
 
 // select will evaluate all of the genes in the population and update
@@ -110,17 +116,17 @@ func (p *Population) nextEpoch(g *graph.Graph) {
 func (p *Population) evaluation(g *graph.Graph) {
 
 	var wg sync.WaitGroup
-	wg.Add(len(p.genes))
-	for _, gene := range p.genes {
+	wg.Add(len(p.Genes))
+	for _, gene := range p.Genes {
 		go func(gene *Gene, graph *graph.Graph) {
-			if !g.IsValidSequence(gene.sequence) {
+			if !g.IsValidSequence(gene.Sequence) {
 				panic("Invalid sequence")
 			}
-			mem, err := graph.SimulateSequence(gene.sequence)
+			mem, err := graph.SimulateSequence(gene.Sequence)
 			if err != nil {
 				panic(err)
 			}
-			gene.fitness = mem.GetMaxUtilization()
+			gene.Fitness = mem.GetMaxUtilization()
 			wg.Done()
 		}(gene, g)
 	}
@@ -134,14 +140,14 @@ func (p *Population) evaluation(g *graph.Graph) {
 func (p *Population) execute() {
 	p.calculateStats()
 
-	sort.Slice(p.genes, func(i, j int) bool {
-		return p.genes[i].fitness < p.genes[j].fitness
+	sort.Slice(p.Genes, func(i, j int) bool {
+		return p.Genes[i].Fitness < p.Genes[j].Fitness
 	})
 
-	p.bestFitness = p.genes[0].fitness
-	p.bestGene = p.genes[0]
+	p.BestFitness = p.Genes[0].Fitness
+	p.BestGene = p.Genes[0]
 
-	p.genes = p.genes[:p.size/4]
+	p.Genes = p.Genes[:p.Size/4]
 }
 
 // crossover will select two genes from the population and combine them
@@ -151,16 +157,16 @@ func (p *Population) execute() {
 // This function uses random numbers, but pulls from p.rng which is seeded
 // deterministically and doesn't spawn any go-routines
 func (p *Population) crossover(g *graph.Graph) {
-	for len(p.genes) < p.size {
+	for len(p.Genes) < p.Size {
 		// randomly select two genes and a crossover point
-		randGeneOne := p.genes[p.rng.Intn(len(p.genes))]
-		randGeneTwo := p.genes[p.rng.Intn(len(p.genes))]
-		crossoverPoint := p.rng.Intn(len(randGeneOne.sequence.GetSequence()))
+		randGeneOne := p.Genes[p.rng.Intn(len(p.Genes))]
+		randGeneTwo := p.Genes[p.rng.Intn(len(p.Genes))]
+		crossoverPoint := p.rng.Intn(len(randGeneOne.Sequence.GetSequence()))
 
 		crossover := func(g1, g2 *Gene, pt int) *Gene {
 
 			genes := make([]int, 0)
-			genes = append(genes, g1.sequence.GetSequence()[:pt]...)
+			genes = append(genes, g1.Sequence.GetSequence()[:pt]...)
 
 			in := func(ll []int, v int) bool {
 				for _, vv := range ll {
@@ -171,15 +177,15 @@ func (p *Population) crossover(g *graph.Graph) {
 				return false
 			}
 
-			for _, v := range g2.sequence.GetSequence() {
+			for _, v := range g2.Sequence.GetSequence() {
 				if !in(genes, v) {
 					genes = append(genes, v)
 				}
 			}
 
 			return &Gene{
-				sequence: sequence.NewSequence(genes),
-				fitness:  0,
+				Sequence: sequence.NewSequence(genes),
+				Fitness:  0,
 			}
 		}
 
@@ -188,12 +194,12 @@ func (p *Population) crossover(g *graph.Graph) {
 		newGeneTwo := crossover(randGeneTwo, randGeneOne, crossoverPoint)
 
 		// put them in the population
-		p.genes = append(p.genes, newGeneOne, newGeneTwo)
+		p.Genes = append(p.Genes, newGeneOne, newGeneTwo)
 	}
 
 	// if we have too many genes, cull
-	if len(p.genes) > p.size {
-		p.genes = p.genes[:p.size]
+	if len(p.Genes) > p.Size {
+		p.Genes = p.Genes[:p.Size]
 	}
 }
 
@@ -206,10 +212,10 @@ func (p *Population) crossover(g *graph.Graph) {
 // version of this method
 func (p *Population) mutate(g *graph.Graph) {
 	var wg sync.WaitGroup
-	wg.Add(len(p.genes))
-	for _, gene := range p.genes {
+	wg.Add(len(p.Genes))
+	for _, gene := range p.Genes {
 		go func(gene *Gene, seed int, g *graph.Graph) {
-			gene.sequence = g.SmartMutate(gene.sequence, seed)
+			gene.Sequence = g.SmartMutate(gene.Sequence, seed)
 
 			wg.Done()
 		}(gene, p.rng.Int(), g)
@@ -221,34 +227,41 @@ func (p *Population) mutate(g *graph.Graph) {
 // genes in the population, it will return a score of 0. Otherwise, it also returns
 // the best fitness and the best sequence
 func (p *Population) GetBest(g *graph.Graph) (int, *sequence.Sequence) {
-	for _, gene := range p.genes {
-		mem, err := g.SimulateSequence(gene.sequence)
+	for _, gene := range p.Genes {
+		mem, err := g.SimulateSequence(gene.Sequence)
 		if err != nil {
 			panic(err)
 		}
-		gene.fitness = mem.GetMaxUtilization()
+		gene.Fitness = mem.GetMaxUtilization()
 	}
 
-	sort.Slice(p.genes, func(i, j int) bool {
-		return p.genes[i].fitness < p.genes[j].fitness && p.genes[i].fitness != 0
+	sort.Slice(p.Genes, func(i, j int) bool {
+		return p.Genes[i].Fitness < p.Genes[j].Fitness && p.Genes[i].Fitness != 0
 	})
 
-	for _, gene := range p.genes {
-		if g.IsValidSequence(gene.sequence) && gene.fitness != 0 {
-			p.bestFitness = gene.fitness
-			p.bestGene = gene
-			return p.bestFitness, p.bestGene.sequence
+	for _, gene := range p.Genes {
+		if g.IsValidSequence(gene.Sequence) && gene.Fitness != 0 {
+			p.BestFitness = gene.Fitness
+			p.BestGene = gene
+			return p.BestFitness, p.BestGene.Sequence
 		}
 	}
-	return 0, p.bestGene.sequence
+	return 0, p.BestGene.Sequence
 }
 
 func (p *Population) calculateStats() {
 	totalFitness := 0
-	for _, gene := range p.genes {
-		if gene.fitness != 0 {
-			totalFitness += gene.fitness
+	for _, gene := range p.Genes {
+		if gene.Fitness != 0 {
+			totalFitness += gene.Fitness
 		}
 	}
-	p.avgFitness = float64(totalFitness) / float64(p.size)
+	p.AvgFitness = float64(totalFitness) / float64(p.Size)
+}
+
+// SynchronizeRNG will reseed the random number generator for the population
+// so that we can reproduce the same results. This *MUST* be used when restarting
+// from a saved checkpoint
+func (p *Population) SynchronizeRNG() {
+	p.rng = rand.New(rand.NewSource(int64(p.Seed)))
 }

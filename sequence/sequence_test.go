@@ -15,15 +15,15 @@ func TestLoadSequence(t *testing.T) {
 
 	for _, test := range tests {
 		sequence := LoadSequenceFromString(test.sequenceString)
-		if sequence == nil || sequence.sequence == nil {
+		if sequence == nil || sequence.Sequence == nil {
 			t.Errorf("Expected sequence to not be nil")
 		}
 
-		if len(sequence.sequence) != len(test.sequenceNumbers) {
-			t.Errorf("Expected sequence to have length %d, got %d", len(test.sequenceNumbers), len(sequence.sequence))
+		if len(sequence.Sequence) != len(test.sequenceNumbers) {
+			t.Errorf("Expected sequence to have length %d, got %d", len(test.sequenceNumbers), len(sequence.Sequence))
 		}
 
-		for i, v := range sequence.sequence {
+		for i, v := range sequence.Sequence {
 			if v != test.sequenceNumbers[i] {
 				t.Errorf("Expected sequence to have value %d at index %d, got %d", test.sequenceNumbers[i], i, v)
 			}
