@@ -16,6 +16,8 @@ _Current Version:_ `0.1.2`
     - [Verification Mode](#verification-mode)
     - [Memory Footprint Mode](#memory-footprint-mode)
     - [Minimization Mode](#minimization-mode)
+    - [Checkpoint Resume](#checkpoint-resume)
+  - [Configure Checkpoints](#configure-checkpoints)
   - [API Usage](#api-usage)
   - [Building](#building)
   - [What is MAGIC?](#what-is-magic)
@@ -61,6 +63,19 @@ This operating mode is the one which applies the genetic algorithms for which th
 > seed=2
 > Best fitness: 7
 > ```
+
+### Checkpoint Resume
+
+For longer running projects which may be interrupted, a checkpoint system is provided. Given a checkpoint file at an arbitrary location, `~/a/checkpoint.json` and the associated graph file, `~/b/g.graph`, the experiment can be resumed with the following command.
+
+`go run main.go -resume ~/a/checkpoint.json -graph ~/b/g.graph -out result.out`
+
+## Configure Checkpoints
+
+Saving intermediary progress from an experiment is a desireable function. It is exposed with two flags in SAGA.
+
+`chkfreq` - Is the frequency of how many generations will pass between saving checkpoint files. Defaults to every generation, set to 0 to disable.
+`chkpath` - The path to a folder in which to save checkpoint files. Defaults to creating a `./checkpoints` folder in the current working directory.
 
 ## API Usage
 

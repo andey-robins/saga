@@ -19,9 +19,9 @@ func main() {
 		fmt.Println("Run with -help for help information.")
 	}
 
-	var graphFile, sequenceFile, out, resume string
+	var graphFile, sequenceFile, out, resume, chkpath string
 	var help, verify, memory, evolve, verbose bool
-	var seed, population, epsilon int
+	var seed, population, epsilon, checkpointFreq int
 	var mutation float64
 	flag.StringVar(&graphFile, "graph", "", "the path to a graph file")
 	flag.StringVar(&sequenceFile, "sequence", "", "the path to a sequence file")
@@ -39,6 +39,9 @@ func main() {
 	flag.Float64Var(&mutation, "mutation", 0.2, "the chance of a mutation occuring in a sequence [0.0 - 1.0]")
 	flag.IntVar(&seed, "seed", 1, "the seed to use for the random number generator")
 
+	flag.IntVar(&checkpointFreq, "chkfreq", 1, "the number of generations between checkpoints")
+	flag.StringVar(&chkpath, "chkpath", "./checkpoints", "the path to a directory to save checkpoint files to")
+
 	flag.Parse()
 
 	if help {
@@ -55,6 +58,8 @@ func main() {
 		fmt.Println("  -sequence:   The path to an input sequence file")
 		fmt.Println("  -out:        The path to an output file. Output will be to STDOUT if\n\t\t none is specified")
 		fmt.Println("  -resume:     The path to a checkpoint file to resume from. NOTE: This will override any other flags.")
+		fmt.Println("  -chkfreq:    The number of generations between checkpoints (default 1)")
+		fmt.Println("  -chkpath:    The path to a directory to save checkpoints to (default ./checkpoints)")
 		pad()
 		fmt.Println(" Flags:")
 		fmt.Println("  -verify:     Use to verify that a sequence is valid for a graph.\n\t\tRequires graph and sequence arguments")
@@ -136,7 +141,7 @@ func main() {
 			return
 		}
 
-		minimizeDriver(graphFile, out, population, epsilon, seed, mutation)
+		minimizeDriver(graphFile, out, population, epsilon, seed, mutation, checkpointFreq, chkpath)
 
 	} else {
 		fmt.Println("No valid flags specified. Run with -help for help information.")
@@ -171,13 +176,14 @@ func memoryDriver(graphFpath, seqFpath string) {
 	fmt.Printf("Maximum memory footprint: %d\n", m.GetMaxUtilization())
 }
 
-func minimizeDriver(graphFpath, seqFpath string, generation, epsilon, seed int, mutation float64) {
+func minimizeDriver(graphFpath, seqFpath string, generation, epsilon, seed int, mutation float64, checkpointFreq int, chkpath string) {
 	if seed == 0 {
 		log.Println("Using random seed")
 		seed = int(time.Now().UnixNano())
 	}
+
 	g := loadGraphByFileType(graphFpath)
-	p := genetics.NewPopulation(generation, epsilon, mutation, g, seed)
+	p := genetics.NewPopulation(generation, epsilon, mutation, g, seed, checkpointFreq, chkpath)
 
 	p.Evolve(g)
 

@@ -1,12 +1,15 @@
 package genetics
 
 import (
+	"fmt"
 	"log"
 	"math"
 	"math/rand"
+	"os"
 	"sort"
 	"sync"
 
+	"github.com/andey-robins/magical/checkpoint"
 	"github.com/andey-robins/magical/graph"
 	"github.com/andey-robins/magical/sequence"
 )
@@ -28,13 +31,15 @@ type Population struct {
 	rng            *rand.Rand
 
 	// the number of generations we will continue searching without improvements
-	Epsilon int `json:"epsilon"`
+	Epsilon        int    `json:"epsilon"`
+	CheckpointFreq int    `json:"checkpointFreq"` // set to 0 to disable checkpoints
+	CheckpointPath string `json:"checkpointPath"`
 }
 
 // NewPopulation will create a new population of population size `size` with a mutation
 // chance of `mut` and epsilon `e`. It will seed the population with random valid sequences
 // and evaluate them.
-func NewPopulation(size, e int, mut float64, graph *graph.Graph, seed int) *Population {
+func NewPopulation(size, e int, mut float64, graph *graph.Graph, seed int, checkpointFreq int, chkpath string) *Population {
 	genes := make([]*Gene, size)
 
 	totalFitness := 0
@@ -71,6 +76,8 @@ func NewPopulation(size, e int, mut float64, graph *graph.Graph, seed int) *Popu
 		MutationChance: mut,
 		Seed:           seed,
 		rng:            rng,
+		CheckpointFreq: checkpointFreq,
+		CheckpointPath: chkpath,
 	}
 }
 
@@ -88,8 +95,22 @@ func (p *Population) Evolve(g *graph.Graph) {
 		log.Printf("Epoch %d: Best fitness: %d Avg fitness: %v\n", p.Generations, p.BestFitness, p.AvgFitness)
 	}
 
+	checkpointFilename := func(p *Population) string {
+		return fmt.Sprintf("%s/%d.json", p.CheckpointPath, p.Generations)
+	}
+
+	if p.CheckpointFreq > 0 {
+		os.MkdirAll(p.CheckpointPath, 0755)
+		checkpoint.Save(checkpointFilename(p), p)
+	}
+
 	for roundsWithoutImprovement < p.Epsilon {
 		p.nextEpoch(g)
+
+		if p.CheckpointFreq > 0 && p.Generations%p.CheckpointFreq == 0 {
+			checkpoint.Save(checkpointFilename(p), p)
+		}
+
 		if p.BestFitness < bestFitness {
 			roundsWithoutImprovement = 0
 			bestFitness = p.BestFitness
