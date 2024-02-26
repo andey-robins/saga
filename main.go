@@ -5,13 +5,8 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"time"
 
-	"github.com/andey-robins/magical/checkpoint"
-	"github.com/andey-robins/magical/genetics"
-	"github.com/andey-robins/magical/graph"
-	"github.com/andey-robins/magical/parsers/blif"
-	"github.com/andey-robins/magical/sequence"
+	"github.com/andey-robins/magical/drivers"
 )
 
 func main() {
@@ -81,124 +76,19 @@ func main() {
 		log.SetOutput(io.Discard)
 	}
 
-	if graphFile == "" {
-		fmt.Println("No graph file specified. Run with -help for help information.")
-		return
-	}
-
 	if resume != "" {
-		if out == "" {
-			fmt.Println("No output file specified. Run with -help for help information.")
-			return
-		}
+		drivers.ResumeDriver(resume, graphFile, out)
 
-		fmt.Println("Resuming from checkpoint file:", resume)
-		p := &genetics.GA{}
-		checkpoint.Load(resume, p)
-		p.SynchronizeRNG()
+	} else if verify {
+		drivers.VerifyDriver(graphFile, sequenceFile)
 
-		g := loadGraphByFileType(graphFile)
-		p.Evolve(g)
-
-		fit, seq := p.GetBest(g)
-
-		fmt.Printf("seed=%d\n", p.Seed)
-		fmt.Printf("Best fitness: %d\n", fit)
-
-		seq.WriteToFile(out)
-
-	} else if verify || memory {
-
-		if sequenceFile == "" {
-			fmt.Println("No sequence file specified. Run with -help for help information.")
-			return
-		}
-
-		if verify {
-			verifyDriver(graphFile, sequenceFile)
-		} else if memory {
-			memoryDriver(graphFile, sequenceFile)
-		}
+	} else if memory {
+		drivers.MemoryDriver(graphFile, sequenceFile)
 
 	} else if evolve {
-
-		if out == "" {
-			fmt.Println("No output file specified. Run with -help for help information.")
-			return
-		}
-
-		// parameter validation
-		if population < 0 {
-			fmt.Println("Population must be greater than 0. Run with -help for help information.")
-			return
-		}
-		if epsilon < 0 {
-			fmt.Println("Epsilon must be greater than 0. Run with -help for help information.")
-			return
-		}
-		if mutation < 0.0 || mutation > 1.0 {
-			fmt.Println("Mutation must be between 0.0 and 1.0. Run with -help for help information.")
-			return
-		}
-
-		minimizeDriver(graphFile, out, population, epsilon, seed, mutation, checkpointFreq, chkpath)
+		drivers.MinimizeDriver(graphFile, out, population, epsilon, seed, mutation, checkpointFreq, chkpath)
 
 	} else {
 		fmt.Println("No valid flags specified. Run with -help for help information.")
 	}
-}
-
-// Drivers are the main entry points for the application
-// They assume that their inputs have already been validated and
-// directly dispatch work into the API as appropriate
-func verifyDriver(graphFpath, seqFpath string) {
-	g := graph.LoadGraphFromFile(graphFpath)
-	s := sequence.LoadSequenceFromFile(seqFpath)
-
-	isValid := g.IsValidSequence(s)
-
-	if isValid {
-		fmt.Println("The execution sequence is valid!")
-	} else {
-		fmt.Println("The execution sequence is invalid!")
-	}
-}
-
-func memoryDriver(graphFpath, seqFpath string) {
-	g := graph.LoadGraphFromFile(graphFpath)
-	s := sequence.LoadSequenceFromFile(seqFpath)
-
-	m, err := g.SimulateSequence(s)
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Printf("Maximum memory footprint: %d\n", m.GetMaxUtilization())
-}
-
-func minimizeDriver(graphFpath, seqFpath string, generation, epsilon, seed int, mutation float64, checkpointFreq int, chkpath string) {
-	if seed == 0 {
-		log.Println("Using random seed")
-		seed = int(time.Now().UnixNano())
-	}
-
-	g := loadGraphByFileType(graphFpath)
-	p := genetics.NewGA(generation, epsilon, mutation, g, seed, checkpointFreq, chkpath)
-
-	p.Evolve(g)
-
-	fit, seq := p.GetBest(g)
-
-	fmt.Printf("seed=%d\n", p.Seed)
-	fmt.Printf("Best fitness: %d\n", fit)
-
-	seq.WriteToFile(seqFpath)
-}
-
-func loadGraphByFileType(graphFpath string) *graph.Graph {
-	if graphFpath[len(graphFpath)-5:] == ".blif" {
-		return blif.LoadBlifAsGraph(graphFpath)
-	}
-
-	return graph.LoadGraphFromFile(graphFpath)
 }
