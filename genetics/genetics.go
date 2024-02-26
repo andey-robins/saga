@@ -19,7 +19,7 @@ type Gene struct {
 	Fitness  int                `json:"fitness"`
 }
 
-type Population struct {
+type GA struct {
 	Genes          []*Gene `json:"genes"`
 	BestFitness    int     `json:"bestFitness"`
 	BestGene       *Gene   `json:"bestGene"`
@@ -36,10 +36,10 @@ type Population struct {
 	CheckpointPath string `json:"checkpointPath"`
 }
 
-// NewPopulation will create a new population of population size `size` with a mutation
+// NewGA will create a new population of population size `size` with a mutation
 // chance of `mut` and epsilon `e`. It will seed the population with random valid sequences
 // and evaluate them.
-func NewPopulation(size, e int, mut float64, graph *graph.Graph, seed int, checkpointFreq int, chkpath string) *Population {
+func NewGA(size, e int, mut float64, graph *graph.Graph, seed int, checkpointFreq int, chkpath string) *GA {
 	genes := make([]*Gene, size)
 
 	totalFitness := 0
@@ -65,7 +65,7 @@ func NewPopulation(size, e int, mut float64, graph *graph.Graph, seed int, check
 		}
 	}
 
-	return &Population{
+	return &GA{
 		Genes:          genes,
 		Epsilon:        e,
 		AvgFitness:     float64(totalFitness) / float64(size),
@@ -83,7 +83,7 @@ func NewPopulation(size, e int, mut float64, graph *graph.Graph, seed int, check
 
 // Evolve will evolve the population until we have gone `epsilon` generations without
 // improving the best fitness
-func (p *Population) Evolve(g *graph.Graph) {
+func (p *GA) Evolve(g *graph.Graph) {
 	if p.rng == nil {
 		p.SynchronizeRNG()
 	}
@@ -95,7 +95,7 @@ func (p *Population) Evolve(g *graph.Graph) {
 		log.Printf("Epoch %d: Best fitness: %d Avg fitness: %v\n", p.Generations, p.BestFitness, p.AvgFitness)
 	}
 
-	checkpointFilename := func(p *Population) string {
+	checkpointFilename := func(p *GA) string {
 		return fmt.Sprintf("%s/%d.json", p.CheckpointPath, p.Generations)
 	}
 
@@ -121,7 +121,7 @@ func (p *Population) Evolve(g *graph.Graph) {
 	}
 }
 
-func (p *Population) nextEpoch(g *graph.Graph) {
+func (p *GA) nextEpoch(g *graph.Graph) {
 	p.evaluation(g)
 	p.execute()
 	p.crossover(g)
@@ -134,7 +134,7 @@ func (p *Population) nextEpoch(g *graph.Graph) {
 // using waitgroups since we can evaluate each gene independently
 //
 // This function is deterministic
-func (p *Population) evaluation(g *graph.Graph) {
+func (p *GA) evaluation(g *graph.Graph) {
 
 	var wg sync.WaitGroup
 	wg.Add(len(p.Genes))
@@ -158,7 +158,7 @@ func (p *Population) evaluation(g *graph.Graph) {
 // ties randomly
 //
 // This function is deterministic
-func (p *Population) execute() {
+func (p *GA) execute() {
 	p.calculateStats()
 
 	sort.Slice(p.Genes, func(i, j int) bool {
@@ -177,7 +177,7 @@ func (p *Population) execute() {
 //
 // This function uses random numbers, but pulls from p.rng which is seeded
 // deterministically and doesn't spawn any go-routines
-func (p *Population) crossover(g *graph.Graph) {
+func (p *GA) crossover(g *graph.Graph) {
 	for len(p.Genes) < p.Size {
 		// randomly select two genes and a crossover point
 		randGeneOne := p.Genes[p.rng.Intn(len(p.Genes))]
@@ -231,7 +231,7 @@ func (p *Population) crossover(g *graph.Graph) {
 // each go-routine and then each routine seeds itself. This prevents
 // a race condition preventing determinism that was present in an earlier
 // version of this method
-func (p *Population) mutate(g *graph.Graph) {
+func (p *GA) mutate(g *graph.Graph) {
 	var wg sync.WaitGroup
 	wg.Add(len(p.Genes))
 	for _, gene := range p.Genes {
@@ -247,7 +247,7 @@ func (p *Population) mutate(g *graph.Graph) {
 // GetBest will return the best gene in the population. If there are no valid
 // genes in the population, it will return a score of 0. Otherwise, it also returns
 // the best fitness and the best sequence
-func (p *Population) GetBest(g *graph.Graph) (int, *sequence.Sequence) {
+func (p *GA) GetBest(g *graph.Graph) (int, *sequence.Sequence) {
 	for _, gene := range p.Genes {
 		mem, err := g.SimulateSequence(gene.Sequence)
 		if err != nil {
@@ -270,7 +270,7 @@ func (p *Population) GetBest(g *graph.Graph) (int, *sequence.Sequence) {
 	return 0, p.BestGene.Sequence
 }
 
-func (p *Population) calculateStats() {
+func (p *GA) calculateStats() {
 	totalFitness := 0
 	for _, gene := range p.Genes {
 		if gene.Fitness != 0 {
@@ -283,6 +283,6 @@ func (p *Population) calculateStats() {
 // SynchronizeRNG will reseed the random number generator for the population
 // so that we can reproduce the same results. This *MUST* be used when restarting
 // from a saved checkpoint
-func (p *Population) SynchronizeRNG() {
+func (p *GA) SynchronizeRNG() {
 	p.rng = rand.New(rand.NewSource(int64(p.Seed)))
 }

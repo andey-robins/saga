@@ -15,11 +15,11 @@ func TestCheckpointSaveAndLoad(t *testing.T) {
 
 	g := graph.LoadGraphFromString("Inputs 3\n1 2 3\nOutputs 1\n4\nNodes 4\nEdges 6\n1 5\n2 7\n3 6\n5 7\n6 4")
 
-	pop := NewPopulation(2, 1, 0.1, g, 0, 0, tempDir)
+	pop := NewGA(2, 1, 0.1, g, 0, 0, tempDir)
 
 	checkpoint.Save(cname, pop)
 
-	loadedPop := &Population{}
+	loadedPop := &GA{}
 	checkpoint.Load(cname, loadedPop)
 
 	if loadedPop.Size != 2 {
@@ -58,13 +58,13 @@ func TestExperimentResume(t *testing.T) {
 
 	g := graph.LoadGraphFromString("Inputs 3\n1 2 3\nOutputs 1\n4\nNodes 4\nEdges 6\n1 5\n2 7\n3 6\n5 7\n6 4")
 
-	pop := NewPopulation(10, 1, 0.1, g, 0, 0, tempDir)
+	pop := NewGA(10, 1, 0.1, g, 0, 0, tempDir)
 
 	pop.Evolve(g)
 
 	checkpoint.Save(cname, pop)
 
-	loadedPop := &Population{}
+	loadedPop := &GA{}
 	checkpoint.Load(cname, loadedPop)
 
 	pop.SynchronizeRNG()

@@ -93,7 +93,7 @@ func main() {
 		}
 
 		fmt.Println("Resuming from checkpoint file:", resume)
-		p := &genetics.Population{}
+		p := &genetics.GA{}
 		checkpoint.Load(resume, p)
 		p.SynchronizeRNG()
 
@@ -183,7 +183,7 @@ func minimizeDriver(graphFpath, seqFpath string, generation, epsilon, seed int, 
 	}
 
 	g := loadGraphByFileType(graphFpath)
-	p := genetics.NewPopulation(generation, epsilon, mutation, g, seed, checkpointFreq, chkpath)
+	p := genetics.NewGA(generation, epsilon, mutation, g, seed, checkpointFreq, chkpath)
 
 	p.Evolve(g)
 
