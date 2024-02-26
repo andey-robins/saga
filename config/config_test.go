@@ -13,7 +13,7 @@ func TestParseExampleConfig(t *testing.T) {
 		t.Error("expected 2 populations, got", len(config.Populations))
 	}
 
-	if len(config.Jobs) != 1 {
-		t.Error("expected 1 job, got", len(config.Jobs))
+	if len(config.Jobs) != 2 {
+		t.Error("expected 2 job, got", len(config.Jobs))
 	}
 }

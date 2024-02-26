@@ -6,14 +6,15 @@ type Config struct {
 }
 
 type Population struct {
-	Name          string  `json:"name"`
-	Population    int     `json:"population"`
-	Crossover     string  `json:"xover"`
-	Mutate        float64 `json:"mutationRate"`
-	CrossoverRate float64 `json:"xoverRate"`
-	Epsilon       int     `json:"epsilon"`
-	Checkpoint    bool    `json:"checkpoint"`
-	Seed          int     `json:"seed"`
+	Name           string  `json:"name"`
+	Population     int     `json:"population"`
+	Crossover      string  `json:"xover"`
+	MutationRate   float64 `json:"mutationRate"`
+	CrossoverRate  float64 `json:"xoverRate"`
+	Epsilon        int     `json:"epsilon"`
+	CheckpointFreq int     `json:"checkpointFrequency"`
+	CheckpointPath string  `json:"checkpointPath"`
+	Seed           int     `json:"seed"`
 }
 
 type Job struct {

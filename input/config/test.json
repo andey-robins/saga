@@ -7,7 +7,8 @@
       "xoverRate": 0.7,
       "mutationRate": 0.01,
       "epsilon": 200,
-      "checkpoint": true,
+      "checkpointFreq": 1,
+      "checkpointPath": "./checkpoints/5xp1_90/exp1",
       "seed": 42
     },
     {
@@ -16,8 +17,9 @@
       "xover": "default",
       "xoverRate": 0.5,
       "mutationRate": 0.05,
-      "epsilon": 200,
-      "checkpoint": true,
+      "epsilon": 5,
+      "checkpointFreq": 2,
+      "checkpointPath": "./checkpoints/5xp1_90/exp2",
       "seed": 42
     }
   ],
@@ -27,6 +29,12 @@
       "graph": "./input/circuits/5xp1_90.blif",
       "out": "./output/5xp1_90",
       "population": "Experiment 1"
+    },
+    {
+      "name": "Test Job",
+      "graph": "./input/circuits/5xp1_90.blif",
+      "out": "./output/5xp1_90",
+      "population": "Experiment 2"
     }
   ]
 }

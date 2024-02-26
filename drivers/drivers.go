@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/andey-robins/magical/checkpoint"
+	"github.com/andey-robins/magical/config"
 	"github.com/andey-robins/magical/genetics"
 	"github.com/andey-robins/magical/graph"
 	"github.com/andey-robins/magical/parsers/blif"
@@ -109,6 +110,45 @@ func ResumeDriver(checkpointFpath, graphFile, outFile string) {
 	fmt.Printf("Best fitness: %d\n", fit)
 
 	seq.WriteToFile(outFile)
+}
+
+func ConfigDriver(configFile string) {
+	v := validation.NewValidator(validation.Rules{
+		validation.ValidateNonEmpty("config", configFile),
+	})
+	v.MustValidate()
+
+	cfg := config.ParseConfig(configFile)
+	if err := cfg.Validate(); err != nil {
+		log.Fatalf("invalid config file, err: %v\n", err)
+		return
+	}
+
+	GAs := make(map[string]*config.Population)
+	for _, pop := range cfg.Populations {
+		GAs[pop.Name] = pop
+	}
+
+	for _, job := range cfg.Jobs {
+		pop, ok := GAs[job.Population]
+		if !ok {
+			log.Fatalf("invalid population name: %s\n", job.Population)
+			return
+		}
+		g := loadGraphByFileType(job.GraphFile)
+
+		p := genetics.NewGA(pop.Population, pop.Epsilon, pop.MutationRate, g, pop.Seed, pop.CheckpointFreq, pop.CheckpointPath)
+
+		fmt.Println(job.GraphFile)
+		p.Evolve(g)
+
+		fit, seq := p.GetBest(g)
+
+		fmt.Printf("seed=%d\n", p.Seed)
+		fmt.Printf("Best fitness: %d\n", fit)
+
+		seq.WriteToFile(fmt.Sprintf("%s/%s", job.OutputDir, "final.seq"))
+	}
 }
 
 func loadGraphByFileType(graphFpath string) *graph.Graph {

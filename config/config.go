@@ -58,7 +58,7 @@ func (c *Config) Validate() error {
 			return errors.New("invalid crossover method: " + p.Crossover)
 		}
 
-		if p.Mutate < 0 || p.Mutate > 1 {
+		if p.MutationRate < 0 || p.MutationRate > 1 {
 			return errors.New("invalid mutation rate: " + p.Name)
 		}
 

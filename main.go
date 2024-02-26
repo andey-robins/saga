@@ -14,7 +14,7 @@ func main() {
 		fmt.Println("Run with -help for help information.")
 	}
 
-	var graphFile, sequenceFile, out, resume, chkpath string
+	var graphFile, sequenceFile, out, resume, chkpath, config string
 	var help, verify, memory, evolve, verbose bool
 	var seed, population, epsilon, checkpointFreq int
 	var mutation float64
@@ -26,6 +26,7 @@ func main() {
 	flag.BoolVar(&verify, "verify", false, "use to verify that a sequence is valid for a graph")
 	flag.BoolVar(&memory, "memory", false, "use to get the memory utilization of a sequence over a graph")
 	flag.BoolVar(&evolve, "evolve", false, "use to minimize the memory utilization of a sequence over a graph with genetic evolution")
+	flag.StringVar(&config, "config", "", "use to run from a config file -- must specify a config file path.")
 	flag.BoolVar(&verbose, "verbose", false, "use to display verbose output")
 	flag.BoolVar(&help, "help", false, "use to display help text")
 
@@ -78,6 +79,9 @@ func main() {
 
 	if resume != "" {
 		drivers.ResumeDriver(resume, graphFile, out)
+
+	} else if config != "" {
+		drivers.ConfigDriver(config)
 
 	} else if verify {
 		drivers.VerifyDriver(graphFile, sequenceFile)
