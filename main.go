@@ -62,6 +62,7 @@ func main() {
 		fmt.Println("  -memory:     Use to get the memory utilization of a sequence over a\n\t\t graph. Requires graph and sequence arguments")
 		fmt.Println("  -evolve:     Use to minimize the memory utilization of a sequence\n\t\t over a graph. Requires graph and sequence arguments")
 		fmt.Println("  -verbose:	Use to display verbose output")
+		fmt.Println("  -config:     Use to run from a config file -- must specify a config file path.")
 		fmt.Println("  -help:       Display this help text :)")
 		pad()
 		fmt.Println(" Genetics Arguments:")

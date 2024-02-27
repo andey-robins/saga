@@ -17,6 +17,14 @@ The following changes are present in v0.2.0
 
 - Bumped go version to latest (1.22.x)
 - Re-organized and renamed project to match publishing
+- Added checkpoint system to save populations over time
+- Added `-resume` argument to restart from a checkpoint file
+- Added `-chkfreq` and `-chkpath` arguments for configuring checkpoint settings
+- Added `-config` verb to run a given config file
+  - See `//input/config/test.json` for available arguments and an example
+  - Tags are subject to addition until the first major release
+- Added system for declaring GAs as data
+- Added system for declaring jobs as data
 
 ## 0.1.2
 

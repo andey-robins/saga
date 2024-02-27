@@ -4,7 +4,7 @@ Synthesis Augmentation with Genetic Algorithms, SAGA -- is a footprint reduction
 
 This code is open source and licensed under the GPLv3 license. See `LICENSE` for complete licensing terms.
 
-_Current Version:_ `0.1.2`
+_Current Version:_ `0.2.0`
 
 [![Go](https://github.com/andey-robins/saga/actions/workflows/go.yml/badge.svg?branch=main)](https://github.com/andey-robins/saga/actions/workflows/go.yml)
 
