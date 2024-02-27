@@ -7,7 +7,7 @@
       "xoverRate": 0.7,
       "mutationRate": 0.01,
       "epsilon": 200,
-      "checkpointFreq": 1,
+      "checkpointFrequency": 1,
       "checkpointPath": "./checkpoints/5xp1_90/exp1",
       "seed": 42
     },
@@ -18,7 +18,7 @@
       "xoverRate": 0.5,
       "mutationRate": 0.05,
       "epsilon": 5,
-      "checkpointFreq": 2,
+      "checkpointFrequency": 2,
       "checkpointPath": "./checkpoints/5xp1_90/exp2",
       "seed": 42
     }
