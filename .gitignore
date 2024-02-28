@@ -26,3 +26,6 @@ paper/template.pdf
 
 # compiled binary
 magical
+
+# don't save potential checkpoint files that get created by contributors
+checkpoints/
